@@ -1,0 +1,20 @@
+{
+  "name": "gi-tk",
+  "version": "0.0.0",
+  "authors": [
+    "Jefferson Raga Salunga <jefferson.salunga@yahoo.com>"
+  ],
+  "description": "Giligan's TK",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "moment": "~2.10.6"
+  }
+}
