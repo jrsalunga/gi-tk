@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('id', '32')->primary();
             $table->timestamps();
+
+            $table->index('name', 'NAME');
+            $table->index('email', 'EMAIL');
         });
     }
 
