@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="/css/bt-override.css">
 	<link rel="stylesheet" href="/css/styles.css">
 
-
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 </head>
 <body>
@@ -175,6 +175,7 @@
 
 
   <script src="/js/vendors/jquery-1.11.3.js"></script>
+  <script src="/js/vendors/jquery-ui-1.11.3.js"></script>
   <script src="/js/vendors/bootstrap-3.3.5.js"></script>
   <script src="/js/vendors/moment-2.10.6.js"></script>
   <script src="/js/main.js"></script>

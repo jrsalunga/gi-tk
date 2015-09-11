@@ -17,6 +17,7 @@ class EmployeeTableSeeder extends Seeder
                 'middlename' => 'Raga',
                 'position' => 'IT Staff',
                 'branchid'=> '99265B80A5C211E385D3C0188508F93C',
+                'rfid' => '0008271985',
                 'punching' => 1,
                 'processing' => 1,
                 'id'=> '058FD717BEAE11E39AE474D02BCA8A4B'
@@ -28,6 +29,7 @@ class EmployeeTableSeeder extends Seeder
                 'middlename' => 'Yap',
                 'position' => 'IT Head',
                 'branchid'=> '99265B80A5C211E385D3C0188508F93C',
+                'rfid' => '0008071965',
                 'punching' => 1,
                 'processing' => 1,
                 'id'=> 'BD589EF4B0D411E3A0ECC0188508F93C'

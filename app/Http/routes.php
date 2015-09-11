@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Filesystem\Filesystem;
 
 Route::get('/', function () {
 
@@ -12,6 +12,39 @@ Route::get('/', function () {
 
 
 
+
+
+
+
+Route::get('api/employee/{field?}/{value?}', ['as'=>'field.get', 'uses'=>'EmployeeController@getByField']);
+Route::post('api/timelog', ['as'=>'timelog.post', 'uses'=>'TimelogController@post']);
+//Route::post('api/timelog', function(){
+//	return dd(Input::all());
+//});
+
+
+
+
+
+
+
+
+Route::get('upload', ['as'=>'upload.index', 'uses'=>'UploadController@index']);
+
+
+Route::post('postfile', ['as'=>'upload.postfile', 'uses'=>'UploadController@postfile']);
+
+Route::get('filess', function(){
+	$files = new Filesystem;
+	return dd($files->exists(public_path().'\uploads\test.zip'));
+});
+
+
+
+
+
+
+
 Route::get('timelog/{id}', function($id) {
 	//return App\Models\Timelog::with('employee')->where('id',$id)->get();
 	
@@ -20,6 +53,30 @@ Route::get('timelog/{id}', function($id) {
 
 	$timelogs = App\Models\Timelog::with('employee')->where('id', $id)->get();
 	return $timelogs[0];
+});
+
+Route::get('employee/{id}', function($id) {
+	//return App\Models\Timelog::with('employee')->where('id',$id)->get();
+	
+	//$timelog = App\Models\Timelog::find($id);
+	//return $timelog->employee()->get();
+
+	$employee = App\Models\Employee::with('branch')->where('id', $id)->get();
+	return $employee[0];
+});
+
+
+Route::get('get_uid', function(){
+	return App\Models\BaseModel::get_uid();
+});
+
+
+
+Route::get('geoip/{id}', function($ip){
+
+	$ip = empty($ip) ? $_SERVER["REMOTE_ADDR"]:$ip;
+
+	return GeoIP::getLocation($ip);
 });
 
 
@@ -60,5 +117,33 @@ if ($db) {
 	dbase_close($db);
 }
 
+});
+
+Route::get('zip', function(){ 
+
+	//$files = glob('files/*');
+	//$z = Zipper::make('test2.zip')->add($files);
+	//$z->setPassword('p@55w0rd');
+	//exit;
+	$zip = new ZipArchive();
+  $zip_status = $zip->open("test.zip");
+  echo $zip_status.'<br>';
+  if ($zip_status === true)
+  {
+  		echo 'extracting<br>';
+      if ($zip->setPassword("password"))
+      {
+          if (!$zip->extractTo(public_path()))
+              echo "Extraction failed (wrong password?)";
+
+            echo 'extracted to '. public_path() .'<br>';
+      }
+
+      $zip->close();
+  }
+  else
+  {
+      die("Failed opening archive: ". @$zip->getStatusString() . " (code: ". $zip_status .")");
+  }
 });
 

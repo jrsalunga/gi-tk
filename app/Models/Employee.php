@@ -16,5 +16,9 @@ class Employee extends BaseModel {
   public function branch() {
     return $this->belongsTo('App\Models\Branch', 'branchid');
   }
+
+  public function uploads() {
+    return $this->hasMany('App\Models\Upload', 'employeeid');
+  }
 	
 }

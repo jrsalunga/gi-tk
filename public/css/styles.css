@@ -1,13 +1,6 @@
 
 
 
-
-
-body {
-	background-color: #BDC3C7;
- 
-}
-
 @font-face {
     font-family: 'DS-DIGII';
     src: url('../fonts/DS-DIGII.eot');
@@ -191,7 +184,7 @@ body {
 
 /**************** Right Block  ****************/
 
-.main-r-pane {
+.r-pane {
 	background-color: #fff;
 	
 }
@@ -257,6 +250,73 @@ body {
 	color: #C0392B;
 	font-size: 1.2em;
 	
+}
+
+/***************** bootstrap override **************/
+.table {
+	margin: 20px 0px;	
+}
+
+.table > thead > tr > th {
+	border-bottom: 1px solid #ddd;
+	color: #95A5A6;
+}
+
+.table > tbody > tr:last-child > td {
+	border-bottom: 1px solid #ddd;
+}
+
+.modal-dialog {
+    margin: 100px auto;
+    width: 700px;
+}
+
+.modal-footer {
+	margin-top: 0px;
+	text-align: center;
+}
+
+.modal-footer > #btn-time-out,
+.modal-footer > #btn-time-in  {
+	font-size: 1.5em;
+	margin: 0 20px;
+}
+
+.modal-footer > .btn > strong {
+	color: #C0392B;
+	font-size: 1.5em;
+	
+}
+
+.navbar-text > p {
+	margin: 0 20px;
+	font-size: 17px;
+	line-height: 20px;
+}
+
+.navbar-text > p > span {
+	top: 3px;
+}
+
+.modal-body .table {
+	margin: 0 0;
+}
+
+#TimelogModal .modal-dialog {
+	margin: 30px auto;
+}
+.emp-tk-list .ti {
+	background-color: #dff0d8;
+}
+
+.emp-tk-list .to {
+	background-color: #f2dede;
+}
+
+.emp-tk-list td:last-child span {
+	opacity: .5;
+	cursor: pointer;
+	top: 4px;
 }
 
 

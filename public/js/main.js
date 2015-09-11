@@ -1,9 +1,11 @@
 $.ajaxSetup({
+	headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  },
 	beforeSend: function(jqXHR, obj) {
-    	$('.notify').css('display', 'block');
-  	}
+  	$('.notify').css('display', 'block');
+	}
 });
-
 
 var buildEmployeesTimelogs = function(data){
 	/*	
@@ -20,7 +22,7 @@ var getEmployeeTimelogs = function(id){
 	return $.ajax({
         type: 'GET',
         contentType: 'application/json',
-		url: '/api/timelog/employee/'+ id,
+		url: 'api/timelog/employee/'+ id,
         dataType: "json",
         //async: false,
         success: function(data, textStatus, jqXHR){
@@ -106,16 +108,17 @@ var htmlEmployeeTimelogs = function(data){
 
 var appendToTkList = function(data){
 	
-	var d = moment(data.data.date+' '+data.data.time).tz("Asia/Manila").format('hh:mm:ss A');
-	var c = moment(data.data.date+' '+data.data.time).tz("Asia/Manila").format('MMM D');
+	var d = moment(data.data.date+' '+data.data.time).format('hh:mm:ss A');
+	var c = moment(data.data.date+' '+data.data.time).format('MMM D');
 	
 		var html = '<tr class="'+ data.data.txncode +'"><td>'+ data.data.empno +'</td>';
 			html += '<td>'+ data.data.lastname +', '+ data.data.firstname +'</td>'
 			html += '<td><span> '+ c +' </span>&nbsp; '+ d +' </td>'
 			html += '<td>'+ data.data.txnname;
-			html += '<span id="'+ data.data.timelogid +'" ';
-			html += 'class="glyphicon glyphicon-remove-circle pull-right" style="opacity: .5;">';
-			html += '</span></td></tr>';
+			//html += '<span id="'+ data.data.timelogid +'" ';
+			//html += 'class="glyphicon glyphicon-remove-circle pull-right" style="opacity: .5;"></span>';
+			html += '<td>'+ data.data.branch +'</td>'
+			html += '</td></tr>';
 			
 		if($('.emp-tk-list tr').length== 20){
 			$('.emp-tk-list tr:last-child').empty();
@@ -224,7 +227,7 @@ var replicate = function(data){
 	return $.ajax({
         type: 'POST',
         contentType: 'application/x-www-form-urlencoded',
-		url: '/api/replicate',
+		url: 'api/replicate',
         dataType: "json",
         //async: false,
         data: formData,
@@ -273,7 +276,7 @@ var preparePostTimelogData = function(empno, tc){
 
 	return {
 		rfid : empno,
-		datetime: moment().tz("Asia/Manila").format('YYYY-MM-DD HH:mm:ss'),
+		datetime: moment().format('YYYY-MM-DD HH:mm:ss'),
 		txncode: tc,
 		entrytype: '1',
 		//terminalid: 'plant' gethostname
@@ -292,13 +295,13 @@ var postTimelog = function(data, source){
 	return $.ajax({
         type: 'POST',
         contentType: 'application/x-www-form-urlencoded',
-		url: '/api/timelog',
+				url: 'api/timelog',
         dataType: "json",
         //async: false,
         data: formData,
         beforeSend: function(jqXHR, obj) {
        		$('.notify .inner').html('Saving...');
-	    	$('.notify').css('display', 'block');
+	    		$('.notify').css('display', 'block');
 
   		},
         success: function(data, textStatus, jqXHR){
@@ -310,6 +313,9 @@ var postTimelog = function(data, source){
         error: function(jqXHR, textStatus, errorThrown){
 			$('.message-group').html('<div class="alert alert-danger">Could not connect to server!</div>');
             //alert(textStatus + ' Failed on posting data');
+            //console.log(textStatus);
+            //console.log(errorThrown);
+            //console.log(jqXHR);
         }
     });	
 }
@@ -321,7 +327,7 @@ var getEmployee = function(empno){
 	return $.ajax({
         type: 'GET',
         contentType: 'application/json',
-		url: '/api/employee/rfid/'+ empno,
+				url: 'api/employee/rfid/'+ empno,
         dataType: "json",
         //async: false,
         success: function(data, textStatus, jqXHR){
@@ -399,18 +405,18 @@ var keypressInit = function(){
 			if(validateEmpno(empno)){
 				//console.log('Time In: '+ empno);
 				//postTimelog(empno,'ti');
-/*
+
 				postTimelog(preparePostTimelogData(empno,'ti'), 'local')
 				.done(function(data){
-					//updateTK(data); update when socket emit
+					updateTK(data); //update when socket emit
 					console.log('emit');
 					//socket.emit(loc+'-'+data.data.txncode, data);
-					socket.emit('timein', data);
-					//$('#TKModal').modal('hide');
+					//socket.emit('timein', data);
+					$('#TKModal').modal('hide');
 				});
-*/
-				socket.emit('ti', preparePostTimelogData(empno,'ti'));
-				$('#TKModal').modal('hide');
+
+				//socket.emit('ti', preparePostTimelogData(empno,'ti'));
+				//$('#TKModal').modal('hide');
 			}		
 			
 			/* on modal hide do this
@@ -423,19 +429,19 @@ var keypressInit = function(){
 			if(validateEmpno(empno)){
 				//console.log('Time Out: '+ empno);
 				//postTimelog(empno,'to');
-				/*
+				
 				postTimelog(preparePostTimelogData(empno,'to'), 'local')
 				.done(function(data){
-					//updateTK(data); update when socket emit
+					updateTK(data); //update when socket emit
 					console.log('emit');
 					//socket.emit(loc+'-'+data.data.txncode, data);
-					socket.emit('timeout', data);
-					//$('#TKModal').modal('hide');
+					//socket.emit('timeout', data);
+					$('#TKModal').modal('hide');
 				});
-				*/
+				
 
-				socket.emit('to', preparePostTimelogData(empno,'to'));
-				$('#TKModal').modal('hide');
+				//socket.emit('to', preparePostTimelogData(empno,'to'));
+				//$('#TKModal').modal('hide');
 			}
 			
 			/*
@@ -449,8 +455,7 @@ var keypressInit = function(){
 				console.log('Get Employee Timelog: '+ empno);
 				//postTimelog(empno,'to');
 				buildEmployeesTimelogs(empData);
-				$('#TimelogModal').modal('show');
-				
+				$('#TimelogModal').modal('show');				
 			}
 			
 			endCapture = false;
@@ -507,12 +512,58 @@ var InitClock = function(){
 	
 	setInterval( function() {
 		$('.day').html(moment().format('dddd'));
-		//$('.day').html(moment().tz("Asia/Manila").format('MMM D'));
+		//$('.day').html(moment().format('MMM D'));
 		$('#date time').html(moment().format("MMMM D, YYYY"));
 	},1000);
 	//},3600000); 
 	
 	
+}
+
+
+
+
+
+
+
+
+
+
+function geoFindMe() {
+  var output = document.getElementsByClassName("message-group")[0];
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    //console.log(latitude);
+
+    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+    //var img = new Image();
+    //img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+    //output.appendChild(img);
+  };
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  };
+
+  output.innerHTML = "<p>Locating…</p>";
+
+  var opt = {
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0
+	}
+
+  navigator.geolocation.getCurrentPosition(success, error, opt);
 }
 
 
@@ -522,6 +573,8 @@ $(document).ready(function(){
 	InitClock();
 
 	keypressInit();
+
+	geoFindMe();
 
 
 
