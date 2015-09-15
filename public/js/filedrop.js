@@ -114,7 +114,7 @@ $(function(){
 			console.log(ext);
 			// e.target.result holds the DataURL which
 			// can be used as a source of the image:
-			var s = (ext == 'zip') ? '/images/Zip-File.png' : e.target.result;
+			var s = (ext.toLowerCase() == 'zip') ? '/images/Zip-File.png' : e.target.result;
 			image.attr('src', s);
 		};
 		

@@ -12,6 +12,18 @@ use App\Models\Employee;
 
 class TimelogController extends Controller {
 
+
+	public function getIndex() {
+		
+		$timelogs = Timelog::with('employee.branch')
+											->orderBy('datetime', 'DESC')
+											->get();
+    return view('tk.index')->with('timelogs', $timelogs);		
+	}
+
+
+
+
 	public function post(Request $request){
 		
 

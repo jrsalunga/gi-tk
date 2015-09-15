@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(BranchTableSeeder::class);
         $this->command->info('Branch table seeded!');
 
+        $this->call(UsersTableSeeder::class);
+        $this->command->info('Users table seeded!');
+
         Model::reguard();
     }
 }

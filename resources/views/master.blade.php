@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
 	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
-	<title>Giligan's Restaurant Timeleeping @yield('title')</title>
+	<title>Giligan's Restaurant Timekeeping @yield('title')</title>
 	
-	<link rel="stylesheet" href="/css/normalize-3.0.3.css">
-	<link rel="stylesheet" href="/css/bootstrap-3.3.5.css">
+	<link rel="stylesheet" href="/css/normalize-3.0.3.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-3.3.5.min.css">
 	<link rel="stylesheet" href="/css/bt-override.css">
 	<link rel="stylesheet" href="/css/styles.css">
 
@@ -43,14 +43,10 @@
 @show
 
 
-<div class="message-group"></div>
 
-  <script src="/js/vendors/jquery-1.11.3.js"></script>
-  <script src="/js/vendors/bootstrap-3.3.5.js"></script>
-  <script src="/js/vendors/moment-2.10.6.js"></script>
-  <script src="/js/vendors/jquery.filedrop-0.1.0.js"></script>
-  <script src="/js/filedrop.js"></script>
-  <script src="/js/main.js"></script>
+@section('js-external')
+
+@show
 
 
 </body>

@@ -1,16 +1,20 @@
 <?php
-use Illuminate\Filesystem\Filesystem;
 
+// Route::get() or get()
 Route::get('/', function () {
 
 		$timelogs = App\Models\Timelog::with('employee.branch')
 											->orderBy('datetime', 'DESC')
 											//->take(2)
 											->get();
-    return view('home.index')->with('timelogs', $timelogs);
+    return view('tk.index')->with('timelogs', $timelogs);
 });
 
+Route::get('dashboard', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
+Route::get('home', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
+Route::get('settings', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
 
+Route::get('tk', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogController@getIndex']);
 
 
 
@@ -38,6 +42,12 @@ Route::get('filess', function(){
 	$files = new Filesystem;
 	return dd($files->exists(public_path().'\uploads\test.zip'));
 });
+
+
+Route::get('login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', ['as'=>'auth.login', 'uses'=>'Auth\AuthController@postLogin']);
+Route::get('logout', ['as'=>'auth.login', 'uses'=>'Auth\AuthController@getLogout']);
+
 
 
 

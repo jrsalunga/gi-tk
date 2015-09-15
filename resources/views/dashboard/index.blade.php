@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', '- Upload')
+@section('title', '- Dashboard')
 
 
 
@@ -46,34 +46,8 @@
 
 @section('container-body')
 
-<p>this is a test</p>
+<h1>Dashboard</h1>
 
-
-{!! Form::open(array('url' => 'upload/')) !!}
-    
-{!! Form::close() !!}
-
-
-
-<div class="dropbox-container">
-	<div id="dropbox" class="prod-image">
-		<span class="message">Drop images here to upload. <br />
-		<i>(they will only be visible to you)</i>
-		</span>
-	</div>
-	<label for="file_upload" class="lbl-file_upload">Upload</label> 
-	<input type="file" id="file_upload" name="file_upload" style="display: none" />
-</div>
-<div class="dropbox-container2">
-	<div id="dropbox2">
-		<div style="text-align: center;">
-		<span class="imageHolder">
-		<img src="">
-		<span class="uploaded"></span>
-		</span>
-		</div>
-	</div>
-</div>
 
 
 
