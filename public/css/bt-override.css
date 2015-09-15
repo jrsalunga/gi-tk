@@ -3,6 +3,10 @@ body {
   padding-top: 51px;
 }
 
+body.jumbo {
+  padding-top: 71px;
+}
+
 
 
 @media (min-width: 768px) {

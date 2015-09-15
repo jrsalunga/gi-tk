@@ -72,38 +72,35 @@ class AuthController extends Controller
 
     public function loginUsername() {
         return property_exists($this, 'username') ? $this->username : 'email';
-
-       // $login_type = filter_var($request->input(''), FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';
     }
 
 
 
-    public function postLogin(Request $request)
-    {
-        //dd($request->all());
-        //exit;
-
+    public function postLogin(Request $request) {
+        
+        // $request->input('email') is from the form
         $login_type = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';
 
         $request->merge([ $login_type => $request->input('email')]);
-        // let's validate and set our credentials
+
+
         if ($login_type == 'email') {
             $this->validate($request, [
-                'email'    => 'required|email',
+                'email'    => 'required|email', // the validation can be separate
                 'password' => 'required',
             ]);
-            $credentials = $request->only( 'email', 'password' );
         } else {
             $this->validate($request, [
                 'username' => 'required',
                 'password' => 'required',
             ]);
-            $credentials = $request->only( 'username', 'password' );
         }
 
-        //$this->validate($request, [
-        //    $this->loginUsername() => 'required', 'password' => 'required',
-        //]);
+        /*
+        $this->validate($request, [
+            $this->loginUsername() => 'required', 'password' => 'required',
+        ]);
+        */
         
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -115,6 +112,7 @@ class AuthController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
+        $credentials = $request->only($login_type, 'password' );
         //$credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {

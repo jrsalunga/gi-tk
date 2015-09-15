@@ -567,6 +567,46 @@ function geoFindMe() {
 }
 
 
+var drawLocation = function(){
+
+  var output = document.getElementsByClassName("img-loc")[0];
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    //console.log(latitude);
+
+    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+    var img = new Image();
+    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=15&size=400x400&sensor=true&markers=size:mid%7Ccolor:red%7C"+ latitude + "," + longitude;
+
+    output.appendChild(img);
+  };
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  };
+
+  output.innerHTML = "<p>Locating…</p>";
+
+  var opt = {
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0
+	}
+
+  navigator.geolocation.getCurrentPosition(success, error, opt);
+
+}
+
+
 $(document).ready(function(){
 		
 	
@@ -574,7 +614,7 @@ $(document).ready(function(){
 
 	keypressInit();
 
-	geoFindMe();
+	
 
 
 

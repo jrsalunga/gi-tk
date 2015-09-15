@@ -17,7 +17,7 @@ Route::get('settings', ['middleware' => 'auth', 'uses'=>'DashboardController@get
 Route::get('tk', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogController@getIndex']);
 
 
-
+Route::get('branch/manager', ['uses'=>'BranchController@getBranchManager']);
 
 
 Route::get('api/employee/{field?}/{value?}', ['as'=>'field.get', 'uses'=>'EmployeeController@getByField']);

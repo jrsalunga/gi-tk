@@ -6,10 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
 	<title>Giligan's Restaurant Timeleeping </title>
 	
-	<link rel="stylesheet" href="/css/normalize-3.0.3.css">
-	<link rel="stylesheet" href="/css/bootstrap-3.3.5.css">
-	<link rel="stylesheet" href="/css/bt-override.css">
-	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/styles-all.min.css">
 
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -174,11 +171,13 @@
 <!-- end modal ti/to -->
 
 
-  
+  <!--
   <script src="/js/vendors/jquery-1.11.3.min.js"></script>
   <script src="/js/vendors/jquery-ui-1.11.3.min.js"></script>
   <script src="/js/vendors/bootstrap-3.3.5.min.js"></script>
   <script src="/js/vendors/moment-2.10.6.min.js"></script>
+  -->
+  <script src="/js/vendors-all.js"></script>
   <script src="/js/tk.js"></script>
 	
 
