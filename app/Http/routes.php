@@ -175,7 +175,7 @@ get('/env/hostname', function() {
 });
 
 get('/env/clientname', function(){
-	return $_SERVER['REMOTE_ADDR'];
+	return gethostbyaddr($_SERVER['REMOTE_ADDR']);
 });
 
 
