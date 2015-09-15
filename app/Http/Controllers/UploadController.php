@@ -26,7 +26,8 @@ class UploadController extends Controller {
 		//$request->file('pic');
 		//$request->file('photo')->move($destinationPath);
 		$filename = Input::file('pic')->getClientOriginalName();
-		$destinationPath = public_path().DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR;
+		//$destinationPath = public_path().DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR;
+		$destinationPath = '/home/server-admin/Public/maindepot/';
 		$fs = new Filesystem;
 		if($fs->exists($destinationPath.$filename)){
 			return json_encode(['error'=>'404', 'message'=> $destinationPath.$filename.' exist!']);
