@@ -1,8 +1,10 @@
 <?php
 
 // Route::get() or get()
-Route::get('/', function () {
+Route::get('/', function (){
 
+		return app()->environment();
+		exit;
 		$timelogs = App\Models\Timelog::with('employee.branch')
 											->orderBy('datetime', 'DESC')
 											//->take(2)
@@ -155,5 +157,41 @@ Route::get('zip', function(){
   {
       die("Failed opening archive: ". @$zip->getStatusString() . " (code: ". $zip_status .")");
   }
+});
+
+
+
+
+
+
+
+
+get('/env', function() {
+    return app()->environment();
+});
+
+get('/env/hostname', function() {
+    return gethostname();
+});
+
+
+
+get('/phpinfoko', function(){
+	return phpinfo();
+});
+
+get('/env/vars', function(){
+    
+    echo 'MANDRILL_APIKEY - '.getenv('MANDRILL_APIKEY');
+});
+
+get('/checkdbconn', function(){
+	if(DB::connection()->getDatabaseName()){
+	   echo "connected sucessfully to database ".DB::connection()->getDatabaseName();
+	}
+});
+
+get('/v', function(){
+    dd($app->version());
 });
 
