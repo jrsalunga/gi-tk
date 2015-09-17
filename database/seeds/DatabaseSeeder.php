@@ -34,6 +34,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ExpenseTableSeeder::class);
         $this->command->info('Expense table seeded!');
 
+        $this->call(SupplierTableSeeder::class);
+        $this->command->info('Supplier table seeded!');
+
         Model::reguard();
     }
 }
