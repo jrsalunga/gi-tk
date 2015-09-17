@@ -579,15 +579,17 @@ var drawLocation = function(){
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
+    var accuracy = position.coords.accuracy;
 
     //console.log(latitude);
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°'+ '<br>More or less ' + accuracy + ' meters</p>';
 
     var img = new Image();
     img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=15&size=400x400&sensor=true&markers=size:mid%7Ccolor:red%7C"+ latitude + "," + longitude;
 
     output.appendChild(img);
+
   };
 
   function error() {
@@ -605,6 +607,139 @@ var drawLocation = function(){
   navigator.geolocation.getCurrentPosition(success, error, opt);
 
 }
+
+
+
+
+var getLocation = function(){
+
+	var response = {};
+  //var output = document.getElementsByClassName("img-loc")[0];
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success(position) {
+    response.latitude  = position.coords.latitude;
+    response.longitude = position.coords.longitude;
+    response.accuracy = position.coords.accuracy;
+
+    //console.log(latitude);
+
+    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°'+ '<br>More or less ' + accuracy + ' meters</p>';
+
+    //var img = new Image();
+    //img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=15&size=400x400&sensor=true&markers=size:mid%7Ccolor:red%7C"+ latitude + "," + longitude;
+
+    //output.appendChild(img);
+
+    response.status = 'ok';
+
+    return response;
+
+  };
+
+  function error() {
+    //output.innerHTML = "Unable to retrieve your location";
+    response.status = 'error';
+    return response;
+  };
+
+  //output.innerHTML = "<p>Locating…</p>";
+
+  var opt = {
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0
+	}
+
+  navigator.geolocation.getCurrentPosition(success, error, opt);
+
+}
+
+var marker, pos, info;
+
+function initMap() {
+	var myLatLng = {lat: 14.569964, lng: 121.045599};
+	var imgmap = document.getElementById('map');
+	
+	info = document.getElementsByClassName('loc-info')[0];
+
+  var map = new google.maps.Map(imgmap, {
+    center: myLatLng,
+    zoom: 16
+  });
+
+  marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Your here!',
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+  });
+
+  //markerRender();
+
+  marker.addListener('click', markerClick);
+  marker.addListener('drag', markerRender);
+
+ 
+  
+
+  //var infoWindow = new google.maps.InfoWindow({map: map});
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+    	
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+        acc: position.coords.accuracy
+      };
+
+      info.innerHTML = '<p>Latitude is ' + pos.lat + '° <br>Longitude is ' + pos.lng + '°'+ '<br>More or less ' + pos.acc + ' meters</p>';
+      
+
+      marker.setPosition(pos);
+      //marker.setContent('Location found.');
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+}
+
+
+
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+}
+
+function markerClick(){
+	marker.setAnimation(google.maps.Animation.DROP);
+	console.log('marker click');
+}
+
+function markerRender(event){
+	console.log('dragging');
+	console.log(event);
+	pos.lat = event.latLng.lat();
+	pos.lng = event.latLng.lng();
+	pos.acc = 0;
+	//console.log(info);
+	info.innerHTML = '<p>Latitude is ' + pos.lat + '° <br>Longitude is ' + pos.lng + '°'+ '<br>More or less ' + pos.acc + ' meters</p>';
+}
+
 
 
 $(document).ready(function(){

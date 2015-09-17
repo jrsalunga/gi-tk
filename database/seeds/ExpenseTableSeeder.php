@@ -1,24 +1,25 @@
 <?php
  
 use Illuminate\Database\Seeder;
-use App\Models\Branch;
+use App\Models\Expense;
 
-class BranchTableSeeder extends Seeder  
+class ExpenseTableSeeder extends Seeder  
 {
     public function run()
     {
 
-        DB::table('branch')->delete();
+        DB::table('expense')->delete();
 
-        $csvFile = base_path().'/database/migrations/files/branch.csv';
+        $csvFile = base_path().'/database/migrations/files/expense.csv';
 
-        $branches = $this->csv_to_array($csvFile);
+        $expenses = $this->csv_to_array($csvFile);
 
-        DB::table('branch')->insert($branches);
+        DB::table('expense')->insert($expenses);
 
-        //$this->firstRun();
+        $this->updateId();
        
     }
+
 
     private function csv_to_array($filename='', $delimiter=',') {
         if(!file_exists($filename) || !is_readable($filename))
@@ -40,11 +41,11 @@ class BranchTableSeeder extends Seeder
         return $data;
     }
 
-    private function firstRun(){
-        $branches = Branch::all();
-        foreach ($branches as $branch) {
-            $new = Branch::find($branch->id);
-            $new->id = Branch::get_uid();
+    private function updateId(){
+        $expenses = Expense::all();
+        foreach ($expenses as $expense) {
+            $new = Expense::find($expense->id);
+            $new->id = Expense::get_uid();
             $new->save();
         }
     }

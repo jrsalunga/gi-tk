@@ -36,14 +36,15 @@
 @section('container-body')
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-
+    <div class="page-header">
+      <h3>Branch Information <small>Subtext for header</small></h3>
     </div>
     <div class="col-md-6">
-      <div class="img-loc">
-        {{ gethostname() }}
-
-      </div>
+      
+    </div>
+    <div class="col-md-6">
+      <div id="map" class="img-loc"></div>
+      <div class="loc-info"></div>
     </div>
   </div>
 </div>
@@ -54,14 +55,11 @@
   
   <script src="/js/vendors-all.js"></script>
   <script src="/js/tk.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjNiaRtUU5cE7G2IcIYVGm5vxyNDzh6ws&signed_in=true&callback=initMap"></script>
 
-  <script>
 
-  $(document).ready(function(){
-      
-    drawLocation();
-  });
-  </script>
+
+
 
 @endsection
 

@@ -6,5 +6,6 @@ Homestead.json
 .env
 /public/uploads
 /public/files
+/public/data
 /logs
 *.env

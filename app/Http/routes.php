@@ -16,6 +16,8 @@ Route::get('dashboard', ['middleware' => 'auth', 'uses'=>'DashboardController@ge
 Route::get('home', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
 Route::get('settings', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
 
+Route::get('dbf/import/{table}', ['middleware' => 'auth', 'uses'=>'ImportController@getTable']);
+
 Route::get('tk', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogController@getIndex']);
 
 
@@ -92,7 +94,6 @@ Route::get('geoip/{id}', function($ip){
 });
 
 
-
 Route::get('dbf/{year}/{loc}', function($year, $loc) {
 
 
@@ -131,24 +132,33 @@ if ($db) {
 
 });
 
-Route::get('zip', function(){ 
+
+
+Route::get('zip/{year}/{loc}/{filename}', function($year, $loc, $filename){ 
 
 	//$files = glob('files/*');
 	//$z = Zipper::make('test2.zip')->add($files);
 	//$z->setPassword('p@55w0rd');
 	//exit;
+	$dir = 'Z:\POS_BACK\\'.$year.'\\'.$loc.'\\'.$filename.'.ZIP';
+
 	$zip = new ZipArchive();
-  $zip_status = $zip->open("test.zip");
+  $zip_status = $zip->open($dir);
   echo $zip_status.'<br>';
   if ($zip_status === true)
   {
   		echo 'extracting<br>';
-      if ($zip->setPassword("password"))
+      if ($zip->setPassword("admate"))
       {
-          if (!$zip->extractTo(public_path()))
+      		$path = public_path().'\\dbf\\'.$year.'\\'.$loc.'\\'.$filename.'\\';
+      		if (!file_exists($path)) {
+					    mkdir($path, 0777, true);
+					}
+
+          if (!$zip->extractTo($path))
               echo "Extraction failed (wrong password?)";
 
-            echo 'extracted to '. public_path() .'<br>';
+            echo 'extracted to '. $path.'<br>';
       }
 
       $zip->close();
@@ -198,4 +208,125 @@ get('/checkdbconn', function(){
 get('/v', function(){
     dd($app->version());
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+get('/extract', function() {
+
+	$path = 'Z:\POS_BACK\2015\\';
+	//$files = scandir($dir);
+	$dirs = array_diff(scandir($path), array('..', '.'));
+
+	foreach ($dirs as $dir) {
+		$files = array_diff(scandir($path.$dir), array('..', '.'));
+		//echo count($files).'<br>';
+		if(count($files)>0){
+
+			echo $path.$dir.' - '.$files[count($files)].'<br>';
+
+			
+			$zip = new ZipArchive();
+		  $zip_status = $zip->open($path.$dir.'\\'.$files[count($files)]);
+		  echo $zip_status.'<br>';
+		  if ($zip_status === true)
+		  {
+		  		echo 'extracting<br>';
+		      if ($zip->setPassword("admate"))
+		      {
+		      		$path2 = public_path().'\\dbf\\'.$dir.'\\';
+		      		if (!file_exists($path)) {
+							    mkdir($path, 0777, true);
+							}
+
+		          if (!$zip->extractTo($path2))
+		              echo "Extraction failed (wrong password?)";
+
+		            echo 'extracted to '. $path2.'<br>';
+		      }
+
+		      $zip->close();
+		  } else {
+		      die("Failed opening archive: ". @$zip->getStatusString() . " (code: ". $zip_status .")");
+		  }
+		  
+		
+
+
+		} else {
+			echo $dir.' - no dir <br>';
+		}
+		
+		//foreach ($files as $file) {
+			//$x = array_diff(scandir($path.$dir.$file), array('..', '.'));
+			//echo '<a href="sysinfo.php?db='.$file.'">'.$file.'</a><br>';
+		//}
+		//echo json_encode($files);
+		//echo '<a href="sysinfo.php?db='.$file.'">'.$files.'</a><br>';
+	}
+
+
+});
+
+get('sysinfo', function(){
+
+	$path = public_path().'\\dbf\\2015\\';
+	$dirs = array_diff(scandir($path), array('..', '.'));
+	$h = false;
+	echo '<table cellpadding="2" cellspacing="0" border="1"><thead>';
+	foreach ($dirs as $dir) {
+		$files = array_diff(scandir($path.$dir), array('..', '.'));
+		//echo count($files).'<br>';
+		if(file_exists($path.$dir.'\\SYSINFO.DBF')){
+
+			//echo $path.$dir.'SYSINFO.DBF ---  OK! <br>';
+
+			$db = dbase_open($path.$dir.'\\SYSINFO.DBF', 0);
+
+			if ($db) {
+				$header = dbase_get_header_info($db);
+				if(!$h){
+						// render table header
+						echo '<tr>';
+						foreach ($header as $key => $value) {
+							echo '<th>'.$value['name'].'</th>';
+						}
+						echo '</tr>';
+						$h = true;
+				}
+				
+			 	// render table body
+			 	$record_numbers = dbase_numrecords($db);
+			  for($i = 1; $i <= $record_numbers; $i++) {
+
+			    $row = dbase_get_record_with_names($db, $i);
+
+			    echo '<tr>';
+					foreach ($header as $key => $value) {
+						echo '<td>'.$row[$value['name']].'</td>';
+					}
+					echo '</tr>';
+			 }
+				dbase_close($db);
+			}
+
+		} else {
+			//echo $path.$dir.'SYSINFO.DBF ---  NO! <br>';
+		}
+	}
+
+	echo '</table>';
+
+});
+    
 
