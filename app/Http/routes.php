@@ -22,6 +22,7 @@ Route::get('tk', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogCont
 
 
 Route::get('branch/manager', ['uses'=>'BranchController@getBranchManager']);
+Route::post('branch/manager', ['uses'=>'BranchController@postBranchManager']);
 
 
 Route::get('api/employee/{field?}/{value?}', ['as'=>'field.get', 'uses'=>'EmployeeController@getByField']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class BranchController extends Controller {
@@ -11,14 +12,22 @@ class BranchController extends Controller {
 
 
 
-	public function getIndex(){
+	public function getIndex() {
 		return view('dashboard.index');
 	}
 
 
 
 
-	public function getBranchManager(){
+	public function getBranchManager() {
 		return view('branch.manager');
+	}
+
+	public function postBranchManager(Request $request) {
+		
+		if(empty($request->input('g-recaptcha-response')))
+			return redirect('branch/manager')->withError('please check/verify captcha!');
+
+		return $request->input('g-recaptcha-response');
 	}
 }

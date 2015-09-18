@@ -40,7 +40,13 @@
       <h3>Branch Information <small>Subtext for header</small></h3>
     </div>
     <div class="col-md-6">
-      
+      {!! Form::open(['url' => 'branch/manager', 'method' => 'post']) !!}
+
+      <div class="g-recaptcha" data-sitekey="6LeTAg0TAAAAAGQjI2QJ0E3XId7p5nDO9dOPovQm"></div>
+
+
+      {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
+      {!! Form::close() !!}
     </div>
     <div class="col-md-6">
       <div id="map" class="img-loc"></div>
@@ -56,7 +62,7 @@
   <script src="/js/vendors-all.js"></script>
   <script src="/js/tk.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjNiaRtUU5cE7G2IcIYVGm5vxyNDzh6ws&signed_in=true&callback=initMap"></script>
-
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 
 
 
