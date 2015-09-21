@@ -16,7 +16,7 @@ class ExpenseTableSeeder extends Seeder
 
         DB::table('expense')->insert($expenses);
 
-        $this->updateId();
+        //$this->updateId();
        
     }
 

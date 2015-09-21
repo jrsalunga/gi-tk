@@ -23,6 +23,7 @@ class CreateTimelogTable extends Migration
             $table->string('id', '32')->primary();
             //$table->increments('id');
             $table->timestamps();
+            //$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->index('employeeid', 'EMPLOYEEID');
         });
