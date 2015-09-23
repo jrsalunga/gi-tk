@@ -32,8 +32,26 @@ Route::post('api/timelog', ['as'=>'timelog.post', 'uses'=>'TimelogController@pos
 //});
 
 
+get('masterfiles/{table}/{param1?}/{param2?}', function($table, $param1 = null, $param2 = null) {
+    $controller = app()->make("App\Http\Controllers\\".ucfirst($table)."Controller");
+    $request = app()->make("Illuminate\Http\Request");
+    return $controller->getIndex($request, 'masterfiles', $table, $param1, $param2);
+})->where(['table'=>'[A-Za-z]+', 'param1'=>'add|[A-Fa-f0-9]{32}+', 'param2'=>'edit']);
 
 
+Route::controller('datatables', 'DatatablesController', [
+    'anyData'  => 'datatables.data',
+    //'getIndex' => 'datatables',
+]);
+
+
+get('employees', function(){
+	return App\Models\Employee::with([
+							'branch' => function ($query) {
+								$query->select('code', 'descriptor', 'id');
+								//dd($query);
+        			}])->get();
+});
 
 
 
@@ -49,10 +67,9 @@ Route::get('filess', function(){
 });
 
 
-Route::get('login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', ['as'=>'auth.login', 'uses'=>'Auth\AuthController@postLogin']);
-Route::get('logout', ['as'=>'auth.login', 'uses'=>'Auth\AuthController@getLogout']);
-
+Route::get('login', ['as'=>'auth.getlogin', 'uses'=>'Auth\AuthController@getLogin']);
+Route::post('login', ['as'=>'auth.postlogin', 'uses'=>'Auth\AuthController@postLogin']);
+Route::get('logout', ['as'=>'auth.getlogout', 'uses'=>'Auth\AuthController@getLogout']);
 
 
 

@@ -81,6 +81,7 @@ gulp.task('minify-css', function() {
   		'./public/css/normalize-3.0.3.min.css', 
   		'./public/css/bootstrap-3.3.5.min.css',
   		'./public/css/bt-override.css',
+  		'./public/css/dashboard.css',
   		'./public/css/styles.css'
   	])
   	.pipe(concat('styles-all.css'))
