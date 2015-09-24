@@ -5,15 +5,16 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
 	<title>Giligan's Restaurant @yield('title')</title>
-	<!--
+	
 	<link rel="stylesheet" href="/css/normalize-3.0.3.min.css">
 	<link rel="stylesheet" href="/css/bootstrap-3.3.5.min.css">
-	<link rel="stylesheet" href="/css/bt-override.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
   <link rel="stylesheet" href="/css/bt-override.css">
 	<link rel="stylesheet" href="/css/styles.css">
-  -->
+  <link rel="stylesheet" href="/css/common.css">
+  <!--
   <link rel="stylesheet" href="/css/styles-all.min.css">
-  
+  -->
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
@@ -31,7 +32,7 @@
         <span class="icon-bar"></span>
       </button>
     
-      <a class="navbar-brand" href="/">Giligan's Restaurant</a>
+      <a class="navbar-brand" href="/">GI App</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       @yield('navbar-1')

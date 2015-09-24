@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Branch;
 
 class EmployeeController extends Controller {
 
@@ -15,31 +16,43 @@ class EmployeeController extends Controller {
 		} else if(preg_match('/^[A-Fa-f0-9]{32}+$/', $param1) && strtolower($param2)==='edit') {
 			return 'edit';
 		} else if(preg_match('/^[A-Fa-f0-9]{32}+$/', $param1)) {   //preg_match('/^[A-Fa-f0-9]{32}+$/',$action))
-			return 'item with id: '.$param1;	
+			return $this->makeSingleView($request, $param1);
 		} else {
-			return $this->makeListView($request);
+			return $this->makeListView($request, $param1, $param2);
 		}
 	}
 
 
-	public function makeListView(Request $request) {
+	public function makeListView(Request $request, $table, $branchid) {
 		
 		$employees = Employee::with(['branch' => function($query){
 													$query->select('code', 'descriptor', 'id');
 												}])
 												//->select('code', 'branchid')
 												->paginate(10);
+		if(!empty($table) && !empty($branchid)){
+			//$employees
+		}
 		return view('masterfiles.employee.list')
 								->with('employees', $employees);
+		//return view('masterfiles.employee.list', ['employees' => $employees]); //same as top
 
 	}
 
 	public function makeAddView(Request $request) {
-		return view('masterfiles.employee.add');
+		$branches = Branch::orderBy('code')->get();
+		return view('masterfiles.employee.add')
+								->with('branches', $branches);
 	}
 
-	public function makeSingleView() {
-
+	public function makeSingleView(Request $request, $id) {
+		$employee = Employee::with(['branch' => function ($query) {
+                                $query->select('code', 'descriptor', 'id');
+                        }])->where('id', $id)
+                        ->get();
+                        //return $employee[0];
+		return view('masterfiles.employee.view')
+								->with('employee', $employee[0]);
 	}
 
 
@@ -66,4 +79,10 @@ class EmployeeController extends Controller {
 				
 		return $respone;
 	} 
+
+
+	public function post(Request $request){
+		dd($request->all());
+
+	}
 }

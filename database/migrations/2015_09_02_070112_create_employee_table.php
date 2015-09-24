@@ -18,9 +18,11 @@ class CreateEmployeeTable extends Migration
             $table->string('lastname','30');
             $table->string('firstname','30');
             $table->string('middlename','30');
+            $table->string('suffix','5')->nullable();
+            $table->date('hired')->nullable();
             $table->string('position','30')->nullable();
             $table->string('branchid', '32');
-            $table->string('rfid', '12');
+            $table->string('rfid', '12')->nullable();
             //$table->foreign('branch')->references('id')->on('branch');
             $table->tinyInteger('punching')->default('0');
             $table->tinyInteger('processing')->default('0');

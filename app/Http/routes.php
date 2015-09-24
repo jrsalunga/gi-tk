@@ -16,7 +16,7 @@ Route::get('dashboard', ['middleware' => 'auth', 'uses'=>'DashboardController@ge
 Route::get('home', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
 Route::get('settings', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
 
-Route::get('dbf/import/{table}', ['middleware' => 'auth', 'uses'=>'ImportController@getTable']);
+//Route::get('dbf/import/{table}', ['middleware' => 'auth', 'uses'=>'ImportController@getTable']);
 
 Route::get('tk', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogController@getIndex']);
 
@@ -25,18 +25,19 @@ Route::get('branch/manager', ['uses'=>'BranchController@getBranchManager']);
 Route::post('branch/manager', ['uses'=>'BranchController@postBranchManager']);
 
 
-Route::get('api/employee/{field?}/{value?}', ['as'=>'field.get', 'uses'=>'EmployeeController@getByField']);
-Route::post('api/timelog', ['as'=>'timelog.post', 'uses'=>'TimelogController@post']);
+
 //Route::post('api/timelog', function(){
 //	return dd(Input::all());
 //});
 
 
-get('masterfiles/{table}/{param1?}/{param2?}', function($table, $param1 = null, $param2 = null) {
+get('masterfiles/{table}/{param1?}/{param2?}', function($table, $param1=null, $param2=null) {
     $controller = app()->make("App\Http\Controllers\\".ucfirst($table)."Controller");
     $request = app()->make("Illuminate\Http\Request");
     return $controller->getIndex($request, 'masterfiles', $table, $param1, $param2);
-})->where(['table'=>'[A-Za-z]+', 'param1'=>'add|[A-Fa-f0-9]{32}+', 'param2'=>'edit']);
+})->where(['table'=>'[A-Za-z]+', 
+					'param1'=>'add|branch|[A-Fa-f0-9]{32}+', 
+					'param2'=>'edit|[A-Fa-f0-9]{32}+']);
 
 
 Route::controller('datatables', 'DatatablesController', [
@@ -45,13 +46,18 @@ Route::controller('datatables', 'DatatablesController', [
 ]);
 
 
-get('employees', function(){
-	return App\Models\Employee::with([
-							'branch' => function ($query) {
-								$query->select('code', 'descriptor', 'id');
-								//dd($query);
-        			}])->get();
+/******************* API  *************************************************/
+Route::group(['prefix'=>'api'], function(){
+
+Route::post('t/employee', ['as'=>'employee.post', 'uses'=>'EmployeeController@post']);
+
+Route::get('employee/{field?}/{value?}', ['as'=>'employee.getbyfield', 'uses'=>'EmployeeController@getByField']);
+Route::post('timelog', ['as'=>'timelog.post', 'uses'=>'TimelogController@post']);
+
 });
+
+
+
 
 
 
@@ -70,6 +76,38 @@ Route::get('filess', function(){
 Route::get('login', ['as'=>'auth.getlogin', 'uses'=>'Auth\AuthController@getLogin']);
 Route::post('login', ['as'=>'auth.postlogin', 'uses'=>'Auth\AuthController@postLogin']);
 Route::get('logout', ['as'=>'auth.getlogout', 'uses'=>'Auth\AuthController@getLogout']);
+
+
+
+
+
+
+
+
+
+ 	/*************************************************************************************/
+ /************************* Testing Url for Devs ***************************************/
+/*************************************************************************************/
+
+get('t/employees', function(){
+	return App\Models\Employee::with([
+							'branch' => function ($query) {
+								$query->select('code', 'descriptor', 'id');
+								//dd($query);
+        			}])->get();
+});
+
+get('t/employee/branch/{id}', function($id){
+	return App\Models\Employee::branchid($id)->with([
+							'branch' => function ($query) {
+								$query->select('code', 'descriptor', 'id');
+        			}])->get();
+});
+
+
+
+
+
 
 
 
