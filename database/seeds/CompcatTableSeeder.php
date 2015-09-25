@@ -1,26 +1,27 @@
 <?php
  
 use Illuminate\Database\Seeder;
-use App\Models\Supplier;
+use App\Models\Compcat;
 
-class SupplierTableSeeder extends Seeder  
+class CompcatTableSeeder extends Seeder  
 {
     public function run()
     {
 
-        DB::table('supplier')->delete();
+        DB::table('compcat')->delete();
 
-        $csvFile = base_path().'/database/migrations/files/supplier-afv.csv';
-        $suppliers = $this->csv_to_array($csvFile);
-        DB::table('supplier')->insert($suppliers);
+        $csvFile = base_path().'/database/migrations/files/compcat.csv';
 
-        $csvFile = base_path().'/database/migrations/files/supplier-mar.csv';
-        $suppliers = $this->csv_to_array($csvFile);
-        DB::table('supplier')->insert($suppliers);
+        $compcats = $this->csv_to_array($csvFile);
 
-        //$this->firstRun();
+        DB::table('compcat')->insert($compcats);
+
+        //$this->updateId();
+
+        $this->command->info('Compcat table seeded!');
        
     }
+
 
     private function csv_to_array($filename='', $delimiter=',') {
         if(!file_exists($filename) || !is_readable($filename))
@@ -42,11 +43,11 @@ class SupplierTableSeeder extends Seeder
         return $data;
     }
 
-    private function firstRun(){
-        $suppliers = Supplier::all();
-        foreach ($suppliers as $supplier) {
-            $new = Supplier::find($supplier->id);
-            $new->id = Supplier::get_uid();
+    private function updateId(){
+        $compcats = Compcat::all();
+        foreach ($compcats as $compcat) {
+            $new = Compcat::find($compcat->id);
+            $new->id = Compcat::get_uid();
             $new->save();
         }
     }

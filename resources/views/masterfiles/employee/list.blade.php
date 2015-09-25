@@ -34,7 +34,7 @@
               <span class="glyphicon glyphicon-plus"></span>
             </a>
           </div>
-      </div><!-- end right-nav-btn-grp -->
+      </div><!-- end btn-grp -->
       </div>
     </nav>
 

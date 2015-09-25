@@ -1,0 +1,59 @@
+code,descriptor,id
+13,13th Month,1
+AB,Acoustic Band,2
+AF,Annual Festivities,3
+CA,Cash Advanced,4
+CG,Cigarettes,5
+CK,Cooking Oil,6
+GR,Desserts,7
+DB,Drinks - Beer,8
+DA,Drinks - Bottled (Alc),9
+DA,Drinks - Brandy,10
+DA,Drinks - Champagne,11
+DA,Drinks - Gin,12
+DA,Drinks - Liquor,13
+DN,Drinks - Mixers,14
+DN,Drinks - Non Alcoholic,15
+DA,Drinks - Rhum,16
+DN,Drinks - Softdrinks/Juice,17
+DA,Drinks - Tequila,18
+DA,Drinks - Vodka,19
+DN,Drinks - Water,20
+DA,Drinks - Whisky,21
+DA,Drinks - Wine,22
+EB,Electricity,23
+EM,Employees Meal,24
+FV,Fruits,25
+GR,Groceries,26
+IC,Ice,27
+LP,LPG,28
+MP,Meat - Beef,29
+MP,Meat - Chicken,30
+MP,Meat - Lamb,31
+MP,Meat - Pork,32
+MP,Meat - Sausage,33
+MS,Misc. Expenses,34
+OS,Office - Supply,35
+PL,Pag-Ibig Loan Payment,36
+PR,Pag-Ibig Remittance,37
+RM,Pest Control,38
+PR,Philhealth Remittance,39
+RF,Professional Fee,40
+RM,Repair & Maintenance,41
+RS,Restaurant Supplies,42
+RC,Rice,43
+SR,SSS Remittance,44
+SE,Salaries - Reg. Emp.,45
+ST,Salaries - Trainee,46
+FS,Seafoods - Fish,47
+FS,Seafoods - Other,48
+SS,Seasoning,49
+SY,Security Services,50
+SC,Service Charge,51
+SL,Space Lease,52
+TX,Taxes & Licenses,53
+TC,Telecom,54
+TS,Tissue,55
+TP,"Transpo,Gas,Toll,Parking",56
+FV,Vegetables - Fresh,57
+WB,Water Bill,58

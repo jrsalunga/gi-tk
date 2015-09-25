@@ -1,8 +1,8 @@
 @extends('masterfiles.employee.master')
 
-@section('title', '- Employee Add Record')
+@section('title', '- Employee Edit Record')
 
-@section('body-class', 'employee-add')
+@section('body-class', 'employee-edit')
 
 @section('container-body')
   @parent
@@ -15,7 +15,8 @@
       <li><a href="/">Home</a></li>
       <li><a href="/masterfiles">Masterfiles</a></li>
       <li><a href="/masterfiles/employee">Employee</a></li>
-      <li class="active">Add Record</li>
+      <li><a href="/masterfiles/employee/{{ strtolower($employee->id)}}">{{ $employee->code }}</a></li>
+      <li class="active">Edit Record</li>
     </ol>
 
     <nav id="nav-action" class="navbar navbar-default">
@@ -29,13 +30,28 @@
               <span class="glyphicon glyphicon-file"></span>
             </button>
           </div>
-          <div style="clear:both;"></div>
+          <div class="btn-group pull-right" role="group">
+            @if($employee->previous()==='false')
+              <a href="/masterfiles/employee" class="btn btn-default disabled">
+            @else
+              <a href="/masterfiles/employee/{{ strtolower($employee->previous()->id) }}" class="btn btn-default">
+            @endif
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            @if($employee->next()==='false')
+              <a href="/masterfiles/employee" class="btn btn-default disabled">
+            @else
+              <a href="/masterfiles/employee/{{ strtolower($employee->next()->id) }}" class="btn btn-default">
+            @endif  
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
         </div><!-- end right-nav-btn-grp -->
       </div>
     </nav>
 
 
-    {!! Form::open(['url' => 'api/t/employee', 'accept-charset'=>'utf-8', 'id'=>'frm-employee', 'name'=>'frm-employee', 'class'=>'table-model']) !!}
+    {!! Form::open(['method'=>'PUT', 'url' => 'api/t/employee', 'accept-charset'=>'utf-8', 'id'=>'frm-employee', 'name'=>'frm-employee', 'class'=>'table-model']) !!}
     <div class="col-lg-9">
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
@@ -51,47 +67,51 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="code" class="control-label">Man No.</label>
-                <input type="text" class="form-control" id="code" placeholder="Man No" >
+                <input type="text" class="form-control" value="{{ $employee->code }}" id="code" readonly>
+                <input type="hidden" value="{{ $employee->id }}" name="id" id="id">
               </div>
             </div> 
              
             <div class="col-md-3 col-md-offset-6">
               <div class="form-group">
                 <label for="hired" class="control-label">Date Hired</label>
-                <input type="text" class="form-control" id="hired" name="hired"placeholder="YYYY-MM-DD" >
+                <input type="text" class="form-control" name="hired" id="hired" value="{{ $employee->hired }}" >
               </div>
             </div>   
             <div class="col-md-3">
               <div class="form-group">
                 <label for="firstname" class="control-label">Firstname</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" >
+                <input type="text" class="form-control" name="firstname" id="firstname" value="{{ $employee->firstname }}" >
               </div>
             </div>   
             <div class="col-md-3">
               <div class="form-group">
                 <label for="middlename" class="control-label">Middlename</label>
-                <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middlename" >
+                <input type="text" class="form-control" name="middlename" id="middlename" value="{{ $employee->middlename }}" >
               </div>
             </div>   
             <div class="col-md-3">
               <div class="form-group">
                 <label for="lastname" class="control-label">Lastname</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname" >
+                <input type="text" class="form-control" name="lastname" id="lastname" value="{{ $employee->lastname }}" >
               </div>
             </div>  
             <div class="col-md-3">
               <div class="form-group">
                 <label for="suffix" class="control-label">Suffix</label>
-                <input type="text" class="form-control" id="suffix" name="suffix" placeholder="Jr, Sr, I, II, III" >
+                <input type="text" class="form-control" name="suffix" id="suffix" value="{{ $employee->suffix }}" >
               </div>
             </div>   
             <div class="col-md-6">
               <div class="form-group">
                 <label for="suffix" class="control-label">Branch</label>
                 <select class="form-control" name="branchid" id="branchid" placeholder="Select">
-                  <option></option>
                   @foreach($branches as $branch)
-                  <option value="{{ $branch->id }}">{{ $branch->code }} - {{ $branch->addr1 }}</option>
+                    @if($branch->id == $employee->branchid)
+                      <option selected value="{{ $branch->id }}">{{ $branch->code }} - {{ $branch->addr1 }}</option>
+                    @else
+                      <option value="{{ $branch->id }}">{{ $branch->code }} - {{ $branch->addr1 }}</option>
+                    @endif
                   @endforeach
                 </select>
               </div>
@@ -99,7 +119,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="rfid" class="control-label">RFID</label>
-                <input type="text" class="form-control" id="rfid" name="rfid" placeholder="RFID" >
+                <input type="text" class="form-control" name="rfid" id="rfid" value="{{ $employee->rfid }}">
               </div>
             </div>   
             <div class="clearfix"></div>

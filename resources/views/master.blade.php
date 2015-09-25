@@ -32,7 +32,7 @@
         <span class="icon-bar"></span>
       </button>
     
-      <a class="navbar-brand" href="/">GI App</a>
+      <a class="navbar-brand" href="/">Giligan's Restaurant App</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       @yield('navbar-1')
@@ -52,6 +52,9 @@
 @section('js-external')
 
 @show
+
+
+
 
 
 

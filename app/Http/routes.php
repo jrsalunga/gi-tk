@@ -3,8 +3,8 @@
 // Route::get() or get()
 Route::get('/', function (){
 
-		return app()->environment();
-		exit;
+		//return app()->environment();
+		//exit;
 		$timelogs = App\Models\Timelog::with('employee.branch')
 											->orderBy('datetime', 'DESC')
 											//->take(2)
@@ -26,10 +26,6 @@ Route::post('branch/manager', ['uses'=>'BranchController@postBranchManager']);
 
 
 
-//Route::post('api/timelog', function(){
-//	return dd(Input::all());
-//});
-
 
 get('masterfiles/{table}/{param1?}/{param2?}', function($table, $param1=null, $param2=null) {
     $controller = app()->make("App\Http\Controllers\\".ucfirst($table)."Controller");
@@ -50,7 +46,7 @@ Route::controller('datatables', 'DatatablesController', [
 Route::group(['prefix'=>'api'], function(){
 
 Route::post('t/employee', ['as'=>'employee.post', 'uses'=>'EmployeeController@post']);
-
+Route::put('t/employee', ['as'=>'employee.put', 'uses'=>'EmployeeController@put']);
 Route::get('employee/{field?}/{value?}', ['as'=>'employee.getbyfield', 'uses'=>'EmployeeController@getByField']);
 Route::post('timelog', ['as'=>'timelog.post', 'uses'=>'TimelogController@post']);
 
@@ -67,10 +63,6 @@ Route::get('upload', ['as'=>'upload.index', 'uses'=>'UploadController@index']);
 
 Route::post('postfile', ['as'=>'upload.postfile', 'uses'=>'UploadController@postfile']);
 
-Route::get('filess', function(){
-	$files = new Filesystem;
-	return dd($files->exists(public_path().'\uploads\test.zip'));
-});
 
 
 Route::get('login', ['as'=>'auth.getlogin', 'uses'=>'Auth\AuthController@getLogin']);
@@ -86,7 +78,7 @@ Route::get('logout', ['as'=>'auth.getlogout', 'uses'=>'Auth\AuthController@getLo
 
 
  	/*************************************************************************************/
- /************************* Testing Url for Devs ***************************************/
+ /************************* Testing Url for Devs **************************************/
 /*************************************************************************************/
 
 get('t/employees', function(){
@@ -104,11 +96,69 @@ get('t/employee/branch/{id}', function($id){
         			}])->get();
 });
 
+get('employee/{id}', function($id) {
+	//return App\Models\Timelog::with('employee')->where('id',$id)->get();
+	
+	//$timelog = App\Models\Timelog::find($id);
+	//return $timelog->employee()->get();
+
+	$employee = App\Models\Employee::with('branch')->where('id', $id)->get()->first();
+	return $employee->previous();
+});
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	/*************************************************************************************/
+ /********************   Data Manipulation for Migrations *****************************/
+/*************************************************************************************/
+
+get('compcat-expense', function(){
+
+	$compcats = App\Models\Compcat::all();
+
+	foreach($compcats as $compcat){
+		$expense = App\Models\Expense::where('code', 'LIKE', '%'.$compcat->code.'%')
+													->get()->first();
+		if(empty($expense)){
+			echo 'empty<br>';
+		} else {
+			echo $expense->id.'<br>';
+			$compcat->expenseid = $expense->id;
+			//$compcat->save();
+		}
+			
+		
+		
+		//
+	}
+
+});
+
+
+
+
+
+Route::get('filess', function(){
+	$files = new Filesystem;
+	return dd($files->exists(public_path().'\uploads\test.zip'));
+});
 
 
 
@@ -125,15 +175,6 @@ Route::get('timelog/{id}', function($id) {
 	return $timelogs[0];
 });
 
-Route::get('employee/{id}', function($id) {
-	//return App\Models\Timelog::with('employee')->where('id',$id)->get();
-	
-	//$timelog = App\Models\Timelog::find($id);
-	//return $timelog->employee()->get();
-
-	$employee = App\Models\Employee::with('branch')->where('id', $id)->get();
-	return $employee[0];
-});
 
 
 Route::get('get_uid', function(){

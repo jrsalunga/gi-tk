@@ -37,6 +37,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SupplierTableSeeder::class);
         $this->command->info('Supplier table seeded!');
 
+        $this->call(CompcatTableSeeder::class);
+        
+
         Model::reguard();
     }
 }
