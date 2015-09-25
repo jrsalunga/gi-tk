@@ -1,0 +1,559 @@
+descriptor,compcatid,cost,uom,active,id
+13th Month Pay,13th Month,2980.83,TRAN,,1
+Acoustic Band,Acoustic Band,1800,TRAN,,2
+Annual Festivities,Annual Festivities,2900,TRAN,,3
+Cash Advance,Cash Advance,500,TRAN,,4
+Marlboro Black,Cigarettes,50.1,PACK,1,5
+Marlboro Black 10's,Cigarettes,28.35,PACK,1,6
+Marlboro Lights 10's,Cigarettes,27.8,PACK,1,7
+Marlboro Lights Loc.,Cigarettes,53.6,PACK,1,8
+Marlboro Menthol,Cigarettes,53.6,PACK,1,9
+Marlboro Menthol 10,Cigarettes,17.4,PACK,1,10
+Marlboro Red 10's,Cigarettes,27.8,PACK,1,11
+Marlboro Red Local,Cigarettes,53.6,PACK,1,12
+Philip Morris,Cigarettes,31,PACK,1,13
+Cooking Oil,Cooking Oil,57.47,LT,1,14
+Blueberry CheeseCake,Desserts,35,ORDER,1,15
+Buko Pandan,Desserts,80,ORDER,1,16
+Cheesecake,Desserts,35,ORDER,1,17
+Leche Flan,Desserts,0,ORDER,1,18
+Mango Float(Wle-smal,Desserts,22.9,ORDER,1,19
+Oreo Cheesecake,Desserts,40,ORDER,1,20
+Tiramisu,Desserts,36.11,ORDER,1,21
+Beer Kettle,Drinks - Beer,25,BOT,1,22
+Cerveza Negra,Drinks - Beer,32.33,BOT,1,23
+Corona Beer,Drinks - Beer,65,BOT,1,24
+Empties,Drinks - Beer,5,BOT,1,25
+Empties Plastic,Drinks - Beer,0.2,PC,1,26
+Hoegaarden,Drinks - Beer,75,BOT,1,27
+Pale Pilsen,Drinks - Beer,25.42,BOT,1,28
+Pale Pilsen October,Drinks - Beer,20.17,BOT,1,29
+Red Horse,Drinks - Beer,21.88,BOT,1,30
+Red Horse 1L,Drinks - Beer,0,BOT,1,31
+Red Horse 500ml,Drinks - Beer,0,BOT,1,32
+San Miguel Lights,Drinks - Beer,23.96,BOT,1,33
+San Miguel Premium,Drinks - Beer,33.29,BOT,1,34
+San Miguel Zero,Drinks - Beer,24.92,BOT,1,35
+Sapporo Beer,Drinks - Beer,65,BOT,1,36
+Stella Artois,Drinks - Beer,60,BOT,1,37
+Strong Ice,Drinks - Beer,26.25,BOT,1,38
+Super Dry,Drinks - Beer,32.46,BOT,1,39
+Alcoholic Malt Apple,Drinks - Bottled (Alc),21.25,BOT,1,40
+Alcoholic Malt Lemon,Drinks - Bottled (Alc),21.25,BOT,1,41
+Gilbeys Premium,Drinks - Bottled (Alc),38,BOT,1,42
+Tanduay Ice,Drinks - Bottled (Alc),18.75,BOT,1,43
+Tanduay Ice Black,Drinks - Bottled (Alc),19.17,BOT,1,44
+Tanduay Ice Blue,Drinks - Bottled (Alc),18.75,BOT,1,45
+Tanduay Ice Magnum,Drinks - Bottled (Alc),8.75,BOT,1,46
+Tanduay Ice Pink,Drinks - Bottled (Alc),18.75,BOT,1,47
+Tanduay Ice Red,Drinks - Bottled (Alc),18.75,BOT,1,48
+Tanduay Ice Yellow,Drinks - Bottled (Alc),18.75,BOT,1,49
+Vodka Cruiser Blue.,Drinks - Bottled (Alc),50,BOT,1,50
+Vodka Cruiser Rasp.,Drinks - Bottled (Alc),50,BOT,1,51
+Vodka Ice,Drinks - Bottled (Alc),75,BOT,1,52
+Apricot Brandy,Drinks - Brandy,5.4,SHOT,1,53
+Carlos 1 700ml,Drinks - Brandy,41.3,SHOT,1,54
+Carlos 1 Liter,Drinks - Brandy,42.12,SHOT,1,55
+Fundador Exclu Liter,Drinks - Brandy,26.09,SHOT,1,56
+Fundador Exclu Reg,Drinks - Brandy,64.35,SHOT,1,57
+Fundador Gold Reg,Drinks - Brandy,26.09,SHOT,1,58
+Fundador Liter,Drinks - Brandy,15.76,SHOT,1,59
+Fundador Regular,Drinks - Brandy,16.09,SHOT,1,60
+Henessy VSOP,Drinks - Brandy,89.4,SHOT,1,61
+Henessy XO,Drinks - Brandy,326.09,SHOT,1,62
+Local Brandy,Drinks - Brandy,0,SHOT,1,63
+Remy Martin VSOP,Drinks - Brandy,84.78,SHOT,1,64
+Remy Martin XO,Drinks - Brandy,198,SHOT,1,65
+Local Gin,Drinks - Gin,9.13,SHOT,1,66
+Tanqueray,Drinks - Gin,31.6,SHOT,1,67
+Amaretto,Drinks - Liquor,6.6,SHOT,1,68
+Baileys Liter,Drinks - Liquor,23.2,SHOT,1,69
+Baileys Regular,Drinks - Liquor,36.96,SHOT,1,70
+Cointreau,Drinks - Liquor,39.6,SHOT,1,71
+GoldSchlager,Drinks - Liquor,0,SHOT,1,72
+Kahlua,Drinks - Liquor,25.22,SHOT,1,73
+Triple Sec,Drinks - Liquor,7.4,SHOT,1,74
+Lime Juice,Drinks - Mixers,3.26,SHOT,1,75
+Blue Curacao,Drinks - Non Alcoholic,6.6,SHOT,1,76
+Cali 10,Drinks - Non Alcoholic,14.5,BOT,1,77
+Cali Ice,Drinks - Non Alcoholic,17.79,BOT,1,78
+Cali Shandy,Drinks - Non Alcoholic,17.79,BOT,1,79
+Coffee,Drinks - Non Alcoholic,1.95,SACHET,1,80
+Grenadine,Drinks - Non Alcoholic,6.87,SHOT,1,81
+Bacardi Gold,Drinks - Rhum,11.4,SHOT,1,82
+Bacardi Light Rhum,Drinks - Rhum,10,SHOT,1,83
+Local Rhum,Drinks - Rhum,3.4,SHOT,1,84
+Malibu,Drinks - Rhum,23.6,SHOT,1,85
+7-UP 500ml,Drinks - Softdrinks/Juice,12.5,BOT,1,86
+7-Up,Drinks - Softdrinks/Juice,20.5,CAN,1,87
+7-Up Light,Drinks - Softdrinks/Juice,18,CAN,1,88
+Coke,Drinks - Softdrinks/Juice,41.95,CAN,1,89
+Coke 500ml,Drinks - Softdrinks/Juice,14.9,BOT,1,90
+Coke Light,Drinks - Softdrinks/Juice,21.33,CAN,1,91
+Coke Zero,Drinks - Softdrinks/Juice,44.5,CAN,1,92
+Coke Zero 500ml,Drinks - Softdrinks/Juice,20.83,BOT,1,93
+Gatorade Blue,Drinks - Softdrinks/Juice,28,BOT,1,94
+Gatorade Grapes,Drinks - Softdrinks/Juice,28,BOT,1,95
+Gatorade Lemon,Drinks - Softdrinks/Juice,28,BOT,1,96
+Gatorade Orange,Drinks - Softdrinks/Juice,28,BOT,1,97
+Gatorade Pink,Drinks - Softdrinks/Juice,28,BOT,1,98
+Gatorade Tropical,Drinks - Softdrinks/Juice,28,BOT,1,99
+Lipton Ice tea 1L,Drinks - Softdrinks/Juice,114.29,PACK,1,100
+Lipton tea,Drinks - Softdrinks/Juice,3.78,SACHET,1,101
+Mango Juice,Drinks - Softdrinks/Juice,2.92,ORDER,1,102
+Mirinda,Drinks - Softdrinks/Juice,20.5,CAN,1,103
+Mountain Dew,Drinks - Softdrinks/Juice,20.5,CAN,1,104
+Mug,Drinks - Softdrinks/Juice,20.5,CAN,1,105
+Nestle Lemonade 1k,Drinks - Softdrinks/Juice,0,KG,1,106
+Orange Juice,Drinks - Softdrinks/Juice,13.3,ORDER,1,107
+Pepsi,Drinks - Softdrinks/Juice,20.5,CAN,1,108
+Pepsi 500ml,Drinks - Softdrinks/Juice,19.83,BOT,1,109
+Pepsi Light,Drinks - Softdrinks/Juice,20.5,CAN,1,110
+Pepsi Max,Drinks - Softdrinks/Juice,20.5,CAN,1,111
+Pineapple Juice,Drinks - Softdrinks/Juice,13.3,ORDER,1,112
+Royal,Drinks - Softdrinks/Juice,19.33,CAN,1,113
+Royal Dalandan,Drinks - Softdrinks/Juice,18.5,CAN,1,114
+Royal Grapes,Drinks - Softdrinks/Juice,18.5,CAN,1,115
+Sarsi,Drinks - Softdrinks/Juice,18.75,CAN,1,116
+Sarsi Light,Drinks - Softdrinks/Juice,20.42,CAN,1,117
+Sprite,Drinks - Softdrinks/Juice,14.25,CAN,1,118
+Sprite 500ml,Drinks - Softdrinks/Juice,16,BOT,1,119
+Sprite Ice,Drinks - Softdrinks/Juice,18.5,CAN,1,120
+Sprite Light,Drinks - Softdrinks/Juice,18.5,CAN,1,121
+Sprite Zero,Drinks - Softdrinks/Juice,18.5,CAN,1,122
+Upgrade Softdrink,Drinks - Softdrinks/Juice,0,CAN,1,123
+Cuervo 1800,Drinks - Tequila,28.8,SHOT,1,124
+Cuervo Gold Liter,Drinks - Tequila,22.73,SHOT,1,125
+Cuervo Gold Regular,Drinks - Tequila,21.74,SHOT,1,126
+Don Enrique,Drinks - Tequila,8.65,SHOT,1,127
+Hornitos,Drinks - Tequila,31.6,SHOT,1,128
+Local Tequila,Drinks - Tequila,6.52,SHOT,1,129
+Pepe Lopez,Drinks - Tequila,19.8,SHOT,1,130
+Pepe Lopez Reg.,Drinks - Tequila,0,SHOT,1,131
+Tequila Rose,Drinks - Tequila,22,SHOT,1,132
+Tequila Sauza,Drinks - Tequila,20.8,SHOT,1,133
+Absente,Drinks - Vodka,0,SHOT,1,134
+Absolut Mandarin,Drinks - Vodka,0,SHOT,1,135
+Absolut Vodka Liter,Drinks - Vodka,16.67,SHOT,1,136
+Absolut Vodka Reg.,Drinks - Vodka,18.4,SHOT,1,137
+Antonov Vodka,Drinks - Vodka,84,SHOT,1,138
+Arkan Melon,Drinks - Vodka,35,SHOT,1,139
+Arkan Vodka,Drinks - Vodka,35,SHOT,1,140
+Artic Melon Regular,Drinks - Vodka,24,SHOT,1,141
+Citron Liter,Drinks - Vodka,31.52,SHOT,1,142
+Citron Regular,Drinks - Vodka,32.8,SHOT,1,143
+Citron Vodka,Drinks - Vodka,28.94,SHOT,1,144
+Kurant Liter,Drinks - Vodka,21.21,SHOT,1,145
+Kurant Regular,Drinks - Vodka,22,SHOT,1,146
+Local Vodka,Drinks - Vodka,4,SHOT,1,147
+Russian Standard,Drinks - Vodka,18.56,SHOT,1,148
+Smirnoff Vodka,Drinks - Vodka,16.52,SHOT,1,149
+Stolichnaya,Drinks - Vodka,28.8,SHOT,1,150
+Mineral Big,Drinks - Water,9.67,BOT,1,151
+Mineral Small,Drinks - Water,7.25,BOT,1,152
+Soda Water,Drinks - Water,26,CAN,1,153
+Tonic Water,Drinks - Water,26,CAN,1,154
+Ballantines,Drinks - Whisky,34.6,SHOT,1,155
+Chivas Regal Liter,Drinks - Whisky,42.42,SHOT,1,156
+Chivas Regal Regular,Drinks - Whisky,36,SHOT,1,157
+Cutty Sark 700ml,Drinks - Whisky,27.8,SHOT,1,158
+Cutty Sark Liter,Drinks - Whisky,17.88,SHOT,1,159
+Glenffedich,Drinks - Whisky,0,SHOT,1,160
+J & B Liter,Drinks - Whisky,0,SHOT,1,161
+J & B Regular,Drinks - Whisky,26.96,SHOT,1,162
+J.Walker Black Liter,Drinks - Whisky,31.82,SHOT,1,163
+J.Walker Black Reg.,Drinks - Whisky,33.91,SHOT,1,164
+J.Walker Blue Liter,Drinks - Whisky,43.33,SHOT,1,165
+J.Walker Blue Reg.,Drinks - Whisky,216,SHOT,1,166
+J.Walker Gold Reg.,Drinks - Whisky,0,SHOT,1,167
+J.Walker Green Liter,Drinks - Whisky,0,SHOT,1,168
+J.Walker Green Reg.,Drinks - Whisky,105.2,SHOT,1,169
+J.Walker Red 700ml,Drinks - Whisky,0,SHOT,1,170
+J.Walker Red Liter,Drinks - Whisky,34.85,SHOT,1,171
+J.Walker Red Reg.,Drinks - Whisky,360,SHOT,1,172
+Jack Daniels 700ml,Drinks - Whisky,41.3,SHOT,1,173
+Jack Daniels Liter,Drinks - Whisky,28.79,SHOT,1,174
+Jack Daniels Regular,Drinks - Whisky,38,SHOT,1,175
+Jim Beam Regular,Drinks - Whisky,20.72,SHOT,1,176
+Local Whisky,Drinks - Whisky,0,SHOT,1,177
+Royal Rouse,Drinks - Whisky,0,SHOT,1,178
+St. George,Drinks - Whisky,5.65,SHOT,1,179
+Vat 69,Drinks - Whisky,330,SHOT,1,180
+Gossips Red Wine,Drinks - Wine,316,BTL,1,181
+Gossips White Wine,Drinks - Wine,316,BTL,1,182
+House Wine,Drinks - Wine,33.71,GLASS,1,183
+Montrouge Red,Drinks - Wine,75,GLASS,1,184
+Montrouge White,Drinks - Wine,75,GLASS,1,185
+Electric Bill,Electricity,164595.59,TRAN,,186
+Employees Meal,Employees Meal,2008,TRAN,,187
+Azuete,Fruits,140,KG,1,188
+Buko,Fruits,25,PC,1,189
+Dayap,Fruits,0.7,SLICE,1,190
+Fresh Orange,Fruits,9.38,SLICE,1,191
+Grapes,Fruits,32.19,KG,1,192
+Green Mango,Fruits,15,SLICE,1,193
+Kiwi Fruit,Fruits,21.5,KG,1,194
+Lacatan,Fruits,12,ORDER,1,195
+Lemon,Fruits,3.88,SLICE,1,196
+Melon,Fruits,12.35,ORDER,1,197
+Ripe Mango,Fruits,15.6,ORDER,1,198
+Strawberry,Fruits,165,KG,1,199
+A1 Steak Sauce,Groceries,0,GRMS,1,200
+All Purpose Cream,Groceries,186,LT,1,201
+Anchovies,Groceries,1.6,GRMS,1,202
+Angel Hair,Groceries,0.09,GRMS,1,203
+BBQ Marinade,Groceries,113.7,LT,1,204
+Baking Powder,Groceries,25.8,KG,1,205
+Balsamic Vinegar,Groceries,466.6,LT,1,206
+Banana Ketchup,Groceries,39.95,KG,1,207
+Beef Broth,Groceries,373.76,KG,1,208
+Bihon,Groceries,65,KG,1,209
+Bilbao,Groceries,0.45,GRMS,1,210
+Black Beans,Groceries,0.11,GRMS,1,211
+Black Fungus,Groceries,0.28,GRMS,1,212
+Black Olives,Groceries,0.24,GRMS,1,213
+Black Pepper,Groceries,1,GRMS,1,214
+Blueberry,Groceries,0.27,GRMS,1,215
+Bread Crumbs,Groceries,108.75,KG,1,216
+Brewed Coffee,Groceries,896.87,KG,1,217
+Bulaklak ng Saging,Groceries,280,GRMS,1,218
+Burger Buns,Groceries,4.75,PCS,1,219
+Butter,Groceries,0.17,GRMS,1,220
+Canola Oil,Groceries,118.95,LT,1,221
+Canton Noodles,Groceries,150,KG,1,222
+Capers,Groceries,0.41,GRMS,1,223
+Chami Noodles,Groceries,45,KG,1,224
+Cheddar Cheese,Groceries,268.18,KG,1,225
+Cheese Sliced,Groceries,15.83,PC,1,226
+Cheese Whiz,Groceries,0.31,GRMS,1,227
+Cherry,Groceries,3.98,PC,1,228
+Chicken Broth,Groceries,330.78,KG,1,229
+Chicken Powder,Groceries,299.7,KG,1,230
+Chili Ketchup,Groceries,89.45,KG,1,231
+Coconut Brand SoySos,Groceries,87.16,LTR,1,232
+Coconut Milk Powder,Groceries,0.57,GRMS,1,233
+Condensed Milk,Groceries,173.67,LT,1,234
+Cornstarch,Groceries,40,KG,1,235
+Cream Cheese,Groceries,583.95,KG,1,236
+Creamer,Groceries,1.69,PCS,1,237
+Croutons,Groceries,0,GRMS,1,238
+Curry Powder,Groceries,1.45,GRMS,1,239
+Demi Glace,Groceries,455,KG,1,240
+Diced Tomato,Groceries,111.5,KG,1,241
+Dried Alamang,Groceries,27.5,GRMS,1,242
+Egg,Groceries,5.83,PCS,1,243
+Evaporated Milk,Groceries,65.43,LT,1,244
+Flat Noodles,Groceries,84.78,KG,1,245
+Flour,Groceries,44,KG,1,246
+French Bread,Groceries,70,PC,1,247
+French Fries,Groceries,85,KG,1,248
+Fresh Milk,Groceries,76,LT,1,249
+Garbanzos,Groceries,26.7,KG,1,250
+Garlic Ranch Dresing,Groceries,171.75,LT,1,251
+Graham,Groceries,0.25,GRMS,1,252
+Green Gulaman,Groceries,340.37,KG,1,253
+Ground Cinnamon,Groceries,1.23,GRMS,1,254
+Ground Pepper,Groceries,0.3,GRMS,1,255
+Ground Saffron,Groceries,178,GRMS,1,256
+Honey,Groceries,0.18,ML,1,257
+Hotdog Buns,Groceries,4,PCS,1,258
+Iodized Salt,Groceries,25,KG,1,259
+Italian Seasoning,Groceries,3.17,GRMS,1,260
+Kare-Kare Paste,Groceries,33.33,KG,1,261
+Kernel Corn,Groceries,0.07,GRMS,1,262
+Kikoman,Groceries,233.55,LT,1,263
+Lasagna Noodles,Groceries,200.9,KG,1,264
+Laurel Leaves,Groceries,0.28,GRMS,1,265
+Liver Spread,Groceries,0.14,GRMS,1,266
+Lumpia Wrapper,Groceries,1.82,PCS,1,267
+Mang Tomas,Groceries,70,KG,1,268
+Mango Float Big,Groceries,40,ORDER,1,269
+Mayonnaise,Groceries,144.61,LT,1,270
+Molo Wrapper,Groceries,0.35,PCS,1,271
+Mozarella Cheese,Groceries,325,KG,1,272
+Mushroom Soy Sauce,Groceries,69.55,LTR,1,273
+Mustard,Groceries,0.32,GRMS,1,274
+Nata De Coco,Groceries,0.12,GRMS,1,275
+Nestle Thick Cream,Groceries,225,Kg,1,276
+Olive Oil,Groceries,286.7,LT,1,277
+Orange Marmalade,Groceries,0.17,GRMS,1,278
+Oreo,Groceries,0.25,KG,1,279
+Oyster Sauce,Groceries,113.16,KG,1,280
+Paprika Ground,Groceries,0.96,GRMS,1,281
+Parmesan Cheese,Groceries,0.83,GRMS,1,282
+Patis,Groceries,31.35,LT,1,283
+Peanut Butter,Groceries,201.98,KG,1,284
+Peeled Tomato,Groceries,0.1,GRMS,1,285
+Pickles,Groceries,0.21,GRMS,1,286
+Pineapple Sliced,Groceries,0.1,GRMS,1,287
+Pineapple Tidbits,Groceries,0.15,GRMS,1,288
+Pizza Crust,Groceries,25,PC,1,289
+Quail Egg,Groceries,1.5,PCS,1,290
+Quick Melt,Groceries,320,KG,1,291
+Raisins,Groceries,0.25,GRMS,1,292
+Red Hot Pepper Sauce,Groceries,257.21,LT,1,293
+Red Pimiento,Groceries,226.41,KG,1,294
+Rock Salt,Groceries,10,KG,1,295
+Rosemary Leaves,Groceries,88.2,GRMS,1,296
+Sesame Oil,Groceries,456.54,LT,1,297
+Sesame Seed,Groceries,0.36,GRMS,1,298
+Shanghai Soy Sauce,Groceries,71.25,LT,1,299
+Sliced Bread,Groceries,3.39,PCS,1,300
+Sotanghon,Groceries,160,KG,1,301
+Sour Cream,Groceries,0.35,GRMS,1,302
+Soy Sauce,Groceries,30.12,LT,1,303
+Spaghetti Noodles,Groceries,70.3,KG,1,304
+Spaghetti Sauce,Groceries,61.95,KG,1,305
+Star Anis,Groceries,0.28,GRMS,1,306
+Star Margarine,Groceries,48.5,KG,1,307
+Sugar,Groceries,65,KG,1,308
+Sugar Sachet,Groceries,0.99,SACHET,1,309
+Sugar Syrup,Groceries,0,SHOT,1,310
+Sweet Chili Bottle,Groceries,80.95,KG,1,311
+Sweet Chili Sauce,Groceries,91.5,KG,1,312
+Tamarind Soup Base,Groceries,293.93,KG,1,313
+Teriyaki Sauce,Groceries,0,LT,1,314
+Thick Cream,Groceries,215,ML,1,315
+Thousand Island,Groceries,0,KG,1,316
+Tomato Catsup,Groceries,63.12,KG,1,317
+Tomato Paste,Groceries,0.08,GRMS,1,318
+Tomato Sauce,Groceries,74.45,KG,1,319
+Tortilla Chips,Groceries,182,KG,1,320
+Tumeric Ground,Groceries,0.55,GRMS,1,321
+Vanilla,Groceries,1.15,ML,1,322
+Vegetable Oil,Groceries,100.29,LT,1,323
+Vinegar,Groceries,26.68,LT,1,324
+Wasabi Powder,Groceries,1.39,GRMS,1,325
+White Pepper,Groceries,2.08,GRMS,1,326
+Whole Mushroom,Groceries,134.71,KG,1,327
+Worcestershire Sauce,Groceries,0.58,ML,1,328
+Yeast,Groceries,0.26,GRMS,1,329
+Tube Ice,Ice,3,KG,1,330
+Kabayan Loan,Kabayan Loan,8400,TRAN,,331
+LPG,LPG,152750.01,TRAN,,332
+Beef Ribs,Meat - Beef,190,KG,1,333
+Bulalo,Meat - Beef,75.16,ORDER,1,334
+Camto,Meat - Beef,215,KG,1,335
+Ground Beef,Meat - Beef,553.27,KG,1,336
+Ground Sirloin,Meat - Beef,303.72,KG,1,337
+Kalitiran,Meat - Beef,195,KG,1,338
+Lingua,Meat - Beef,230,KG,1,339
+Oxtripe,Meat - Beef,24.67,KG,1,340
+Porterhouse Steak,Meat - Beef,280,PC,1,341
+T-Bone,Meat - Beef,55,PC,1,342
+Tenderloin,Meat - Beef,380,KG,1,343
+Top Round,Meat - Beef,275,KG,1,344
+Breast Fillet,Meat - Chicken,210.33,KG,1,345
+Chicken Wings,Meat - Chicken,13.21,PC,1,346
+Ground Chicken,Meat - Chicken,190,KG,1,347
+Leg Quarter,Meat - Chicken,195,KG,1,348
+Whole Chicken,Meat - Chicken,150.02,ORDER,1,349
+Bacon,Meat - Pork,572,KG,1,350
+Balat ng Baboy,Meat - Pork,90,KG,1,351
+Batok,Meat - Pork,0,KG,1,352
+Bulaklak,Meat - Pork,120,KG,1,353
+Ground Pork,Meat - Pork,175,KG,1,354
+Ham,Meat - Pork,0.3,GRMS,1,355
+Liempo,Meat - Pork,200,KG,1,356
+Longanisa,Meat - Pork,150,KG,1,357
+Mukha,Meat - Pork,85,KG,1,358
+Mukha (BTC),Meat - Pork,0,KG,1,359
+Mukha (Chicharon),Meat - Pork,80,ORDER,1,360
+Mukha (Laga),Meat - Pork,80,KG,1,361
+Pata,Meat - Pork,162,ORDER,1,362
+Pigue,Meat - Pork,190,KG,1,363
+Pork Belly,Meat - Pork,170,KG,1,364
+Pork Casim,Meat - Pork,150,KG,1,365
+Pork Chop,Meat - Pork,155,KG,1,366
+Pork Loin,Meat - Pork,180,KG,1,367
+Pork Spareribs,Meat - Pork,180,KG,1,368
+Hungarian,Meat - Sausage,15.5,PC,1,369
+Longganisa,Meat - Sausage,150,KG,1,370
+Pepperoni,Meat - Sausage,304.55,KG,1,371
+Alabang House,Misc. Expenses,310.95,TRAN,,372
+COMPANY ID,Misc. Expenses,5100,,,373
+House Rent,Misc. Expenses,0,TRAN,,374
+Medicine,Misc. Expenses,429,TRAN,,375
+Misc. Groceries,Misc. Expenses,504,TRAN,,376
+Photocopying,Misc. Expenses,240,TRAN,,377
+UNIFORM,Misc. Expenses,3500,TRAN,,378
+Water Test,Misc. Expenses,350,TRAN,,379
+Office Supplies,Office - Supply,273.25,TRAN,,380
+Paper Roll,Office - Supply,0.2,PC,,381
+Thermal Paper,Office - Supply,23,PC,,382
+Pag-Ibig Loan Paymnt,Pag-Ibig Loan Payment,10147.25,TRAN,,383
+Pag-Ibig Remittance,Pag-Ibig Remittance,27400,TRAN,,384
+Pest Control,Pest Control,3750,TRAN,,385
+PhilHealth Remitance,Philhealth Remittance,59875,TRAN,,386
+Professional Fee,Professional Fee,5000,TRAN,,387
+Retainer's Fee,Professional Fee,108000,TRAN,,388
+Aircon Charges,Repair & Maintenance,1000,TRAN,,389
+Aircon Maintenance,Repair & Maintenance,1000,TRAN,,390
+Engineering,Repair & Maintenance,12,TRAN,,391
+Exhaust Charges,Repair & Maintenance,5880,TRAN,,392
+Garbage Hauling,Repair & Maintenance,220,TRAN,,393
+Grease Trap,Repair & Maintenance,4073.33,TRAN,,394
+Hardware,Repair & Maintenance,8,TRAN,,395
+New Equipment,Repair & Maintenance,8350,TRAN,,396
+Repair Expenses,Repair & Maintenance,7000,TRAN,,397
+Sprinkler,Repair & Maintenance,0,TRAN,,398
+Welding Works,Repair & Maintenance,0,TRAN,,399
+Air Freshener,Restaurant Supplies,185,LT,,400
+Aluminum Foil,Restaurant Supplies,809.5,ROLL,,401
+BBQ Stick,Restaurant Supplies,0.27,PC,,402
+Bar Supplies,Restaurant Supplies,37.5,TRAN,,403
+Brown Paper,Restaurant Supplies,1.1,PC,,404
+Charcoal,Restaurant Supplies,250,SACK,,405
+Chinaware,Restaurant Supplies,14020,TRAN,,406
+Cling Wrapp,Restaurant Supplies,636.36,ROLL,,407
+Cocktail Toothpick,Restaurant Supplies,0.16,PC,,408
+Crema Tray,Restaurant Supplies,14.5,PC,,409
+D.W. Paste,Restaurant Supplies,38,KG,,410
+Decors,Restaurant Supplies,50,SET,,411
+Detergent Powder,Restaurant Supplies,35,TRAN,,412
+Mop Head,Restaurant Supplies,204.6,PC,,413
+Order Slip,Restaurant Supplies,15,PC,,414
+Oyster Shell,Restaurant Supplies,35,KG,,415
+Pizza Box,Restaurant Supplies,10,PC,,416
+Placemat,Restaurant Supplies,0.3,PC,,417
+Plastic Twine,Restaurant Supplies,90,ROLL,,418
+Red Straw,Restaurant Supplies,0.15,PC,,419
+Restaurant Supplies,Restaurant Supplies,148.75,TRAN,,420
+"Rollo Bag 10""",Restaurant Supplies,0.22,PC,,421
+"Rollo Bag 8""",Restaurant Supplies,0.35,PC,,422
+Sando Bag Large,Restaurant Supplies,1.5,PC,,423
+Sando Bag Medium,Restaurant Supplies,0.65,PC,,424
+Sando Bag Small,Restaurant Supplies,0.35,PC,,425
+Styro Big,Restaurant Supplies,4.8,PC,,426
+Styro Meduim,Restaurant Supplies,4,PC,,427
+Styro Small,Restaurant Supplies,1.45,PC,,428
+Toothpick,Restaurant Supplies,0.05,PC,,429
+Trash Bag,Restaurant Supplies,7,PC,,430
+White Bending Straw,Restaurant Supplies,0.25,PC,,431
+Wooden Chopstick,Restaurant Supplies,2.48,PC,,432
+Rice,Rice,41.45,KG,1,433
+SSS Ee Loan Payment,SSS Loan Payment,15578.21,TRAN,,434
+SSS Ee Remittance,SSS Remittance,872,TRAN,,435
+SSS Er Remittance,SSS Remittance,140350,TRAN,,436
+S.I.L,Salaries - Reg. Emp.,573.23,TRAN,,437
+Salary,Salaries - Reg. Emp.,494.5,TRAN,,438
+Salary Trainee,Salaries - Trainee,489.32,TRAN,,439
+Blue Marlin,Seafoods - Fish,380,KG,1,440
+Boneless Bangus,Seafoods - Fish,173,KG,1,441
+Cream Dory,Seafoods - Fish,105,KG,1,442
+Fish Fillet,Seafoods - Fish,105,KG,1,443
+Gindara,Seafoods - Fish,180,KG,1,444
+Lapu-Lapu Head,Seafoods - Fish,380,KG,1,445
+Lumot,Seafoods - Fish,120,KG,1,446
+Salmon Belly,Seafoods - Fish,260,KG,1,447
+Salmon Fillet,Seafoods - Fish,580,KG,1,448
+Salmon Head,Seafoods - Fish,115,KG,1,449
+Squid Ring,Seafoods - Fish,210,KG,1,450
+Squid Tubes,Seafoods - Fish,190,KG,1,451
+Tanigue,Seafoods - Fish,370,KG,1,452
+Tilapia,Seafoods - Fish,110,KG,1,453
+Tuna Belly,Seafoods - Fish,300,KG,1,454
+Tuna Loin,Seafoods - Fish,450,KG,1,455
+Tuna Panga,Seafoods - Fish,110,KG,1,456
+Tuna Tail,Seafoods - Fish,140,KG,1,457
+Alamang,Seafoods - Other,60,KG,1,458
+Cajun Shrimp,Seafoods - Other,550,KG,1,459
+Clams,Seafoods - Other,95,KG,1,460
+Crablets,Seafoods - Other,150,KG,1,461
+Gambas,Seafoods - Other,520,KG,1,462
+Imported Clams,Seafoods - Other,180,KG,1,463
+Mussels,Seafoods - Other,105,KG,1,464
+Oyster,Seafoods - Other,0.32,GRMS,1,465
+Prawns,Seafoods - Other,600,KG,1,466
+Scallops,Seafoods - Other,280,KG,1,467
+Squid Balls,Seafoods - Other,1.14,PC,1,468
+Suahe,Seafoods - Other,400,KG,1,469
+Tagunton,Seafoods - Other,250,KG,1,470
+Hot Sauce,Seasoning,393.16,LT,1,471
+Seasoning,Seasoning,162.76,LT,1,472
+Security Service,Security Services,13750,TRAN,,473
+Additional Fund,Space Lease,0,TRAN,,474
+Annual Advertisement,Space Lease,0,TRANS,,475
+Construction Bond,Space Lease,0,TRANS,,476
+Early Closed Penalty,Space Lease,0,TRANS,,477
+Late Closure Penalty,Space Lease,0,TRANS,,478
+Late Opening Penalty,Space Lease,0,TRANS,,479
+Overtime Charges,Space Lease,0,TRANS,,480
+Security Deposit,Space Lease,0,TRANS,,481
+Space Leased,Space Lease,1228.71,TRAN,,482
+Bathroom Tissue,TISSUE,30,PACK,,483
+Table Napkin,TISSUE,0.09,PC,,484
+BIR,Taxes & Licenses,32296.81,TRAN,,485
+City Hall,Taxes & Licenses,1450,TRAN,,486
+Documentary Stamp,Taxes & Licenses,0,TRAN,,487
+Insurance,Taxes & Licenses,0,TRAN,,488
+Taxes & Licenses,Taxes & Licenses,86942.02,TRAN,,489
+Telecom,Telecom,2584.1,TRAN,,490
+Paper Towel,Tissue,28,PACK,,491
+Bagger,"Transpo,Gas,Toll,Parking",20,TRAN,,492
+Diesel,"Transpo,Gas,Toll,Parking",25,TRAN,,493
+Parking Fee,"Transpo,Gas,Toll,Parking",30,TRAN,,494
+Tollgate,"Transpo,Gas,Toll,Parking",24,TRAN,,495
+Transpo,"Transpo,Gas,Toll,Parking",22,TRAN,,496
+Ampalaya,Vegetables - Fresh,65,KG,1,497
+Asparagus,Vegetables - Fresh,40,KG,1,498
+Baguio Beans,Vegetables - Fresh,70,KG,1,499
+Basil Leaves,Vegetables - Fresh,5.28,GRMS,1,500
+Beans,Vegetables - Fresh,50,KG,1,501
+Broccoli,Vegetables - Fresh,260,KG,1,502
+Cabbage,Vegetables - Fresh,70,KG,1,503
+Calamansi,Vegetables - Fresh,35,KG,1,504
+Carrots,Vegetables - Fresh,100,KG,1,505
+Cauliflower,Vegetables - Fresh,180,KG,1,506
+Celery,Vegetables - Fresh,100,KG,1,507
+Cilantro,Vegetables - Fresh,0,KG,1,508
+Corn (Fresh),Vegetables - Fresh,40,KG,1,509
+Cucumber,Vegetables - Fresh,50,KG,1,510
+Dried Mushroom,Vegetables - Fresh,536.67,KG,1,511
+Eggplant,Vegetables - Fresh,50,KG,1,512
+Fresh Mushroom,Vegetables - Fresh,129,KG,1,513
+Fresh Peanuts,Vegetables - Fresh,120,KG,1,514
+Gabi Leaves,Vegetables - Fresh,30,KG,1,515
+Garlic,Vegetables - Fresh,90,KG,1,516
+Ginger,Vegetables - Fresh,150,KG,1,517
+Green Bell Pepper,Vegetables - Fresh,200,KG,1,518
+Heart Of Romain,Vegetables - Fresh,60,KG,1,519
+Hot Pepper Leaves,Vegetables - Fresh,60,KG,1,520
+Kangkong,Vegetables - Fresh,33.33,KG,1,521
+Kinchay,Vegetables - Fresh,200,KG,1,522
+Lettuce,Vegetables - Fresh,100,KG,1,523
+Mint Leaves,Vegetables - Fresh,200,KG,1,524
+Miso,Vegetables - Fresh,20,KG,1,525
+Mixed Vegetables,Vegetables - Fresh,45,KG,1,526
+Mustasa,Vegetables - Fresh,105.1,KG,1,527
+Niyog,Vegetables - Fresh,25,PC,1,528
+Okra,Vegetables - Fresh,59,KG,1,529
+Onion Leeks,Vegetables - Fresh,80,KG,1,530
+Onion Red,Vegetables - Fresh,60,KG,1,531
+Onion White,Vegetables - Fresh,45,KG,1,532
+Pandan Leaves,Vegetables - Fresh,100,KG,1,533
+Papaya,Vegetables - Fresh,25,KG,1,534
+Parsley,Vegetables - Fresh,820.83,KG,1,535
+Pechay Tagalog,Vegetables - Fresh,60,KG,1,536
+Potato,Vegetables - Fresh,50,KG,1,537
+Puso ng Saging,Vegetables - Fresh,40,KG,1,538
+Raddish,Vegetables - Fresh,60,KG,1,539
+Red Beans,Vegetables - Fresh,180,KG,1,540
+Red Bell Pepper,Vegetables - Fresh,200,KG,1,541
+Saba,Vegetables - Fresh,5,PC,1,542
+Sili Labuyo,Vegetables - Fresh,400,KG,1,543
+Sili Sigang,Vegetables - Fresh,120,KG,1,544
+Sitsaro,Vegetables - Fresh,150,KG,1,545
+Spinach,Vegetables - Fresh,100,KG,1,546
+Spring Onion,Vegetables - Fresh,164.21,KG,1,547
+Squash,Vegetables - Fresh,35,KG,1,548
+String Beans,Vegetables - Fresh,25,KG,1,549
+Sweet Peas,Vegetables - Fresh,130.5,KG,1,550
+Tanglad,Vegetables - Fresh,50,KG,1,551
+Toge,Vegetables - Fresh,40,KG,1,552
+Tokwa,Vegetables - Fresh,4,PC,1,553
+Tomato,Vegetables - Fresh,40,KG,1,554
+Ubod,Vegetables - Fresh,50,KG,1,555
+Winged Bean,Vegetables - Fresh,70,KG,1,556
+Young Corn,Vegetables - Fresh,100,KG,1,557
+Water Bill,Water Bill,53372.18,TRAN,,558

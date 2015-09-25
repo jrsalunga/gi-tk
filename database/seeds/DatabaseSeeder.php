@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CompcatTableSeeder::class);
         
+        $this->call(ComponentTableSeeder::class);
 
         Model::reguard();
     }

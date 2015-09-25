@@ -143,12 +143,25 @@ get('compcat-expense', function(){
 			$compcat->expenseid = $expense->id;
 			//$compcat->save();
 		}
-			
-		
-		
-		//
 	}
+});
 
+
+get('link-comp-cat', function(){
+
+	$components = App\Models\Component::all();
+
+	foreach($components as $component){
+		$compcat = App\Models\Compcat::where('descriptor', 'LIKE', '%'.$component->compcatid.'%')
+													->get()->first();
+		if(empty($compcat)){
+			echo 'empty<br>';
+		} else {
+			echo $compcat->id.'<br>';
+			$component->compcatid = $compcat->id;
+			//$component->save();
+		}
+	}
 });
 
 
