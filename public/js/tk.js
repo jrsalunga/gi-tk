@@ -700,6 +700,11 @@ function initMap() {
         acc: position.coords.accuracy
       };
 
+      $('#ilat').val(pos.lat);
+			$('#ilong').val(pos.lng);
+			$('#lat').val(pos.lat);
+			$('#long').val(pos.lng);
+
       info.innerHTML = '<p>Latitude is ' + pos.lat + '° <br>Longitude is ' + pos.lng + '°'+ '<br>More or less ' + pos.acc + ' meters</p>';
       
 
@@ -737,6 +742,8 @@ function markerRender(event){
 	pos.lng = event.latLng.lng();
 	pos.acc = 0;
 	//console.log(info);
+	$('#lat').val(pos.lat);
+	$('#long').val(pos.lng);
 	info.innerHTML = '<p>Latitude is ' + pos.lat + '° <br>Longitude is ' + pos.lng + '°'+ '<br>More or less ' + pos.acc + ' meters</p>';
 }
 

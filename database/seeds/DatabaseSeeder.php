@@ -41,6 +41,16 @@ class DatabaseSeeder extends Seeder
         
         $this->call(ComponentTableSeeder::class);
 
+        $this->call(PositionTableSeeder::class);
+
+        $this->call(CompanyTableSeeder::class);
+
+        $this->call(ReligionTableSeeder::class);
+
+        $this->call(ManskedhdrTableSeeder::class);
+
+         $this->call(ManskeddayTableSeeder::class);
+
         Model::reguard();
     }
 }

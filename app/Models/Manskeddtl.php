@@ -1,0 +1,19 @@
+<?php namespace App\Models;
+
+use App\Models\BaseModel;
+
+class Manskeddtl extends BaseModel {
+
+	protected $table = 'manskeddtl';
+ 	protected $fillable = ['mandayid', 'employeeid', 'daytype', 'starttime'];
+ 	//public static $header = ['code', 'descriptor'];
+
+	public function manskedday() {
+    return $this->belongsTo('App\Models\Manskedday', 'mandayid');
+  }
+
+  public function employee() {
+    return $this->belongsTo('App\Models\Employee', 'employeeid');
+  }
+  
+}

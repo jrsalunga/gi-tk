@@ -8,6 +8,7 @@ class Employee extends BaseModel {
 	protected $table = 'employee';
  	protected $fillable = ['code', 'lastname', 'firstname', 'middlename', 'position', 'branchid', 'punching', 'processing'];
  	public static $header = ['code', 'lastname'];
+  public $timestamps = false;
 
 
  	public function timelogs() {
@@ -20,6 +21,14 @@ class Employee extends BaseModel {
 
   public function uploads() {
     return $this->hasMany('App\Models\Upload', 'employeeid');
+  }
+
+  public function manskeddtls() {
+    return $this->hasMany('App\Models\Manskeddtl', 'employeeid');
+  }
+
+  public function manskedhdr() {
+    return $this->hasMany('App\Models\Manskedhdr', 'managerid');
   }
 
 

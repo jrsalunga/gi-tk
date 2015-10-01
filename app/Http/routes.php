@@ -1,8 +1,20 @@
 <?php
 
+
+
+Route::get('/404', function (){
+	// catched from All\Exceptions\Handler
+	
+	//Log::info('Showing user profile for user');
+
+	return redirect('branch/manage/user');
+
+});
+
+
 // Route::get() or get()
 Route::get('/', function (){
-
+		return redirect('branch/manage/user');
 		//return app()->environment();
 		//exit;
 		$timelogs = App\Models\Timelog::with('employee.branch')
@@ -21,8 +33,12 @@ Route::get('settings', ['middleware' => 'auth', 'uses'=>'DashboardController@get
 Route::get('tk', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogController@getIndex']);
 
 
-Route::get('branch/manager', ['uses'=>'BranchController@getBranchManager']);
+Route::get('branch/manage/user', ['uses'=>'BranchController@getBranchManager']);
 Route::post('branch/manager', ['uses'=>'BranchController@postBranchManager']);
+Route::get('branch/mansked/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskedController@getIndex',  'middleware' => 'auth'])
+	->where(['param1'=>'add|week|[0-9]{2}+', 
+					'param2'=>'add|branch|[A-Fa-f0-9]{2}+', 
+					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
 
 
 
@@ -108,8 +124,43 @@ get('employee/{id}', function($id) {
 
 
 
+get('t/maskedhdr/{id}', function($id){
+	return App\Models\Manskedhdr::with(['branch' => function($query){
+																	$query->select('code', 'addr1', 'id');
+																}, 'manager' => function($query) {
+																	$query->select('code', 'lastname', 'firstname', 'id');
+																}, 'manskeddays.manskeddtls'])->where('id', $id)->get();
+});
+
+get('t/religion/{id}', function($id){
+	$religion = App\Models\Religion::find($id);
+	return dd($religion);
+});
+
+get('t/week', function(){
 
 
+	//echo date("W", mktime(0,0,0,12,28,2015));
+
+		$weeks = App\Models\Manskedhdr::select('weekno')->where(DB::raw('YEAR(date)'), '=', '2015')->get();
+
+		$w = $weeks->pluck('weekno')->toArray(); // array of week
+
+		for($week_ctr = 1; $week_ctr <= date("W", mktime(0,0,0,12,28,2015));  $week_ctr++){
+			$s = in_array($week_ctr, $w) ? 'yes':'no';
+			$mon_no = date('F n', strtotime('1 Jan +'. $week_ctr.' weeks'));
+			echo $mon_no.' = '.$week_ctr.' = '. $s .'<br>';
+		}
+});
+
+
+get('t/get-week',  ['uses'=>'ManskedController@testWeeks']);
+
+get('t/mansked/week/{weekno}',  function($weekno){
+		//return App\Models\Manskedhdr::with('manskeddays')->where('weekno', $weekno)->get();
+	$manday = new App\Models\Manskedday;
+		return $manday->where('id', 'B0092A7B666611E596ECDA40B3C0AA12')->get();
+});
 
 
 

@@ -47,10 +47,94 @@
   @endif
   <div class="row">
     <div class="page-header">
-      <h3>Branch Information <small>Subtext for header</small></h3>
+      <h3>Branch User Information <small></small></h3>
     </div>
     <div class="col-md-6">
       {!! Form::open(['url' => 'branch/manager', 'method' => 'post']) !!}
+      <div class="panel panel-default">
+        <div class="panel-heading">Login Information</div>
+        <div class="panel-body row">
+          <div class="col-md-9">
+          <div class="form-group">
+            <label for="email" class="control-label">Email Address</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" >
+          </div>
+        </div>   
+        <div class="col-md-9">
+          <div class="form-group">
+            <label for="password1" class="control-label">Password</label>
+            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+          </div>
+        </div>   
+        <div class="col-md-9">
+          <div class="form-group">
+            <label for="password2" class="control-label">Verify Password</label>
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="Verify Password">
+          </div>
+        </div>  
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Personal Information</div>
+        <div class="panel-body row">
+        <div class="col-md-9">
+          <div class="form-group">
+            <label for="firstname" class="control-label">Firstname</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" >
+          </div>
+        </div>   
+        <div class="col-md-9">
+          <div class="form-group">
+            <label for="middlename" class="control-label">Middlename</label>
+            <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middlename" >
+          </div>
+        </div>   
+        <div class="col-md-9">
+          <div class="form-group">
+            <label for="lastname" class="control-label">Lastname</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname" >
+          </div>
+        </div>  
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="suffix" class="control-label">Suffix</label>
+            <input type="text" class="form-control" id="suffix" name="suffix" placeholder="Jr, Sr, I, II, III" >
+          </div>
+        </div> 
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Branch Information</div>
+      <div class="panel-body row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="suffix" class="control-label">Position</label>
+            <select class="form-control" id="positionid" name="positionid">
+              @foreach($postions as $postion)
+                <option value="{{ $postion->id }}">{{ $postion->descriptor }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div> 
+        <div class="col-md-9">
+          <div class="form-group">
+            <label for="suffix" class="control-label">Branch</label>
+            <select class="form-control" id="branchid" name="branchid">
+              @foreach($branches as $branch)
+                <option value="{{ $branch->id }}">{{ $branch->code }} - {{ $branch->addr1 }}</option>
+              @endforeach
+            </select>
+            <input type="hidden" name="ilat" id="ilat">
+            <input type="hidden" name="ilong" id="ilong">
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="long" id="long">
+          </div>
+        </div> 
+      </div>
+    </div>
+
 
       <div class="g-recaptcha" data-sitekey="6LeTAg0TAAAAAGQjI2QJ0E3XId7p5nDO9dOPovQm"></div>
 

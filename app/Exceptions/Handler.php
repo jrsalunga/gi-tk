@@ -46,6 +46,10 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
+        if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            //return redirect('/404');
+        }
+
         return parent::render($request, $e);
     }
 }
