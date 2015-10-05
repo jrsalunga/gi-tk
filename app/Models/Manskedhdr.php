@@ -44,10 +44,56 @@ class Manskedhdr extends BaseModel {
 		return $weeks;
   }
 
+  public static function getManskedday($year, $weekno){
 
-  public static function checkWeeks(){
+  	$mansked = Manskedhdr::with('manskeddays')->select('id')->where('weekno', $weekno)->get()->first();
+		$days = isset($mansked) ? $mansked->manskeddays->keyBy('date')->toArray():[];
+	
+  	$arr_days = [];
+  	for($day=0; $day<=7; $day++) {
+  		if(!$day==0){
+  			$currday = date('Y-m-d', strtotime($year."W".$weekno.$day));
+	     	$arr_days[$day]['date'] = $currday;
+	     	$arr_days[$day][0] = $currday;
+	     	if(array_key_exists($currday, $days)){
+	     		$arr_days[$day]['created'] = 'true';
+	     		$arr_days[$day][1] = 'true';
+	     		$x = 2;
+	     		foreach ($days[$currday] as $key => $value) {
+	     			if($key=='date')
+	     				continue;
+	     			$arr_days[$day][$key] = $value;
+	     			$arr_days[$day][$x] = $value;
+	     			$x++;
+	     		}
+	     	} else {
+	     		$arr_days[$day]['created'] = 'false';
+	     		$arr_days[$day][1] = 'false';
+	     		$arr_days[$day][2] = '';
+	     		$arr_days[$day][3] = '';
+	     		$arr_days[$day][4] = '';
+	     		$arr_days[$day][5] = '';
+	     		$arr_days[$day][6] = '';
+	     	}
+  		} else {
+  			$arr_days[0][0] = '';
+				$arr_days[0][1] = 'created';
+     		$arr_days[0][2] = 'manskedid';
+     		$arr_days[0][3] = 'Forecasted # of Customer';
+     		$arr_days[0][4] = 'Forecasted Ave. Spending';
+     		$arr_days[0][5] = 'Total Crew on Duty';
+     		$arr_days[0][6] = '';
+  		}
+  		
+
+		}
+
+		return $arr_days;
+
 
   }
+
+
 
   public static function paginateWeeks(Request $request, $year='2015', $limit=10) {
   	$weeks = self::getWeeks($year);

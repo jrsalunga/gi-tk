@@ -35,9 +35,15 @@ Route::get('tk', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogCont
 
 Route::get('branch/manage/user', ['uses'=>'BranchController@getBranchManager']);
 Route::post('branch/manager', ['uses'=>'BranchController@postBranchManager']);
+
 Route::get('branch/mansked/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskedController@getIndex',  'middleware' => 'auth'])
 	->where(['param1'=>'add|week|[0-9]{2}+', 
-					'param2'=>'add|branch|[A-Fa-f0-9]{2}+', 
+					'param2'=>'add|branch|[0-9]+', 
+					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
+
+Route::get('branch/manday/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskeddayController@getIndex',  'middleware' => 'auth'])
+	->where(['param1'=>'add|[0-9]{2}+', 
+					'param2'=>'add|branch|[0-9]+', 
 					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
 
 
@@ -157,7 +163,8 @@ get('t/week', function(){
 get('t/get-week',  ['uses'=>'ManskedController@testWeeks']);
 
 get('t/mansked/week/{weekno}',  function($weekno){
-		//return App\Models\Manskedhdr::with('manskeddays')->where('weekno', $weekno)->get();
+	$mansked =  App\Models\Manskedhdr::with('manskeddays')->select('id')->where('weekno', $weekno)->get()->first();
+	return $mansked->manskeddays->keyBy('date');
 	$manday = new App\Models\Manskedday;
 		return $manday->where('id', 'B0092A7B666611E596ECDA40B3C0AA12')->get();
 });

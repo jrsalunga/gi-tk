@@ -60,7 +60,7 @@
       @foreach($weeks as $week)
       <tr>
 
-        <td>{{ $week['week'] }}</td>
+        <td><a href="/branch/mansked/week/{{ str_pad($week['week'] , 2, '0', STR_PAD_LEFT) }}">Week {{ $week['week'] }}</a></td>
         <td></td>
       </tr>
       @endforeach

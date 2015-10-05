@@ -1,8 +1,8 @@
 @extends('branch.master')
 
-@section('title', '- Weekly Man Sched')
+@section('title', '- Create Daily Man Schedule')
 
-@section('body-class', 'mansked-week')
+@section('body-class', 'mansked-create')
 
 @section('container-body')
   <div class="container-fluid">
@@ -25,42 +25,25 @@
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
       <li><a href="/branch">Branch</a></li>
-      <li><a href="/branch/mansked">Man Schedule</a></li>
-      <li class="active">Week</li>
+      <li><a href="/branch/manday">Daily Man Schedule</a></li>
+      <li class="active">Add</li>
     </ol>
 
     <nav id="nav-action" class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-form">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default active">
+            <a href="/branch/manday" class="btn btn-default">
               <span class="glyphicon glyphicon-th-list"></span>
-            </button>
-            <a href="/masterfiles/employee/" class="btn btn-default">
+            </a>
+            <button type="button" class="btn btn-default active">
               <span class="glyphicon glyphicon-file"></span>
-            </a>   
+            </button>   
           </div>
       </div><!-- end btn-grp -->
       </div>
     </nav>
 
-    <table class="table">
-      <thead>
-    <?php
-
-    for($i=0; $i<=6; $i++){
-
-      echo '<tr>';
-      for($j=0; $j<=7; $j++){
-          if($i==1 || $i==2 || $i==6)
-            continue;
-          echo '<td>'. $mansked[$j][$i] .'</td>';
-      }
-      echo '</tr>';
-    }
-    ?>
-      </tbody>
-    </table>
 
 
     

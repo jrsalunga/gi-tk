@@ -8,7 +8,7 @@ use App\Models\Employee;
 use App\Models\Branch;
 use App\Models\Manskedhdr as Mansked;
 
-class ManskedController extends Controller {
+class ManskeddayController extends Controller {
 
 
 
@@ -20,7 +20,7 @@ class ManskedController extends Controller {
 		if(strtolower($param1)==='add'){
 			return $this->makeAddView($request);
 		} else if((strtolower($param1)==='week') && preg_match('/^[0-9]+$/', $param2)) {
-			return $this->makeViewWeek($param2);
+			return $this->makeViewWeek();
 		} else if(preg_match('/^[A-Fa-f0-9]{32}+$/', $param1) && strtolower($param2)==='edit') {
 			return $this->makeEditView($request, $param1);
 		} else if(preg_match('/^[A-Fa-f0-9]{32}+$/', $param1)) {   //preg_match('/^[A-Fa-f0-9]{32}+$/',$action))
@@ -34,7 +34,7 @@ class ManskedController extends Controller {
 
 
 	public function makeAddView(Request $request) {
-		return view('branch.mansked.add');
+		return view('branch.manday.add');
 	}
 
 	public function makeListView(Request $request, $param1, $param2) {
@@ -43,9 +43,8 @@ class ManskedController extends Controller {
 	}
 
 
-	public function makeViewWeek($weekno){
-		$mansked = Mansked::getManskedday('2015', $weekno);
-		return view('branch.mansked.week')->with('mansked', $mansked);
+	public function makeViewWeek(){
+		return view('branch.mansked.week');
 	}
 
 
