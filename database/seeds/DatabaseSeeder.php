@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SupplierTableSeeder::class);
         $this->command->info('Supplier table seeded!');
 
+        $this->call(DepartmentTableSeeder::class);
+
         $this->call(CompcatTableSeeder::class);
         
         $this->call(ComponentTableSeeder::class);
@@ -49,7 +51,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ManskedhdrTableSeeder::class);
 
-         $this->call(ManskeddayTableSeeder::class);
+        $this->call(ManskeddayTableSeeder::class);
 
         Model::reguard();
     }

@@ -26,6 +26,9 @@ class DepartmentTableSeeder extends Seeder
                 'id' => '201E68D4674111E596ECDA40B3C0AA12'
             ))
         );
+
+
+        $this->command->info('Department table seeded!');
        
     }
 }

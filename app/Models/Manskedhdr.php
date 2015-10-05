@@ -5,6 +5,7 @@ use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Models\Manskedhdr;
+use Auth;
 
 
 class Manskedhdr extends BaseModel {
@@ -46,7 +47,11 @@ class Manskedhdr extends BaseModel {
 
   public static function getManskedday($year, $weekno){
 
-  	$mansked = Manskedhdr::with('manskeddays')->select('id')->where('weekno', $weekno)->get()->first();
+  	$mansked = Manskedhdr::with('manskeddays')->select('id')
+  												->where('weekno', $weekno)
+  												->where('branchid', Auth::user()->branchid)
+  												->get()->first();
+  												
 		$days = isset($mansked) ? $mansked->manskeddays->keyBy('date')->toArray():[];
 	
   	$arr_days = [];

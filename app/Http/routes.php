@@ -42,7 +42,7 @@ Route::get('branch/mansked/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskedCont
 					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
 
 Route::get('branch/manday/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskeddayController@getIndex',  'middleware' => 'auth'])
-	->where(['param1'=>'add|[0-9]{2}+', 
+	->where(['param1'=>'add|[A-Fa-f0-9]{32}+', 
 					'param2'=>'add|branch|[0-9]+', 
 					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
 

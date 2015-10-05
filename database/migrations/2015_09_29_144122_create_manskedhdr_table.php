@@ -20,10 +20,11 @@ class CreateManskedhdrTable extends Migration
             $table->decimal('mancost', 8, 2)->default('0.00');
             $table->tinyInteger('weekno');
             $table->text('notes')->nullable();
+            $table->timestamp('createdate');
             //$table->dateTime('createdate')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('id', '32')->primary();
             //$table->increments('id');
-            $table->timestamps('createdate');
+            //$table->timestamps();
             $table->index('refno', 'REFNO');
             $table->index('branchid', 'BRANCHID');
             $table->index('managerid', 'MANAGERID');
