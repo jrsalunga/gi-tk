@@ -36,6 +36,6 @@ class CreateCompanyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Company');
+        Schema::drop('company');
     }
 }

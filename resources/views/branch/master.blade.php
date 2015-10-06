@@ -70,8 +70,7 @@
   @if(app()->environment() == 'local')
     @include('_partials.js-vendors')
   @else 
-
-    
+    @include('_partials.js-vendors-common-min')
   @endif
 
 

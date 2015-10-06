@@ -56,14 +56,14 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('concat-js', function() {
+gulp.task('concat-common-js', function() {
   return gulp.src([
   		'./public/js/vendors/jquery-1.11.3.min.js',
   		'./public/js/vendors/jquery-ui-1.11.3.min.js',
   		'./public/js/vendors/bootstrap-3.3.5.min.js',
   		'./public/js/vendors/moment-2.10.6.min.js'
   	])
-    .pipe(concat('vendors-all.js'))
+    .pipe(concat('vendors-common.min.js'))
     .pipe(gulp.dest('./public/js/'));
 });
 
