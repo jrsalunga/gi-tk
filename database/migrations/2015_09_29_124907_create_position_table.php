@@ -15,7 +15,7 @@ class CreatePositionTable extends Migration
         Schema::create('position', function (Blueprint $table) {
             $table->char('code', '3')->unique();
             $table->char('descriptor','50')->nullable();
-
+            $table->tinyInteger('ordinal')->nullable();
             $table->string('id', '32')->primary();
             //$table->increments('id');
             //$table->timestamps();

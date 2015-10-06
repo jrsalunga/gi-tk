@@ -31,3 +31,7 @@ body.jumbo {
 }
 
 }
+
+.table.tb-manday tbody tr td{
+  vertical-align: middle;
+}

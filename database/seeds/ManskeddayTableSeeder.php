@@ -12,7 +12,7 @@ class ManskeddayTableSeeder extends Seeder
         DB::table('manskedday')->insert(array(
             array(
                 'manskedid' => 'A7AECDD2666611E596ECDA40B3C0AA12',
-                'date' => '2015-09-14',
+                'date' => '2015-08-14',
                 'custcount' => '1400',
                 'headspend' => '200',
                 'empcount' => '46',

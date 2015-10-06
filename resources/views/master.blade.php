@@ -5,13 +5,20 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
 	<title>Giligan's Restaurant @yield('title')</title>
+
+  @if(app()->environment() == 'local')
+    <link rel="stylesheet" href="/css/normalize-3.0.3.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-3.3.5.min.css">
+    <link rel="stylesheet" href="/css/datepicker.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/bt-override.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/common.css">
+  @else 
+    <link rel="stylesheet" href="/css/styles-all.min.css">
+  @endif
 	
-	<link rel="stylesheet" href="/css/normalize-3.0.3.min.css">
-	<link rel="stylesheet" href="/css/bootstrap-3.3.5.min.css">
-	<link rel="stylesheet" href="/css/dashboard.css">
-  <link rel="stylesheet" href="/css/bt-override.css">
-	<link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/common.css">
+	
   <!--
   <link rel="stylesheet" href="/css/styles-all.min.css">
   -->
@@ -57,8 +64,7 @@
 
 
 
-
-
+@if(app()->environment() == 'production')
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -68,6 +74,9 @@
   ga('create', 'UA-67989352-1', 'auto');
   ga('send', 'pageview');
 </script>
+@endif
+
+
 
 </body>
 </html>

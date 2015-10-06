@@ -6,7 +6,7 @@ class Employee extends BaseModel {
 
   protected $connection = 'mysql';
 	protected $table = 'employee';
- 	protected $fillable = ['code', 'lastname', 'firstname', 'middlename', 'position', 'branchid', 'punching', 'processing'];
+ 	protected $fillable = ['code', 'lastname', 'firstname', 'middlename', 'positionid', 'branchid', 'punching', 'processing'];
  	public static $header = ['code', 'lastname'];
   public $timestamps = false;
 
@@ -17,6 +17,10 @@ class Employee extends BaseModel {
 
   public function branch() {
     return $this->belongsTo('App\Models\Branch', 'branchid');
+  }
+
+  public function position() {
+    return $this->belongsTo('App\Models\Position', 'positionid');
   }
 
   public function uploads() {

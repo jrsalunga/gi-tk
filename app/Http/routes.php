@@ -46,7 +46,7 @@ Route::get('branch/manday/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskeddayCo
 					'param2'=>'add|branch|[0-9]+', 
 					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
 
-
+Route::post('api/t/manskedday', ['as'=>'manday.post', 'uses'=>'ManskeddayController@post']);
 
 
 get('masterfiles/{table}/{param1?}/{param2?}', function($table, $param1=null, $param2=null) {

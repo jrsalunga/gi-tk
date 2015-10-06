@@ -66,6 +66,15 @@
 
 
 @section('js-external')
-  @include('_partials.js-vendors')
-  @include('_partials.js-upload')
+  
+  @if(app()->environment() == 'local')
+    @include('_partials.js-vendors')
+  @else 
+
+    
+  @endif
+
+
+
+  
 @endsection
