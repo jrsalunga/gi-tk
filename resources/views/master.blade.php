@@ -2,28 +2,25 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
-	<title>Giligan's Restaurant @yield('title')</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 
+  <title>Giligan's Restaurant @yield('title')</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   @if(app()->environment() == 'local')
-    <link rel="stylesheet" href="/css/normalize-3.0.3.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-3.3.5.min.css">
-    <link rel="stylesheet" href="/css/datepicker.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="/css/bt-override.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/normalize-3.0.3.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-3.3.5.min.css">
+  <link rel="stylesheet" href="/css/datepicker.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/bt-override.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/common.css">
   @else 
-    <link rel="stylesheet" href="/css/styles-all.min.css">
-  @endif
-	
-	
-  <!--
   <link rel="stylesheet" href="/css/styles-all.min.css">
-  -->
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+  @endif
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
 </head>
 <body class="@yield('body-class')">

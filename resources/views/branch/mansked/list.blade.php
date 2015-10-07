@@ -9,12 +9,9 @@
 <!-- sidebar -->
 <div class="col-sm-3 col-md-2 sidebar">
   <ul class="nav nav-sidebar">
-    <li>
-      <a href="/branch/manage/user">Manage User</a>
-    </li>
-    <li class="active">
-      <a href="/branch/mansked">Man Schedule</a>
-    </li>
+    <li><a href="/branch/manage/user">Manage User</a></li>
+    <li><a href="/masterfiles/employee">Employee</a></li>
+    <li class="active"><a href="/branch/mansked">Man Schedule</a></li>
   </ul>    
 </div>
 
@@ -35,7 +32,7 @@
             <button type="button" class="btn btn-default active">
               <span class="glyphicon glyphicon-th-list"></span>
             </button>
-            <a href="/masterfiles/employee/" class="btn btn-default">
+            <a href="/branch/mansked/week/01" class="btn btn-default">
               <span class="glyphicon glyphicon-file"></span>
             </a>   
           </div>

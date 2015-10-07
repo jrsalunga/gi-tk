@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Branch;
 use App\Models\Manskedhdr as Mansked;
+use App\Models\Manskedday as Manday;
+use Auth;
 
 class ManskedController extends Controller {
 
@@ -34,7 +36,15 @@ class ManskedController extends Controller {
 
 
 	public function makeAddView(Request $request) {
-		return view('branch.mansked.add');
+		$lastday = Mansked::getLastDayLastWeekOfYear();
+		$branch = Branch::find(Auth::user()->branchid);
+		$data = [
+			'branch' => $branch->code.' - ' .$branch->addr1,
+			'branchid' => $branch->id,
+			'manager' => Auth::user()->name,
+			'managerid' => Auth::user()->id
+			];
+		return view('branch.mansked.add')->with('lastday', $lastday)->with('data', $data);
 	}
 
 	public function makeListView(Request $request, $param1, $param2) {
@@ -45,6 +55,7 @@ class ManskedController extends Controller {
 
 	public function makeViewWeek($weekno){
 		$mansked = Mansked::getManskedday('2015', $weekno);
+		//return $mansked;
 		return view('branch.mansked.week')->with('mansked', $mansked);
 	}
 
@@ -55,6 +66,69 @@ class ManskedController extends Controller {
 	}
 
 
+
+	public function post(Request $request){
+
+		//
+
+		 $this->validate($request, [
+        'date' => 'required|date|max:10',
+        'weekno' => 'required',
+    ]);
+
+		 // check weekno if exist
+		$mansked = Mansked::whereWeekno($request->input('weekno'))->get();
+		if(count($mansked) > 0){
+			return redirect('/branch/mansked/add')
+                        ->withErrors(['message' => 'Week '. $request->input('weekno') .' already created!'])
+                        ->withInput();
+		}
+
+		//$mansked = array_shift($mansked);
+		$mansked = new Mansked;
+		//return $mansked->getRefno();
+		$mansked->refno 		= $mansked->getRefno();
+		$mansked->date 			= $request->input('date');
+		$mansked->weekno		= $request->input('weekno');
+		$mansked->branchid 	= $request->input('branchid');
+		$mansked->managerid = $request->input('managerid');
+		$mansked->mancost 	= $request->input('mancost');
+		$mansked->notes 		= $request->input('notes');
+		$mansked->id 				= $mansked->get_uid();
+
+		$mandays = [];
+    foreach ($mansked->getDaysByWeekNo($request->input('weekno')) as $key => $date) {
+    		$manday = new Manday;
+    		$manday->date = $date;
+    		$manday->id = $manday->get_uid();
+        array_push($mandays, $manday);
+    }
+
+		\DB::beginTransaction(); //Start transaction!
+
+    try {
+      $mansked->save();
+        try {
+           $mansked->manskeddays()->saveMany($mandays);
+        } catch(\Exception $e) {
+          \DB::rollback();
+          throw $e;
+        }
+    } catch(\Exception $e) {
+      \DB::rollback();
+      throw $e;
+    }
+
+    \DB::commit();
+
+		//$mansked->id
+    //return $id;
+    //return dd($mansked);
+		return $mansked->load('manskeddays');
+
+
+				
+	}
 
 
 

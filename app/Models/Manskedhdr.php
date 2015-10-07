@@ -17,8 +17,13 @@ class Manskedhdr extends BaseModel {
 	}
 
 	protected $table = 'manskedhdr';
+	public $incrementing = false;
+	public $timestamps = false;	
  	protected $fillable = ['refno', 'date', 'branchid', 'managerid', 'mancost', 'weekno', 'notes', 'createdate'];
+ 	
  	//public static $header = ['code', 'descriptor'];
+
+ 	
 
  	public function manskeddays() {
  		return $this->hasMany('App\Models\Manskedday', 'manskedid');
@@ -30,6 +35,16 @@ class Manskedhdr extends BaseModel {
 
   public function manager() {
     return $this->belongsTo('App\Models\Employee', 'managerid');
+  }
+
+
+  public function getDaysByWeekNo($weekno='', $year=''){
+  	$weekno = (empty($weekno) || $weekno > 53) ? date('W', strtotime('now')) : $weekno;
+  	$year = empty($year) ?  date('Y', strtotime('now')) : $year;
+		for($day=1; $day<=7; $day++) {
+		    $arr[$day-1] = date('Y-m-d', strtotime($year."W".str_pad($weekno,2,'0',STR_PAD_LEFT).$day));
+		}
+		return $arr;
   }
 
 
@@ -51,7 +66,7 @@ class Manskedhdr extends BaseModel {
   												->where('weekno', $weekno)
   												->where('branchid', Auth::user()->branchid)
   												->get()->first();
-  												
+
 		$days = isset($mansked) ? $mansked->manskeddays->keyBy('date')->toArray():[];
 	
   	$arr_days = [];
@@ -79,8 +94,11 @@ class Manskedhdr extends BaseModel {
 	     		$arr_days[$day][4] = '';
 	     		$arr_days[$day][5] = '';
 	     		$arr_days[$day][6] = '';
+	     		$arr_days[$day][7] = 'dasda';
+	     		
 	     	}
   		} else {
+  			$arr_days[0]['created'] = '';
   			$arr_days[0][0] = '';
 				$arr_days[0][1] = 'created';
      		$arr_days[0][2] = 'manskedid';
@@ -88,6 +106,8 @@ class Manskedhdr extends BaseModel {
      		$arr_days[0][4] = 'Forecasted Ave. Spending';
      		$arr_days[0][5] = 'Total Crew on Duty';
      		$arr_days[0][6] = '';
+     		$arr_days[0][7] = 'dad';
+     		
   		}
   		
 

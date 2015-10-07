@@ -9,7 +9,7 @@ class Branch extends BaseModel {
  	public static $header = ['code', 'descriptor'];
 
 	public function employee() {
-    return $this->hasOne('App\Models\Employee', 'employeeid');
+    return $this->hasMany('App\Models\Employee', 'employeeid');
   }
   
 }

@@ -33,12 +33,16 @@ class EmployeeController extends Controller {
 		
 		$employees = Employee::with(['branch' => function($query){
 													$query->select('code', 'descriptor', 'id');
+												}, 'position' => function($query){
+													$query->select('code', 'descriptor', 'id');
 												}])
 												//->select('code', 'branchid')
 												->paginate(10);
 		if(!empty($table) && !empty($branchid)){
 			//$employees
 		}
+
+		//return $employees;
 		return view('masterfiles.employee.list')
 								->with('employees', $employees);
 		//return view('masterfiles.employee.list', ['employees' => $employees]); //same as top

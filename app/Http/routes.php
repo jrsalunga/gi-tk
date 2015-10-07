@@ -46,6 +46,8 @@ Route::get('branch/manday/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskeddayCo
 					'param2'=>'add|branch|[0-9]+', 
 					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
 
+Route::post('api/t/mansked', ['as'=>'mansked.post', 'uses'=>'ManskedController@post']);	
+
 Route::post('api/t/manskedday', ['as'=>'manday.post', 'uses'=>'ManskeddayController@post']);
 
 
@@ -156,6 +158,21 @@ get('t/week', function(){
 			$s = in_array($week_ctr, $w) ? 'yes':'no';
 			$mon_no = date('F n', strtotime('1 Jan +'. $week_ctr.' weeks'));
 			echo $mon_no.' = '.$week_ctr.' = '. $s .'<br>';
+		}
+});
+
+get('t/list-week', function(){
+
+
+
+		$lastday = new App\Models\Manskedhdr;
+		return dd($lastday->getDaysByWeekNo());
+
+		$week_number = '01';
+		$year = '2015';
+		for($day=1; $day<=7; $day++)
+		{
+		    echo date('m/d/Y', strtotime($year."W".$week_number.$day))."<br>";
 		}
 });
 

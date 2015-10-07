@@ -45,6 +45,8 @@
     </nav>
 
 
+    
+
     {!! Form::open(['url' => 'api/t/manskedday', 'accept-charset'=>'utf-8', 'id'=>'frm-manskedday', 'name'=>'frm-manskedday', 'class'=>'table-manskedday']) !!}
     <div class="panel panel-default">
         <div class="panel-heading">Forecasted  Information</div>

@@ -9,12 +9,9 @@
 <!-- sidebar -->
 <div class="col-sm-3 col-md-2 sidebar">
   <ul class="nav nav-sidebar">
-    <li>
-      <a href="/branch/manage/user">Manage User</a>
-    </li>
-    <li class="active">
-      <a href="/branch/mansked">Man Schedule</a>
-    </li>
+    <li><a href="/branch/manage/user">Manage User</a></li>
+    <li><a href="/masterfiles/employee">Employee</a></li>
+    <li class="active"><a href="/branch/mansked">Man Schedule</a></li>
   </ul>    
 </div>
 
@@ -48,16 +45,39 @@
       <thead>
     <?php
 
+    /*
+    for($j=0; $j<=8; $j++){
+      echo '<tr>';
+      for($i=0; $i<=6; $i++){
+          if($i==1 || $i==2 || $i==6)
+            continue;
+          else if($j==8)
+            continue;
+            //echo '<td>'. $mansked[$j-1]['created'] .'</td>';
+          else 
+            echo '<td>'. $mansked[$j][$i] .'</td>';
+      }
+      
+      echo '</tr>';
+    }
+    */
+
+
+    
     for($i=0; $i<=6; $i++){
 
       echo '<tr>';
       for($j=0; $j<=7; $j++){
           if($i==1 || $i==2 || $i==6)
             continue;
-          echo '<td>'. $mansked[$j][$i] .'</td>';
+          else if($j==8)
+            echo '<td>'. $mansked[$i]['created'] .'</td>';
+          else 
+            echo '<td>'. $mansked[$j][$i] .'</td>';
       }
       echo '</tr>';
     }
+    
     ?>
       </tbody>
     </table>

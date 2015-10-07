@@ -5,6 +5,8 @@ use App\Models\BaseModel;
 class Manskedday extends BaseModel {
 
 	protected $table = 'manskedday';
+	public $incrementing = false;
+	public $timestamps = false;
  	protected $fillable = ['manskedid', 'date', 'custcount', 'headspend', 'empcount'];
  	//public static $header = ['code', 'descriptor'];
 

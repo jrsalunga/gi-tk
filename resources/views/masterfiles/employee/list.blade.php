@@ -57,7 +57,7 @@
         <td>{{ $employee->lastname }}</td>
         <td>{{ $employee->firstname }}</td>
         <td>{{ $employee->branch->code }}</td>
-        <td>{{ $employee->position }}</td>
+        <td>{{ strlen($employee->position)==0?'':$employee->position->descriptor }}</td>
       </tr>
       @endforeach
       
