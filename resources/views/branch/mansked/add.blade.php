@@ -62,10 +62,11 @@
             <input type="text" class="form-control" id="refno" placeholder="Ref No" readonly>
           </div>
         </div>   
-        <div class="col-md-3  col-md-offset-2 col-sm-3">
+        
+        <div class="col-md-2 col-md-offset-2 col-sm-3">
           <div class="form-group">
-            <label for="mancost" class="control-label">Man Cost</label>
-            <input type="text" class="form-control" name="mancost" id="mancost" placeholder="Man Cost" maxlength="10" >
+            <label for="date" class="control-label">Date</label>
+            <input type="text" class="form-control" name="date" id="date" placeholder="YYYY-MM-DD" value="{{ date('Y-m-d', strtotime('now')) }}" maxlength="10" >
           </div>
         </div>
         <div class="col-md-2 col-sm-3">
@@ -78,12 +79,16 @@
             </select>
           </div>
         </div>
-        <div class="col-md-2 col-sm-3">
+        <div class="col-md-3 col-sm-3">
           <div class="form-group">
-            <label for="date" class="control-label">Date</label>
-            <input type="text" class="form-control" name="date" id="date" placeholder="YYYY-MM-DD" value="{{ date('Y-m-d', strtotime('now')) }}" maxlength="10" >
+            <label for="mancost" class="control-label">Man Cost</label>
+            <div class="input-group">
+              <span class="input-group-addon">&#8369;</span>
+              <input type="text" class="form-control text-right" name="mancost" id="mancost" placeholder="0" maxlength="10" >
+            </div>
           </div>
-        </div>  
+        </div>
+          
 
         <div class="col-md-5 col-sm-6">
           <div class="form-group">
@@ -96,8 +101,10 @@
         <div class="col-md-5 col-md-offset-2 col-sm-6">
           <div class="form-group">
             <label for="manager" class="control-label">Manager</label>
-            
-            <input type="text" class="form-control" id="manager" value="{{ $data['manager'] }}"  readonly>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="gly gly-user"></span></span>
+              <input type="text" class="form-control" id="manager" value="{{ $data['manager'] }}"  readonly>
+            </div>
             <input type="hidden" id="managerid" name="managerid" value="{{ $data['managerid'] }}">
             
           </div>

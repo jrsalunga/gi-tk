@@ -72,9 +72,11 @@ class Manskedhdr extends BaseModel {
   	$arr_days = [];
   	for($day=0; $day<=7; $day++) {
   		if(!$day==0){
+  			
   			$currday = date('Y-m-d', strtotime($year."W".$weekno.$day));
 	     	$arr_days[$day]['date'] = $currday;
 	     	$arr_days[$day][0] = $currday;
+	     	
 	     	if(array_key_exists($currday, $days)){
 	     		$arr_days[$day]['created'] = 'true';
 	     		$arr_days[$day][1] = 'true';
@@ -86,7 +88,9 @@ class Manskedhdr extends BaseModel {
 	     			$arr_days[$day][$x] = $value;
 	     			$x++;
 	     		}
+
 	     	} else {
+	     		// no data from database
 	     		$arr_days[$day]['created'] = 'false';
 	     		$arr_days[$day][1] = 'false';
 	     		$arr_days[$day][2] = '';
@@ -94,19 +98,20 @@ class Manskedhdr extends BaseModel {
 	     		$arr_days[$day][4] = '';
 	     		$arr_days[$day][5] = '';
 	     		$arr_days[$day][6] = '';
-	     		$arr_days[$day][7] = 'dasda';
+	     		$arr_days[$day][7] = 'Create Header';
 	     		
 	     	}
+	     	$arr_days[$day][7] = $arr_days[$day][1];
   		} else {
   			$arr_days[0]['created'] = '';
-  			$arr_days[0][0] = '';
+  			$arr_days[0][0] = '<i class="fa fa-calendar"></i> Date';
 				$arr_days[0][1] = 'created';
-     		$arr_days[0][2] = 'manskedid';
-     		$arr_days[0][3] = 'Forecasted # of Customer';
-     		$arr_days[0][4] = 'Forecasted Ave. Spending';
-     		$arr_days[0][5] = 'Total Crew on Duty';
+     		$arr_days[0][2] = '';
+     		$arr_days[0][3] = '<span class="glyphicon glyphicon-user"></span> Customers';
+     		$arr_days[0][4] = '<i class="fa fa-line-chart"></i> Ave Spending';
+     		$arr_days[0][5] = '<i class="fa fa-users"></i> Crew on Duty';
      		$arr_days[0][6] = '';
-     		$arr_days[0][7] = 'dad';
+     		$arr_days[0][7] = '';
      		
   		}
   		

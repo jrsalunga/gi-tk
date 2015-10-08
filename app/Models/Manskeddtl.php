@@ -5,6 +5,8 @@ use App\Models\BaseModel;
 class Manskeddtl extends BaseModel {
 
 	protected $table = 'manskeddtl';
+	public $incrementing = false;
+	public $timestamps = false;	
  	protected $fillable = ['mandayid', 'employeeid', 'daytype', 'starttime'];
  	//public static $header = ['code', 'descriptor'];
 

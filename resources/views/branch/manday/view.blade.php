@@ -47,46 +47,42 @@
 
     
 
-    {!! Form::open(['url' => 'api/t/manskedday', 'accept-charset'=>'utf-8', 'id'=>'frm-manskedday', 'name'=>'frm-manskedday', 'class'=>'table-manskedday']) !!}
+    {!! Form::open(['url' => 'api/t/manskedday', 'action'=>'PUT', accept-charset'=>'utf-8', 'id'=>'frm-manskedday', 'name'=>'frm-manskedday', 'class'=>'table-manskedday']) !!}
     <div class="panel panel-default">
         <div class="panel-heading">Forecasted  Information</div>
         <div class="panel-body row">
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="date" class="control-label">Date</label>
-            <input type="text" class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" value="{{ $date }}" >
+            <input type="text" class="form-control" id="date" name="date" placeholder="YYYY-MM-DD">
           </div>
         </div>   
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3">
           <div class="form-group">
-            <label for="custcount" class="control-label">Forecasted Customers</label>
+            <label for="custcount" class="control-label">Forecasted No. of Customers</label>
             <input type="text" class="form-control" id="custcount" name="custcount" placeholder="No. of Customers" >
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="empcount" class="control-label">Total Crew on Duty</label>
             <input type="text" class="form-control text-right" id="empcount" name="empcount" placeholder="0" readonly>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="manpower" class="control-label">Manpower - Short/(Over)</label>
             <input type="text" class="form-control text-right" id="manpower" placeholder="0" readonly>
           </div>
         </div>  
 
-        <div class="col-md-3 col-md-offset-3 col-sm-6">
+        <div class="col-md-3 col-md-offset-3">
           <div class="form-group">
-            <label for="headspend" class="control-label">Forecasted Ave Spending</label>
-            <div class="input-group">
-              <span class="input-group-addon">&#8369;</span>
-              <input type="text" class="form-control text-right" id="headspend" name="headspend" placeholder="0" >
-            </div>
-            
+            <label for="headspend" class="control-label">Forecasted Average Spending</label>
+            <input type="text" class="form-control" id="headspend" name="headspend" placeholder="Spending" >
           </div>
         </div>  
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="mancost" class="control-label">Manpower Cost %</label>
             <div class="input-group">
@@ -95,7 +91,7 @@
             </div>
           </div>
         </div>   
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="comment" class="control-label">Comment</label>
             <input type="text" class="form-control" id="comment" placeholder="Ok, Over, High, Too High" readonly>

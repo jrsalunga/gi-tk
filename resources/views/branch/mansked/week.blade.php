@@ -64,14 +64,19 @@
 
 
     
-    for($i=0; $i<=6; $i++){
+    for($i=0; $i<=7; $i++){
 
       echo '<tr>';
       for($j=0; $j<=7; $j++){
           if($i==1 || $i==2 || $i==6)
             continue;
-          else if($j==8)
-            echo '<td>'. $mansked[$i]['created'] .'</td>';
+          else if($i==7 && $j!=0)
+            if($mansked[$j]['created']=='true')
+              echo '<td><a href="/branch/manday/'.strtolower($mansked[$j]['id']).'">'. $mansked[$j]['date'] .'</a></td>';
+            else
+              echo '<td><a href="#">'. $mansked[$j]['created'] .'</a></td>';
+          else if($i==0 && $j!=0)
+                echo '<td>'. date('M j',strtotime($mansked[$j][$i])) .'</td>';
           else 
             echo '<td>'. $mansked[$j][$i] .'</td>';
       }

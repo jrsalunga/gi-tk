@@ -43,7 +43,7 @@ Route::get('branch/mansked/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskedCont
 
 Route::get('branch/manday/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskeddayController@getIndex',  'middleware' => 'auth'])
 	->where(['param1'=>'add|[A-Fa-f0-9]{32}+', 
-					'param2'=>'add|branch|[0-9]+', 
+					'param2'=>'edit|branch|[0-9]+', 
 					'param3'=>'edit|[A-Fa-f0-9]{32}+']);
 
 Route::post('api/t/mansked', ['as'=>'mansked.post', 'uses'=>'ManskedController@post']);	
@@ -186,6 +186,27 @@ get('t/mansked/week/{weekno}',  function($weekno){
 		return $manday->where('id', 'B0092A7B666611E596ECDA40B3C0AA12')->get();
 });
 
+
+get('t/manday-dtl', function(){
+
+	$manday = new App\Models\Manskedday;
+	$manday->date = '20015-10-07';
+	$manday->manskedid = 'A7AECDD2666611E596ECDA40B3C0AA12';
+	$manday->id = $manday->get_uid();
+	$manday->save();
+
+
+	$x = new App\Models\Manskeddtl;
+	$x->daytype = 0;
+	$x->id = $x->get_uid();
+
+	$manday->manskeddtls()->save($x);
+
+
+	return dd($manday);
+
+
+});
 
 
 

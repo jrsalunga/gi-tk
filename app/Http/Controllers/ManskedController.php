@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Branch;
 use App\Models\Manskedhdr as Mansked;
 use App\Models\Manskedday as Manday;
+use App\Models\Manskeddtl as Mandtl;
 use Auth;
 
 class ManskedController extends Controller {
@@ -124,8 +125,18 @@ class ManskedController extends Controller {
 		//$mansked->id
     //return $id;
     //return dd($mansked);
-		return $mansked->load('manskeddays');
+		$mansked->load('manskeddays');
+		
 
+		foreach ($mansked->manskeddays as $manskedday) {
+			$mandtl = new Mandtl;
+			$mandtl->daytype = 0;
+			$mandtl->id = $mandtl->get_uid();
+			$manskedday->manskeddtls()->save($mandtl);
+			
+		}
+
+		return $mansked;
 
 				
 	}
