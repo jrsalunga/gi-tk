@@ -14,7 +14,15 @@ use Auth;
 class ManskedController extends Controller {
 
 
+	protected $branchid = '';
+	protected $employees = [];
 
+	public function __construct(){
+		$this->branchid = Auth::user()->branchid;
+		$this->employees = Employee::select('id')->where('branchid', $this->branchid)
+															->where('empstatus','>','0')
+															->get();
+	}
 
 
 
@@ -129,11 +137,12 @@ class ManskedController extends Controller {
 		
 
 		foreach ($mansked->manskeddays as $manskedday) {
-			$mandtl = new Mandtl;
-			$mandtl->daytype = 0;
-			$mandtl->id = $mandtl->get_uid();
-			$manskedday->manskeddtls()->save($mandtl);
-			
+			foreach ($this->employees as $employee) {
+				$mandtl = new Mandtl;
+				$mandtl->employeeid = $employee->id;
+				$mandtl->id = $mandtl->get_uid();
+				$manskedday->manskeddtls()->save($mandtl);
+			}
 		}
 
 		return $mansked;

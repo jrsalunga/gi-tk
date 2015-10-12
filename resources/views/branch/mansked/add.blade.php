@@ -93,7 +93,10 @@
         <div class="col-md-5 col-sm-6">
           <div class="form-group">
             <label for="branch" class="control-label">Branch</label>
-            <input type="text" class="form-control" id="branch"  value="{{ $data['branch'] }}" readonly>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="gly gly-shop"></span></span>
+              <input type="text" class="form-control" id="branch"  value="{{ $data['branch'] }}" readonly>
+            </div>
             <input type="hidden" id="branchid" name="branchid"  value="{{ $data['branchid'] }}">
           </div>
         </div>  

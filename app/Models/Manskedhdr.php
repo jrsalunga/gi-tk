@@ -93,11 +93,11 @@ class Manskedhdr extends BaseModel {
 	     		// no data from database
 	     		$arr_days[$day]['created'] = 'false';
 	     		$arr_days[$day][1] = 'false';
-	     		$arr_days[$day][2] = '';
-	     		$arr_days[$day][3] = '';
-	     		$arr_days[$day][4] = '';
-	     		$arr_days[$day][5] = '';
-	     		$arr_days[$day][6] = '';
+	     		$arr_days[$day][2] = '-';
+	     		$arr_days[$day][3] = '-';
+	     		$arr_days[$day][4] = '-';
+	     		$arr_days[$day][5] = '-';
+	     		$arr_days[$day][6] = '-';
 	     		$arr_days[$day][7] = 'Create Header';
 	     		
 	     	}

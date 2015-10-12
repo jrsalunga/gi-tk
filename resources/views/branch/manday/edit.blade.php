@@ -33,7 +33,7 @@
       <div class="container-fluid">
         <div class="navbar-form">
           <div class="btn-group" role="group">
-            <a href="/branch/manday" class="btn btn-default">
+            <a href="{{ URL::previous() }}" class="btn btn-default">
               <span class="glyphicon glyphicon-th-list"></span>
             </a>
             <button type="button" class="btn btn-default active">
@@ -45,34 +45,38 @@
     </nav>
 
 
-    
-
-    {!! Form::open(['url' => 'api/t/manskedday', 'accept-charset'=>'utf-8', 'id'=>'frm-manskedday', 'name'=>'frm-manskedday', 'class'=>'table-manskedday']) !!}
+    <form method="post" action="/api/t/manskedday/{{strtolower($manday->id)}}" id="frm-manskedday" name="frm-manskedday" role="form" data-table="manskedday">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="panel panel-default">
         <div class="panel-heading">Forecasted  Information</div>
         <div class="panel-body row">
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
             <label for="date" class="control-label">Date</label>
-            <input type="text" class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" value="{{ $date }}" >
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              <input type="text" class="form-control" id="date" placeholder="YYYY-MM-DD" value="{{ $manday->date }}" readonly tabindex="-1">
+              <input type="hidden" id="id" name="id" value="{{ $manday->id }}" readonly>
+            </div>
           </div>
         </div>   
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
             <label for="custcount" class="control-label">Forecasted Customers</label>
-            <input type="text" class="form-control" id="custcount" name="custcount" placeholder="No. of Customers" >
+            <input type="text" class="form-control text-right" id="custcount" name="custcount" value="{{ $manday->custcount }}">
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
             <label for="empcount" class="control-label">Total Crew on Duty</label>
-            <input type="text" class="form-control text-right" id="empcount" name="empcount" placeholder="0" readonly>
+            <input type="text" class="form-control text-right" id="empcount" value="{{ $manday->empcount }}" tabindex="-1" readonly>
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
             <label for="manpower" class="control-label">Manpower - Short/(Over)</label>
-            <input type="text" class="form-control text-right" id="manpower" placeholder="0" readonly>
+            <input type="text" class="form-control text-right" id="manpower" readonly tabindex="-1">
           </div>
         </div>  
 
@@ -81,7 +85,7 @@
             <label for="headspend" class="control-label">Forecasted Ave Spending</label>
             <div class="input-group">
               <span class="input-group-addon">&#8369;</span>
-              <input type="text" class="form-control text-right" id="headspend" name="headspend" placeholder="0" >
+              <input type="text" class="form-control text-right" id="headspend" name="headspend" value="{{ $manday->headspend }}">
             </div>
             
           </div>
@@ -90,7 +94,7 @@
           <div class="form-group">
             <label for="mancost" class="control-label">Manpower Cost %</label>
             <div class="input-group">
-              <input type="text" class="form-control text-right" id="mancost" placeholder="0" readonly>
+              <input type="text" class="form-control text-right" id="mancost" readonly tabindex="-1">
               <span class="input-group-addon">%</span>
             </div>
           </div>
@@ -98,7 +102,7 @@
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
             <label for="comment" class="control-label">Comment</label>
-            <input type="text" class="form-control" id="comment" placeholder="Ok, Over, High, Too High" readonly>
+            <input type="text" class="form-control" id="comment" readonly tabindex="-1">
           </div>
         </div>  
         
@@ -121,12 +125,17 @@
                   <td>{{ $dept['employees'][$i]->position->code }}</td>
                   <td>
                     <div>
-                      <input type="hidden" id="manskeddtl.{{ $ctr }}.daytype" name="manskeddtl[{{ $ctr }}][daytype]" class="daytype" value="0">
-                      <input type="hidden" id="manskeddtl.{{ $ctr }}.employeeid" name="manskeddtl[{{ $ctr }}][employeeid]" value="{{ $dept['employees'][$i]->id }}">
-                      <select name="manskeddtl[{{ $ctr }}][starttime]" class="form-control"> 
+                      <input type="hidden" id="manskeddtl.{{ $ctr }}.id" name="manskeddtls[{{ $ctr }}][id]" value="{{ $dept['employees'][$i]['manskeddtl']['id'] }}">
+                      <input type="hidden" id="manskeddtl.{{ $ctr }}.daytype" name="manskeddtls[{{ $ctr }}][daytype]" class="daytype" value="{{ $dept['employees'][$i]['manskeddtl']['daytype'] }}">
+                      <input type="hidden" id="manskeddtl.{{ $ctr }}.employeeid" name="manskeddtls[{{ $ctr }}][employeeid]" value="{{ $dept['employees'][$i]->id }}">
+                      <select name="manskeddtls[{{ $ctr }}][starttime]" class="form-control"> 
                         <option value="off">DAY OFF</option>
                         @for ($j = 1; $j <= 24; $j++)
-                          <option value="{{ $j }}:00">{{ date('g:i A', strtotime( $j .':00')) }}</option>
+                          @if($dept['employees'][$i]['manskeddtl']['starttime'] == date('G:i', strtotime( $j .':00')))
+                            <option selected value="{{ $j }}:00">{{ date('g:i A', strtotime( $j .':00')) }}</option>
+                          @else
+                            <option value="{{ $j }}:00">{{ date('g:i A', strtotime( $j .':00')) }}</option>
+                          @endif
                         @endfor
                       </select>
                     </div>
@@ -145,14 +154,14 @@
       
     </div>
 
-    <div class="row">
+    <div class="row button-container">
       <div class="col-md-6">
-        <a href="{{ isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'/branch/manday' }}" class="btn btn-default">Cancel</a>
+        <a href="{{ URL::previous() }}" class="btn btn-default">Cancel</a>
         <button type="submit" class="btn btn-primary">Save</button>
       </div>
     </div>
-
-    {!! Form::close() !!}
+    </form>
+    
     
       
   </div>
@@ -178,11 +187,24 @@
       //console.log(e);
       var x = ($(this)[0].value=='off') ? 0:1; 
      $(this).parent().children('.daytype').val(x);
+
+      //console.log($('.daytype')[0].value==1);
+      var x = 0;
+      for(i=0; i<$('.daytype').length; i++){
+        $('.daytype').css('border', '1px solid red');
+        if($('.daytype')[i].value == 1)
+          x++;
+        else
+          x--
+      }
+      console.log(x);
+      $('#empcount')[0].value = x;
+
     });
 
 
 
-     $("#date").datepicker({ minDate: 1, dateFormat: 'yy-mm-dd',});
+     //$("#date").datepicker({ minDate: 1, dateFormat: 'yy-mm-dd',});
   });
 </script>
 @endsection

@@ -51,7 +51,7 @@ class BaseModel extends Model {
 
 
 	public function getRefno($len = 8){
- 		return str_pad((intval(\DB::table($this->table)->max('refno')) + 1), $len, '0', STR_PAD_LEFT);;
+ 		return str_pad((intval(\DB::table($this->table)->max('refno')) + 1), $len, '0', STR_PAD_LEFT);
  	}
 	
 }

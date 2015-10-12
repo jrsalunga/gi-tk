@@ -661,3 +661,18 @@ background-position: -48px -192px;
 	border: 0px solid #fcefa1;
 	background-color: #fcefa1;
 }
+
+
+
+.button-container {
+	margin-bottom: 30px;
+}
+
+
+
+
+.table.tb-mansked-week > tbody > tr:last-child > td {
+	border-bottom: 1px  solid #fff;
+	/* border-bottom: 1px  solid #fff; */
+
+}

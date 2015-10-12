@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Branch;
 use App\Models\Manskedhdr as Mansked;
+use App\Models\Manskedday as Manday;
 use App\Models\Manskeddtl as Mandtl;
 use Auth;
+use URL;
 
 class ManskeddayController extends Controller {
 
@@ -53,21 +55,25 @@ class ManskeddayController extends Controller {
 		 return  $depts;
 	}
 
-	public function makeEditView(Request $request) {
-
-		$depts = $this->empGrpByDept();
-
-		for($h=0; $h<count($depts); $h++){
-			$arr = $depts[$h]['employees']->toArray();
-			for($i=0; $i<count($arr); $i++){
-				$mandtl = Mandtl::where('employeeid', $depts[$h]['employees'][$i]->id)
-												->where('mandayid', $request->input('mandayid'))->get()->first();
-
-				$depts[$h]['employees'][$i]['manskeddtls'] = [
-					//'starttime' => $mandtl->starttime
-				];
+	public function makeEditView(Request $request, $param1) {
+		$manday = Manday::find($param1);
+		if(count($manday) > 0){ // check if the $id 
+			$depts = $this->empGrpByDept(); // get array of dept w/ emp grouped by department e.g. dining, kitchen
+			for($h=0; $h<count($depts); $h++){
+				$arr = $depts[$h]['employees']->toArray(); // extract emp on each dept
+				for($i=0; $i<count($arr); $i++){
+					$mandtl = Mandtl::where('employeeid', $depts[$h]['employees'][$i]->id)
+													->where('mandayid', $param1)->get()->first();
+					$depts[$h]['employees'][$i]['manskeddtl'] = count($mandtl) > 0 ?
+						['daytype'=>$mandtl->daytype, 'starttime'=>$mandtl->starttime, 'id'=>$mandtl->id]: 
+						['daytype'=>'0', 'starttime'=>'off', 'id'=>''];
+				}
 			}
+		} else {
+			return redirect(URL::previous());
 		}
+		//return $depts;
+		return view('branch.manday.edit')->with('depts', $depts)->with('manday', $manday);
 	}
 
 	public function makeAddView(Request $request) {
@@ -109,6 +115,51 @@ class ManskeddayController extends Controller {
 
 	public function post(Request $request){
 		return $request->all();
+	}
+
+	public function put(Request $request, $id){
+		//return $request->all();
+		if(strtolower($request->input('id')) == strtolower($id)){
+			$manday = Manday::find($id);
+			if(count($manday) > 0){
+				//\DB::beginTransaction();
+				$manday->custcount = $request->input('custcount');
+				$manday->headspend = $request->input('headspend');
+				$manday->empcount = $request->input('empcount');
+
+				\DB::beginTransaction(); //Start transaction!
+		    try {
+		      $manday->save();
+		        try {
+		          foreach($request->input('manskeddtls') as $mandtl){
+								$n = Mandtl::find($mandtl['id']);
+								if(count($manday) > 0){
+									$n->daytype = $mandtl['daytype'];
+									$n->starttime = $mandtl['starttime'];
+									$n->save();
+								} else {
+									\DB::rollback();
+									return 'no mandtl found!';
+								}
+							}
+		        } catch(\Exception $e) {
+		          \DB::rollback();
+		          throw $e;
+		        }
+		    } catch(\Exception $e) {
+		      \DB::rollback();
+		      throw $e;
+		    }
+		    \DB::commit();
+				
+				$manday->load('manskeddtls');
+				return $manday;
+				//return $request->input('manskeddtls');
+			}
+		}
+		return redirect(URL::previous());
+		
+		//return ['iid' => $request->input('id'),  'rid'=>$id];
 	}
 
 

@@ -49,7 +49,7 @@ Route::get('branch/manday/{param1?}/{param2?}/{param3?}', ['uses'=>'ManskeddayCo
 Route::post('api/t/mansked', ['as'=>'mansked.post', 'uses'=>'ManskedController@post']);	
 
 Route::post('api/t/manskedday', ['as'=>'manday.post', 'uses'=>'ManskeddayController@post']);
-
+Route::put('api/t/manskedday/{id}', ['as'=>'manday.put', 'uses'=>'ManskeddayController@put']);
 
 get('masterfiles/{table}/{param1?}/{param2?}', function($table, $param1=null, $param2=null) {
     $controller = app()->make("App\Http\Controllers\\".ucfirst($table)."Controller");

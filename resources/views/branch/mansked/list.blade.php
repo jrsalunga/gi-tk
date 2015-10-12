@@ -32,8 +32,8 @@
             <button type="button" class="btn btn-default active">
               <span class="glyphicon glyphicon-th-list"></span>
             </button>
-            <a href="/branch/mansked/week/01" class="btn btn-default">
-              <span class="glyphicon glyphicon-file"></span>
+            <a href="/branch/mansked/week/{{ str_pad(date('W',strtotime('now')),2,'0', STR_PAD_LEFT) }}" class="btn btn-default">
+              <span class="glyphicon glyphicon-calendar"></span>
             </a>   
           </div>
 

@@ -30,8 +30,11 @@
       <div class="container-fluid">
         <div class="navbar-form">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default active">
+            <a href="/branch/mansked" class="btn btn-default">
               <span class="glyphicon glyphicon-th-list"></span>
+            </a> 
+            <button type="button" class="btn btn-default active">
+              <span class="glyphicon glyphicon-calendar"></span>
             </button>
             <a href="/masterfiles/employee/" class="btn btn-default">
               <span class="glyphicon glyphicon-file"></span>
@@ -41,8 +44,8 @@
       </div>
     </nav>
 
-    <table class="table">
-      <thead>
+    <table class="table tb-mansked-week">
+      <tbody>
     <?php
 
     /*
@@ -72,7 +75,8 @@
             continue;
           else if($i==7 && $j!=0)
             if($mansked[$j]['created']=='true')
-              echo '<td><a href="/branch/manday/'.strtolower($mansked[$j]['id']).'">'. $mansked[$j]['date'] .'</a></td>';
+              echo '<td><a class="btn btn-default" href="/branch/manday/'.strtolower($mansked[$j]['id']).'/edit"><i class="fa fa-calendar-plus-o"></i>
+</a></td>';
             else
               echo '<td><a href="#">'. $mansked[$j]['created'] .'</a></td>';
           else if($i==0 && $j!=0)
