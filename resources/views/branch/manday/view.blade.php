@@ -47,7 +47,7 @@
 
     
 
-    {!! Form::open(['url' => 'api/t/manskedday', 'action'=>'PUT', accept-charset'=>'utf-8', 'id'=>'frm-manskedday', 'name'=>'frm-manskedday', 'class'=>'table-manskedday']) !!}
+    {!! Form::open(['url' => 'api/t/manskedday', 'action'=>'PUT', 'accept-charset'=>'utf-8', 'id'=>'frm-manskedday', 'name'=>'frm-manskedday', 'class'=>'table-manskedday']) !!}
     <div class="panel panel-default">
         <div class="panel-heading">Forecasted  Information</div>
         <div class="panel-body row">

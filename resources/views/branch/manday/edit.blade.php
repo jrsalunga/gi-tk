@@ -70,7 +70,7 @@
         <div class="col-md-3 col-sm-6">
           <div class="form-group">
             <label for="empcount" class="control-label">Total Crew on Duty</label>
-            <input type="text" class="form-control text-right" id="empcount" value="{{ $manday->empcount }}" tabindex="-1" readonly>
+            <input type="text" class="form-control text-right" name="empcount" id="empcount" value="{{ $manday->empcount }}" tabindex="-1" readonly>
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
@@ -185,20 +185,20 @@
 
     $('select.form-control').on('change', function(e){
       //console.log(e);
-      var x = ($(this)[0].value=='off') ? 0:1; 
-     $(this).parent().children('.daytype').val(x);
 
-      //console.log($('.daytype')[0].value==1);
-      var x = 0;
+      var x = ($(this)[0].value=='off') ? 0:1; 
+      $(this).parent().children('.daytype').val(x);  // set daytype 0 or 1
+      //console.log('last value: '+ x);
+      //console.log('len:' +$('.daytype').length);
+      var ins = 0;
       for(i=0; i<$('.daytype').length; i++){
-        $('.daytype').css('border', '1px solid red');
+        //$('.daytype').css('border', '1px solid red');
         if($('.daytype')[i].value == 1)
-          x++;
-        else
-          x--
+          ins++;
       }
-      console.log(x);
-      $('#empcount')[0].value = x;
+      console.log(ins);
+      $('#empcount')[0].value = ins;
+      $('#view-empcount')[0].value = ins;
 
     });
 

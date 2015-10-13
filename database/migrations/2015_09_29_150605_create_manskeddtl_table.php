@@ -16,7 +16,13 @@ class CreateManskeddtlTable extends Migration
             $table->char('mandayid', '32')->nullable();
             $table->char('employeeid', '32');
             $table->tinyInteger('daytype')->nullable();
-            $table->char('starttime', '5')->nullable();
+            $table->char('timestart', '5')->nullable();
+            $table->char('breakstart', '5')->nullable();
+            $table->char('breakend', '5')->nullable();
+            $table->char('timeend', '5')->nullable();
+            $table->decimal('workhrs', 8, 2)->default('0.00');
+            $table->decimal('breakhrs', 8, 2)->default('0.00');
+            $table->decimal('loading', 8, 2)->default('0.00');
             $table->char('id', '32')->primary();
             //$table->increments('id');
             //$table->timestamps();

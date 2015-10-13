@@ -18,6 +18,9 @@ class CreateManskeddayTable extends Migration
             $table->smallInteger('custcount')->nullable();
             $table->smallInteger('headspend')->nullable();
             $table->tinyInteger('empcount')->nullable();
+            $table->decimal('workhrs', 8, 2)->default('0.00');
+            $table->decimal('breakhrs', 8, 2)->default('0.00');
+            $table->decimal('loading', 8, 2)->default('0.00');
             $table->char('id', '32')->primary();
             //$table->increments('id');
             //$table->timestamps();

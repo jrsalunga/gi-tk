@@ -55,6 +55,10 @@ class ManskeddayController extends Controller {
 		 return  $depts;
 	}
 
+	private function empGrpByDeptWithManday(){
+
+	}
+
 	public function makeEditView(Request $request, $param1) {
 		$manday = Manday::find($param1);
 		if(count($manday) > 0){ // check if the $id 
@@ -94,7 +98,7 @@ class ManskeddayController extends Controller {
 
 
 	public function makeSingleView(Request $request, $param1){
-		return view('branch.manday.view');
+		return view('branch.manday.view')->with('depts', $this->empGrpByDept());
 	}
 
 
