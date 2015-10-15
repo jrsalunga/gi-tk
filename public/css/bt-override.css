@@ -32,8 +32,38 @@ body.jumbo {
 
 }
 
+
+
+
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+.input-group select.form-control {
+  width: 25%;
+}
+.input-group select.form-control:not(:first-child) {
+      border-left: 0;
+}
+
+}
+/* end Medium devices (desktops, 992px and up) */
+
+.tk-select[value=off] {
+  background-color: red;
+}
+
+
 .table.tb-manday tbody tr td{
   vertical-align: middle;
+}
+
+.table.tb-manday tbody tr td:nth-child(2) {
+  width: 6%;
+}
+
+.table.tb-manday tbody tr td .input-group{
+  width: 100%;
 }
 
 .input-group .form-control {

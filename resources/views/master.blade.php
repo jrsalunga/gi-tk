@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/normalize-3.0.3.min.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/bootstrap-3.3.5.css">
+  <link rel="stylesheet" href="/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="/css/datepicker.css">
   <link rel="stylesheet" href="/css/dashboard.css">
   <link rel="stylesheet" href="/css/bt-override.css">
@@ -21,7 +22,7 @@
 @else 
   <link rel="stylesheet" href="/css/styles-all.min.css">
 @endif
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
 
 </head>
 <body class="@yield('body-class')">

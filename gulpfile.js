@@ -81,6 +81,7 @@ gulp.task('minify-css', function() {
   		'./public/css/normalize-3.0.3.min.css',
       './public/css/font-awesome.min.css', 
       './public/css/bootstrap-3.3.5.css',
+      './public/css/bootstrap-select.min.css',
   		//'./public/css/bootstrap-3.3.5.min.css',
   		'./public/css/bt-override.css',
   		'./public/css/dashboard.css',
@@ -94,6 +95,21 @@ gulp.task('minify-css', function() {
     }))
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./public/css/'));
+});
+
+//***  task for transfer files on gi-manager****//
+gulp.task('copy-model', function() {
+  return gulp.src([
+      './app/Models/*.*'
+    ])
+    .pipe(gulp.dest('../gi-manager/app/Models/'));
+});
+
+gulp.task('copy-controller', function() {
+  return gulp.src([
+      './app/Http/Controllers/*.*'
+    ])
+    .pipe(gulp.dest('../gi-manager/app/Http/Controllers/'));
 });
 
 

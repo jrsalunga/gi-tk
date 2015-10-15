@@ -7,7 +7,7 @@ class Manskeddtl extends BaseModel {
 	protected $table = 'manskeddtl';
 	public $incrementing = false;
 	public $timestamps = false;	
- 	protected $fillable = ['mandayid', 'employeeid', 'daytype', 'starttime'];
+ 	protected $fillable = ['mandayid', 'employeeid', 'daytype', 'timestart', 'breakstart', 'breakend', 'timeend', 'workhrs', 'breakhrs', 'loading'];
  	//public static $header = ['code', 'descriptor'];
 
 	public function manskedday() {

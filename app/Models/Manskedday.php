@@ -7,7 +7,7 @@ class Manskedday extends BaseModel {
 	protected $table = 'manskedday';
 	public $incrementing = false;
 	public $timestamps = false;
- 	protected $fillable = ['manskedid', 'date', 'custcount', 'headspend', 'empcount'];
+ 	protected $fillable = ['manskedid', 'date', 'custcount', 'headspend', 'empcount', 'workhrs', 'breakhrs', 'loading'];
  	//public static $header = ['code', 'descriptor'];
 
 	public function manskedhdr() {

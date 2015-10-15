@@ -61,6 +61,7 @@ class ManskeddayController extends Controller {
 
 	public function makeEditView(Request $request, $param1) {
 		$manday = Manday::find($param1);
+		//return $manday;
 		if(count($manday) > 0){ // check if the $id 
 			$depts = $this->empGrpByDept(); // get array of dept w/ emp grouped by department e.g. dining, kitchen
 			for($h=0; $h<count($depts); $h++){
@@ -69,7 +70,15 @@ class ManskeddayController extends Controller {
 					$mandtl = Mandtl::where('employeeid', $depts[$h]['employees'][$i]->id)
 													->where('mandayid', $param1)->get()->first();
 					$depts[$h]['employees'][$i]['manskeddtl'] = count($mandtl) > 0 ?
-						['daytype'=>$mandtl->daytype, 'starttime'=>$mandtl->starttime, 'id'=>$mandtl->id]: 
+						['daytype'=>$mandtl->daytype, 
+						'timestart'=>$mandtl->timestart,
+						'breakstart'=>$mandtl->breakstart,
+						'breakend'=>$mandtl->breakend,
+						'timeend'=>$mandtl->timeend,
+						'workhrs'=>$mandtl->workhrs,
+						'breakhrs'=>$mandtl->breakhrs,
+						'loading'=>$mandtl->loading, 
+						'id'=>$mandtl->id]: 
 						['daytype'=>'0', 'starttime'=>'off', 'id'=>''];
 				}
 			}
@@ -127,9 +136,12 @@ class ManskeddayController extends Controller {
 			$manday = Manday::find($id);
 			if(count($manday) > 0){
 				//\DB::beginTransaction();
-				$manday->custcount = $request->input('custcount');
-				$manday->headspend = $request->input('headspend');
-				$manday->empcount = $request->input('empcount');
+				$manday->custcount 	= $request->input('custcount');
+				$manday->headspend 	= $request->input('headspend');
+				$manday->empcount 	= $request->input('empcount');
+				$manday->workhrs 		= $request->input('workhrs');
+				$manday->breakhrs 	= $request->input('breakhrs');
+				$manday->loading 		= $request->input('loading');
 
 				\DB::beginTransaction(); //Start transaction!
 		    try {
@@ -138,8 +150,14 @@ class ManskeddayController extends Controller {
 		          foreach($request->input('manskeddtls') as $mandtl){
 								$n = Mandtl::find($mandtl['id']);
 								if(count($manday) > 0){
-									$n->daytype = $mandtl['daytype'];
-									$n->starttime = $mandtl['starttime'];
+									$n->daytype 		= $mandtl['daytype'];
+									$n->timestart 	= $mandtl['timestart'];
+									$n->breakstart 	= $mandtl['breakstart'];
+									$n->breakend 		= $mandtl['breakend'];
+									$n->timeend 		= $mandtl['timeend'];
+									$n->workhrs 		= $mandtl['workhrs'];
+									$n->breakhrs 		= $mandtl['breakhrs'];
+									$n->loading 		= $mandtl['loading'];
 									$n->save();
 								} else {
 									\DB::rollback();

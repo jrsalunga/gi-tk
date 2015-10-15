@@ -110,7 +110,7 @@
         $ctr=0;
       ?>
       @foreach($depts as $dept)
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading">{{ $dept['name'] }} Schedule</div>
             <div class="panel-body row">
@@ -120,16 +120,41 @@
                   <td>{{ $i+1 }}. {{ $dept['employees'][$i]->lastname }}, {{ $dept['employees'][$i]->firstname }}</td>
                   <td>{{ $dept['employees'][$i]->position->code }}</td>
                   <td>
-                    <div>
+                    
                       <input type="hidden" id="manskeddtl.{{ $ctr }}.daytype" name="manskeddtl[{{ $ctr }}][daytype]" class="daytype" value="0">
                       <input type="hidden" id="manskeddtl.{{ $ctr }}.employeeid" name="manskeddtl[{{ $ctr }}][employeeid]" value="{{ $dept['employees'][$i]->id }}">
-                      <select name="manskeddtl[{{ $ctr }}][starttime]" class="form-control"> 
+                      <div class="input-group pull-right">
+
+                      <select name="manskeddtl[{{ $ctr }}][timestart]" class="form-control "> 
                         <option value="off">DAY OFF</option>
                         @for ($j = 1; $j <= 24; $j++)
                           <option value="{{ $j }}:00">{{ date('g:i A', strtotime( $j .':00')) }}</option>
                         @endfor
                       </select>
-                    </div>
+
+                      <select name="manskeddtl[{{ $ctr }}][breakstart]" class="form-control"> 
+                        <option value="off">BREAK</option>
+                        @for ($j = 1; $j <= 24; $j++)
+                          <option value="{{ $j }}:00">{{ date('g:i A', strtotime( $j .':00')) }}</option>
+                        @endfor
+                      </select>
+
+                      <select name="manskeddtl[{{ $ctr }}][breakend]" class="form-control"> 
+                        <option value="off">PM IN</option>
+                        @for ($j = 1; $j <= 24; $j++)
+                          <option value="{{ $j }}:00">{{ date('g:i A', strtotime( $j .':00')) }}</option>
+                        @endfor
+                      </select>
+
+                      <select name="manskeddtl[{{ $ctr }}][timeend]" class="form-control"> 
+                        <option value="off">TIME OUT</option>
+                        @for ($j = 1; $j <= 24; $j++)
+                          <option value="{{ $j }}:00">{{ date('g:i A', strtotime( $j .':00')) }}</option>
+                        @endfor
+                      </select>
+
+                      </div>
+                    
                   </td>
                 </tr>
                 <?php

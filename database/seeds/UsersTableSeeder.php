@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'jefferson.salunga@gmail.com',
                 'branchid' => '99265B80A5C211E385D3C0188508F93C',
                 'password' => '$2y$10$eSVFnC9/RjstAhQM/iL0h.4PvxbxyWWqRiVe4jyqKVqkQJIc9bVTK',
-                'id'=> '37AEA3955A9111E5815400FF59FBB323',
+                'id'=> '058FD717BEAE11E39AE474D02BCA8A4B',
             ),
             array(
                 'username' => '000104',
@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'jargelfernandiz@gmail.com',
                 'branchid' => 'F8056E535D0B11E5ADBC00FF59FBB323',
                 'password' => '$2y$10$B6qlaAVmjWaqf1RFnHclxebu0ijsTk6JIj1poG.DVcUioVUxIKok2',
-                'id'=> 'EFE3C1676B0A11E596ECDA40B3C0AA12',
+                'id'=> '37AC2D1C675011E5A0C600FF59FBB323',
             ))
         );
        
