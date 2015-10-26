@@ -11,7 +11,7 @@ class ManskedhdrTableSeeder extends Seeder
 
         DB::table('manskedhdr')->insert(array(
             array(
-                'refno' => '001',
+                'refno' => '00000001',
                 'date' => '2015-08-14',
                 'branchid' => '99265B80A5C211E385D3C0188508F93C',
                 'managerid' => '058FD717BEAE11E39AE474D02BCA8A4B',

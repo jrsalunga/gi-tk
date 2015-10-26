@@ -13,28 +13,36 @@ class CreateBranchTable extends Migration
     public function up()
     {
         Schema::create('branch', function (Blueprint $table) {
-            $table->string('code','4');
-            $table->string('descriptor','30')->nullable();
-            $table->string('company','45')->nullable();
-            $table->string('addr1','45')->nullable();
-            $table->string('addr2','45')->nullable();
-            $table->string('addr3','45')->nullable();
-            $table->string('registered','45')->nullable();
-            $table->string('tradename','45')->nullable();
-            $table->string('tin','30')->nullable();
-            $table->string('pospermit','30')->nullable();
-            $table->string('accreditation','30')->nullable();
-            $table->string('telno1','30')->nullable();
-            $table->string('telno2','30')->nullable();
-            $table->string('email','30')->nullable();
-            $table->string('lessorid','32')->nullable();
+            $table->char('code','3');
+            $table->char('descriptor','50')->nullable();
+            $table->char('address','150')->nullable();
+            $table->char('phone','20')->nullable();
+            $table->char('fax','20')->nullable();
+            $table->char('mobile','20')->nullable();
+            $table->char('email','80')->nullable();
+            $table->char('companyid','32')->nullable();
+            $table->char('tin','15')->nullable();
+            $table->char('managerid','32')->nullable();
+            $table->char('sectorid','32')->nullable();
+            $table->smallInteger('seating')->default('0');
+            $table->smallInteger('area')->default('0');
+            $table->smallInteger('empcount')->default('0');
+            $table->decimal('mancost', 8, 2)->nullable();
+            $table->decimal('longitude', 10, 4)->nullable();
+            $table->decimal('latitude', 10, 4)->nullable();
+            $table->date('opendate')->nullable();
+            $table->text('description')->nullable();
 
-            $table->string('id', '32')->primary();
+
+            $table->char('id', '32')->primary();
             //$table->increments('id');
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->index('code', 'CODE');
             $table->index('descriptor', 'DESCRIPTOR');
+            $table->index('managerid', 'MANAGERID');
+            $table->index('sectorid', 'SECTORID');
+            $table->index('companyid', 'COMPANYID');
         });
     }
 

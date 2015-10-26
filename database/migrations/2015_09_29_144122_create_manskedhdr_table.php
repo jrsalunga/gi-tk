@@ -21,7 +21,7 @@ class CreateManskedhdrTable extends Migration
             $table->tinyInteger('weekno');
             $table->text('notes')->nullable();
             //$table->timestamp('createdate');
-            $table->dateTime('createdate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('createdate')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('id', '32')->primary();
             //$table->increments('id');
             //$table->timestamps();

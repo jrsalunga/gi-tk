@@ -16,7 +16,7 @@ class CompanyTableSeeder extends Seeder
                 'id'=> '29E4E2FA672C11E596ECDA40B3C0AA12'
             ),
             array(
-                'code' => 'FJN',
+                'code' => 'FIJ',
                 'descriptor' => 'Fijon -6 Foods',
                 'id'=> '43B6B571673611E596ECDA40B3C0AA12'
             ),

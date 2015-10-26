@@ -166,7 +166,7 @@ get('t/list-week', function(){
 
 
 		$lastday = new App\Models\Manskedhdr;
-		return dd($lastday->getDaysByWeekNo());
+		return dd($lastday->getDaysByWeekNo('01', '2016'));
 
 		$week_number = '01';
 		$year = '2015';
