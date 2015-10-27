@@ -13,7 +13,7 @@ class CreateBranchTable extends Migration
     public function up()
     {
         Schema::create('branch', function (Blueprint $table) {
-            $table->char('code','3');
+            $table->char('code','3')->unique();
             $table->char('descriptor','50')->nullable();
             $table->char('address','150')->nullable();
             $table->char('phone','20')->nullable();
@@ -31,6 +31,7 @@ class CreateBranchTable extends Migration
             $table->decimal('longitude', 10, 4)->nullable();
             $table->decimal('latitude', 10, 4)->nullable();
             $table->date('opendate')->nullable();
+            $table->date('closedate')->nullable();
             $table->text('description')->nullable();
 
 

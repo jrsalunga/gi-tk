@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             ),
             array(
                 'username' => '000104',
-                'name' => 'Argel Fernandiz',
+                'name' => 'Argel Ferrandiz',
                 'email' => 'jargelfernandiz@gmail.com',
                 'branchid' => 'F8056E535D0B11E5ADBC00FF59FBB323',
                 'password' => '$2y$10$B6qlaAVmjWaqf1RFnHclxebu0ijsTk6JIj1poG.DVcUioVUxIKok2',
