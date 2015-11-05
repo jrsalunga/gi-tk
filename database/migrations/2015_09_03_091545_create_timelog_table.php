@@ -13,19 +13,22 @@ class CreateTimelogTable extends Migration
     public function up()
     {
         Schema::create('timelog', function (Blueprint $table) {
-            $table->string('employeeid','32');
-            //$table->foreign('employee')->references('id')->on('employee');
+            $table->char('employeeid','32');
+            $table->char('rfid','10');
             $table->dateTime('datetime');
-            $table->string('txncode','2');
+            $table->tinyInteger('txncode','2');
             $table->tinyInteger('entrytype');
-            $table->string('terminal','30');
+            $table->char('terminal','15');
+            $table->timestamp('createdate')->default(DB::raw('CURRENT_TIMESTAMP'));
 
-            $table->string('id', '32')->primary();
+            $table->char('id', '32')->primary();
             //$table->increments('id');
-            $table->timestamps();
+            //$table->timestamps();
             //$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->index('employeeid', 'EMPLOYEEID');
+            $table->index('rfid', 'RFID');
+
         });
     }
 

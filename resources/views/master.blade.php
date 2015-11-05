@@ -74,8 +74,5 @@
   ga('send', 'pageview');
 </script>
 @endif
-
-
-
 </body>
 </html>
