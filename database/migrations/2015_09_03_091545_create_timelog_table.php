@@ -16,7 +16,7 @@ class CreateTimelogTable extends Migration
             $table->char('employeeid','32');
             $table->char('rfid','10');
             $table->dateTime('datetime');
-            $table->tinyInteger('txncode','2');
+            $table->tinyInteger('txncode');
             $table->tinyInteger('entrytype');
             $table->char('terminal','15');
             $table->timestamp('createdate')->default(DB::raw('CURRENT_TIMESTAMP'));

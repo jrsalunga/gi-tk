@@ -32,7 +32,7 @@ class CreateEmployeeTable extends Migration
             $table->tinyInteger('empstatus')->nullable();
             $table->tinyInteger('punching')->default(1);
             $table->tinyInteger('processing')->default(1);
-            //$table->char('rfid', '10')->nullable();
+            $table->char('rfid', '10')->nullable();
             $table->char('address','120')->nullable();
             $table->char('phone','20')->nullable();
             $table->char('fax','20')->nullable();
