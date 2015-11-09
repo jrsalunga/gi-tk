@@ -18,7 +18,7 @@ class CreateTimelogTable extends Migration
             $table->dateTime('datetime');
             $table->tinyInteger('txncode');
             $table->tinyInteger('entrytype');
-            $table->char('terminal','15');
+            $table->char('terminalid','15');
             $table->timestamp('createdate')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->char('id', '32')->primary();
