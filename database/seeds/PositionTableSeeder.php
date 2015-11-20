@@ -59,27 +59,33 @@ class PositionTableSeeder extends Seeder
                 'id'=> 'EC5ED785673A11E596ECDA40B3C0AA12'
             ),
             array(
+                'code' => 'SCA',
+                'descriptor' => 'Senior Cashier',
+                'ordinal' => 15,
+                'id'=> '69427592A5E111E385D3C0188508F93C'
+            ),
+            array(
                 'code' => 'CAS',
                 'descriptor' => 'Cashier',
-                'ordinal' => 14,
+                'ordinal' => 16,
                 'id'=> 'B688FC60666611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'DC',
                 'descriptor' => 'Dining Crew',
-                'ordinal' => 15,
+                'ordinal' => 17,
                 'id'=> '2862BBA2673B11E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'KC',
                 'descriptor' => 'Kitchen Crew',
-                'ordinal' => 16,
+                'ordinal' => 18,
                 'id'=> '2DA8CBFE673B11E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'UTI',
                 'descriptor' => 'Utility',
-                'ordinal' => 17,
+                'ordinal' => 19,
                 'id'=> '67B0F27F673B11E596ECDA40B3C0AA12'
             ))
         );

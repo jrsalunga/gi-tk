@@ -53,6 +53,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ManskeddayTableSeeder::class);
 
+        $this->call(HolidayTableSeeder::class);
+
+        $this->call(HolidateTableSeeder::class);
+
+        $this->call(HolidaydtlTableSeeder::class);
+
+
         Model::reguard();
     }
 }

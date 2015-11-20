@@ -34,13 +34,15 @@ class EmployeeTableSeeder extends Seeder
         );
 
 
-        $csvFile = base_path().'/database/migrations/files/employees-mar.csv';
-
+        $csvFile = base_path().'/database/migrations/files/employees-tri.csv';
         $employees = $this->csv_to_array($csvFile);
-
         DB::table('employee')->insert($employees);
 
-        //$this->updateId();
+        $csvFile = base_path().'/database/migrations/files/employees-mar.csv';
+        $employees = $this->csv_to_array($csvFile);
+        DB::table('employee')->insert($employees);
+
+        $this->updateId();
        
     }
 
@@ -69,7 +71,8 @@ class EmployeeTableSeeder extends Seeder
         $employees = Employee::all();
         foreach ($employees as $employee) {
             $new = Employee::find($employee->id);
-            $new->id = Employee::get_uid();
+            $new->code = str_pad($new->code, 6, '0', STR_PAD_LEFT);
+            //$new->id = Employee::get_uid();
             $new->save();
         }
     }
