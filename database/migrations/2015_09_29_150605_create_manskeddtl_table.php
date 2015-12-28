@@ -13,6 +13,9 @@ class CreateManskeddtlTable extends Migration
     public function up()
     {
         Schema::create('manskeddtl', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('mandayid', '32')->nullable();
             $table->char('employeeid', '32');
             $table->tinyInteger('daytype')->nullable();

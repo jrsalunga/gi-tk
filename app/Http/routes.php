@@ -83,6 +83,7 @@ Route::post('timelog', ['as'=>'timelog.post', 'uses'=>'TimelogController@post'])
 
 
 Route::get('upload', ['as'=>'upload.index', 'uses'=>'UploadController@index']);
+Route::get('import-dbf', ['uses'=>'EmployeeController@importDBF']);
 
 
 Route::post('postfile', ['as'=>'upload.postfile', 'uses'=>'UploadController@postfile']);
@@ -292,18 +293,19 @@ Route::get('get_uid', function(){
 
 
 
-Route::get('geoip/{id}', function($ip){
+Route::get('sp', function(){
 
-	$ip = empty($ip) ? $_SERVER["REMOTE_ADDR"]:$ip;
+	$w = 'NA/A';
 
-	return GeoIP::getLocation($ip);
+	return var_dump($w!='NA/A' && $w!='N/A');
 });
 
 
 Route::get('dbf/{year}/{loc}', function($year, $loc) {
 
 
-$db = dbase_open('Z:\POS_BACK\\'.$year.'\\'.$loc.'\END_BAL.DBF', 0);
+//$db = dbase_open('Z:\POS_BACK\\'.$year.'\\'.$loc.'\END_BAL.DBF', 0);
+$db = dbase_open('D:\GI\TRI\GC113015\PAY_MAST.DBF', 0);
 
 if ($db) {
 
@@ -374,7 +376,6 @@ Route::get('zip/{year}/{loc}/{filename}', function($year, $loc, $filename){
       die("Failed opening archive: ". @$zip->getStatusString() . " (code: ". $zip_status .")");
   }
 });
-
 
 
 
@@ -532,6 +533,36 @@ get('sysinfo', function(){
 	}
 
 	echo '</table>';
+
+});
+
+
+
+get('dbfb/browse/{param1?}/{param2?}/{param3?}', function($param1=null, $param2=null, $param3=null){
+
+	if(is_null($param3)){
+		if(is_null($param1))
+			$path = 'D:\GI\\';
+		else 
+			$path = 'D:\GI\\'.$param1.'\\GC113015\\';
+
+		//return $path;
+
+		//$files = scandir($dir);
+		$dirs = array_diff(scandir($path), array('..', '.'));
+		
+		
+		foreach ($dirs as $dir) {
+			$l = is_null($param2) ? $dir:$dir.'/'.$param2;
+			echo '<a href="/dbfb/browse/'.$l.'" target="_blank">'.$l.'</a></br>';
+
+			
+		}
+	} else {
+
+	}
+
+	
 
 });
     

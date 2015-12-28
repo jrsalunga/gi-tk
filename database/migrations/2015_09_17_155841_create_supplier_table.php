@@ -13,6 +13,9 @@ class CreateSupplierTable extends Migration
     public function up()
     {
         Schema::create('supplier', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->string('code','5');
             $table->string('descriptor','60')->nullable();
             $table->string('cperson','60')->nullable();

@@ -13,6 +13,9 @@ class CreateCompanyTable extends Migration
     public function up()
     {
         Schema::create('company', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('code', '3')->unique();
             $table->char('descriptor','50')->nullable();
             $table->char('address','120')->nullable();

@@ -1,26 +1,24 @@
 <?php
  
 use Illuminate\Database\Seeder;
-use App\Models\Branch;
 
-class BranchTableSeeder extends Seeder  
+class EducationTableSeeder extends Seeder  
 {
     public function run()
     {
 
-        DB::table('branch')->delete();
-        //DB::connection('hr')->table('branch')->delete();
+        DB::table('education')->delete();
+        //DB::connection('hr')->table('education')->delete();
 
-        $csvFile = base_path().'/database/migrations/files/branch.csv';
+        $csvFile = base_path().'/database/migrations/files/education.csv';
+        $datas = $this->csv_to_array($csvFile);
+        DB::table('education')->insert($datas);
+        //DB::connection('hr')->table('education')->insert($datas);
 
-        $branches = $this->csv_to_array($csvFile);
-
-        DB::table('branch')->insert($branches);
-        //DB::connection('hr')->table('branch')->insert($branches);
-
-        //$this->firstRun();
+        $this->command->info('Education table seeded!');
        
     }
+
 
     private function csv_to_array($filename='', $delimiter=',') {
         if(!file_exists($filename) || !is_readable($filename))
@@ -40,14 +38,5 @@ class BranchTableSeeder extends Seeder
             fclose($handle);
         }
         return $data;
-    }
-
-    private function firstRun(){
-        $branches = Branch::all();
-        foreach ($branches as $branch) {
-            $new = Branch::find($branch->id);
-            $new->id = Branch::get_uid();
-            $new->save();
-        }
     }
 }

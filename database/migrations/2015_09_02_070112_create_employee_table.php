@@ -14,6 +14,8 @@ class CreateEmployeeTable extends Migration
     {
         Schema::create('employee', function (Blueprint $table) {
 
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('code','6')->unique();
             $table->char('lastname','30');
             $table->char('firstname','30');
@@ -25,11 +27,17 @@ class CreateEmployeeTable extends Migration
             $table->tinyInteger('paytype')->nullable();
             $table->tinyInteger('ratetype')->nullable();
             $table->decimal('rate', 12, 2)->default('0.00');
+            $table->decimal('ecola', 12, 2)->default('0.00');
+            $table->decimal('allowance1', 12, 2)->default('0.00');
+            $table->decimal('allowance2', 12, 2)->default('0.00');
             $table->char('sssno','12')->nullable();
             $table->char('phicno','12')->nullable();
             $table->char('hdmfno','14')->nullable();
-            $table->char('taxidno','15')->nullable();
+            $table->char('tin','15')->nullable();
             $table->tinyInteger('empstatus')->nullable();
+            $table->date('datestart')->nullable();
+            $table->date('datehired')->nullable();
+            $table->date('datestop')->nullable();
             $table->tinyInteger('punching')->default(1);
             $table->tinyInteger('processing')->default(1);
             $table->char('rfid', '10')->nullable();

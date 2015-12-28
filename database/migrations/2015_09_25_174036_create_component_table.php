@@ -13,6 +13,9 @@ class CreateComponentTable extends Migration
     public function up()
     {
         Schema::create('component', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->string('code', '8')->nullable();
             $table->string('descriptor','30');
             $table->string('compcatid','32')->nullable();

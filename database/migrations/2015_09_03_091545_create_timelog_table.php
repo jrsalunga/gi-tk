@@ -13,6 +13,9 @@ class CreateTimelogTable extends Migration
     public function up()
     {
         Schema::create('timelog', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('employeeid','32');
             $table->char('rfid','10');
             $table->dateTime('datetime');

@@ -14,6 +14,8 @@ class CreateUploadTable extends Migration
     {
         Schema::create('upload', function (Blueprint $table) {
             
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->string('filename','30');
             $table->string('filetype','30');
             $table->string('terminal','30');

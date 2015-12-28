@@ -14,6 +14,8 @@ class CreateExpenseTable extends Migration
     {
         Schema::create('expense', function (Blueprint $table) {
             
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->string('code', '5');
             $table->string('descriptor','30');
             $table->string('expscatid','32')->nullable();

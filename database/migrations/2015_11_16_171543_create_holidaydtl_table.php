@@ -13,6 +13,9 @@ class CreateHolidaydtlTable extends Migration
     public function up()
     {
         Schema::create('holidaydtl', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('holidayid', '32');
             $table->char('branchid', '32');
 

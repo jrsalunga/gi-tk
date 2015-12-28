@@ -13,6 +13,9 @@ class CreateManskedhdrTable extends Migration
     public function up()
     {
         Schema::create('manskedhdr', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('refno', '10')->unique();
             $table->date('date');
             $table->char('branchid', '32');

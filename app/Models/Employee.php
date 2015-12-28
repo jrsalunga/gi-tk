@@ -4,7 +4,7 @@ use App\Models\BaseModel;
 
 class Employee extends BaseModel {
 
-  protected $connection = 'mysql';
+  //protected $connection = 'hr';
 	protected $table = 'employee';
  	protected $fillable = ['code', 'lastname', 'firstname', 'middlename', 'positionid', 'branchid', 'punching', 'processing'];
  	public static $header = ['code', 'lastname'];
@@ -33,6 +33,26 @@ class Employee extends BaseModel {
 
   public function manskedhdr() {
     return $this->hasMany('App\Models\Manskedhdr', 'managerid');
+  }
+
+  public function childrens() {
+    return $this->hasMany('App\Models\Children', 'employeeid');
+  }
+
+  public function ecperson() {
+    return $this->hasOne('App\Models\Ecperson', 'employeeid');
+  }
+
+  public function educations() {
+    return $this->hasMany('App\Models\Education', 'employeeid');
+  }
+
+  public function workexps() {
+    return $this->hasMany('App\Models\Workexp', 'employeeid');
+  }
+
+  public function spouse() {
+    return $this->hasOne('App\Models\Spouse', 'employeeid');
   }
 
 

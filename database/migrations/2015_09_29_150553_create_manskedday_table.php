@@ -13,6 +13,9 @@ class CreateManskeddayTable extends Migration
     public function up()
     {
         Schema::create('manskedday', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('manskedid', '32')->nullable();
             $table->date('date');
             $table->smallInteger('custcount')->nullable();

@@ -8,66 +8,68 @@ class CompanyTableSeeder extends Seeder
     {
 
         DB::table('company')->delete();
+        //DB::connection('hr')->table('company')->delete();
 
         DB::table('company')->insert(array(
+        //DB::connection('hr')->table('company')->insert(array(
             array(
                 'code' => 'AFC',
-                'descriptor' => 'Alquiros Food Corporation',
+                'descriptor' => 'ALQUIROS FOOD CORPORATION',
                 'id'=> '29E4E2FA672C11E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'FIJ',
-                'descriptor' => 'Fijon -6 Foods',
+                'descriptor' => 'FIJON-6 FOODS',
                 'id'=> '43B6B571673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'FIL',
-                'descriptor' => 'Filbert\'s -6 Foods',
+                'descriptor' => 'FILBERT\'S-6 FOODS',
                 'id'=> '57F10712673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'FFC',
-                'descriptor' => 'FJN6 Food Corporation',
+                'descriptor' => 'FJN6 FOOD CORPORATION',
                 'id'=> '5C010584673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'GIB',
-                'descriptor' => 'Giligan\'s Island Baguio Incorporated',
+                'descriptor' => 'GILIGAN\'S ISLAND BAGUIO INCORPORATED',
                 'id'=> '43400E83673811E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'GIC',
-                'descriptor' => 'Giligan\'s Island Restaurant & Bar Cebu Corporation',
+                'descriptor' => 'GILIGAN\'S ISLAND RESTAURANT & BAR CEBU CORPORATION',
                 'id'=> '6275CF5B673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'ION',
-                'descriptor' => 'Ione -6 Foods',
+                'descriptor' => 'IONE-6 FOODS',
                 'id'=> '6A2F5687673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'NAT',
-                'descriptor' => 'Nathanael -6 Foods',
+                'descriptor' => 'NATHANAEL-6 FOODS',
                 'id'=> '70F73EAD673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'NIK',
-                'descriptor' => 'Nikder Six Foods',
+                'descriptor' => 'NIKDER SIX FOODS',
                 'id'=> '74B1CBDC673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'KAW',
-                'descriptor' => 'Kawbinadit Corporation',
+                'descriptor' => 'KAWBINADIT CORPORATION',
                 'id'=> '7A859059673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'ROS',
-                'descriptor' => 'Rose Four Diners',
+                'descriptor' => 'ROSE FOUR DINERS',
                 'id'=> '7E8F8AC3673611E596ECDA40B3C0AA12'
             ),
             array(
                 'code' => 'SHA',
-                'descriptor' => 'Sha Dine 6 Diners',
+                'descriptor' => 'SHA DINE 6 DINERS',
                 'id'=> '81D62659673611E596ECDA40B3C0AA12'
             ))
         );

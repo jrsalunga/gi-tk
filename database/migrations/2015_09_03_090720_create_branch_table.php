@@ -13,6 +13,9 @@ class CreateBranchTable extends Migration
     public function up()
     {
         Schema::create('branch', function (Blueprint $table) {
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
             $table->char('code','3')->unique();
             $table->char('descriptor','50')->nullable();
             $table->char('address','150')->nullable();
@@ -32,7 +35,7 @@ class CreateBranchTable extends Migration
             $table->decimal('latitude', 10, 4)->nullable();
             $table->date('opendate')->nullable();
             $table->date('closedate')->nullable();
-            $table->text('description')->nullable();
+            $table->text('notes')->nullable();
 
 
             $table->char('id', '32')->primary();

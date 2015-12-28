@@ -9,40 +9,22 @@ class EmployeeTableSeeder extends Seeder
     {
 
         DB::table('employee')->delete();
-
-        DB::table('employee')->insert(array(
-            array(
-                'code' => 'jrsalunga',
-                'lastname' => 'Salunga',
-                'firstname' => 'Jefferson',
-                'middlename' => 'Raga',
-                'branchid'=> '99265B80A5C211E385D3C0188508F93C',
-                'punching' => 1,
-                'processing' => 1,
-                'id'=> '058FD717BEAE11E39AE474D02BCA8A4B'
-            ),
-            array(
-                'code' => 'dylim',
-                'lastname' => 'Lim',
-                'firstname' => 'Dennis',
-                'middlename' => 'Yap',
-                'branchid'=> '99265B80A5C211E385D3C0188508F93C',
-                'punching' => 1,
-                'processing' => 1,
-                'id'=> 'BD589EF4B0D411E3A0ECC0188508F93C'
-            ))
-        );
+        //DB::connection('hr')->table('employee')->delete();
+        
 
 
-        $csvFile = base_path().'/database/migrations/files/employees-tri.csv';
+        $csvFile = base_path().'/database/migrations/files/all-employee.csv';
         $employees = $this->csv_to_array($csvFile);
         DB::table('employee')->insert($employees);
+        //DB::connection('hr')->table('employee')->insert($employees);
 
-        $csvFile = base_path().'/database/migrations/files/employees-mar.csv';
-        $employees = $this->csv_to_array($csvFile);
-        DB::table('employee')->insert($employees);
+        //$csvFile = base_path().'/database/migrations/files/employees-mar.csv';
+        //$employees = $this->csv_to_array($csvFile);
+        //DB::table('employee')->insert($employees);
 
-        $this->updateId();
+        //$this->updateId();
+
+        $this->command->info('Employee table seeded!');
        
     }
 

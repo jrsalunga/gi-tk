@@ -57,7 +57,7 @@
 
 <div class="dropbox-container">
 	<div id="dropbox" class="prod-image">
-		<span class="message">Drop images here to upload. <br />
+		<span class="message">Drop file here to upload. <br />
 		<i>(they will only be visible to you)</i>
 		</span>
 	</div>

@@ -80,6 +80,12 @@
         <div class="panel-body row">
         <div class="col-md-9">
           <div class="form-group">
+            <label for="code" class="control-label">Man No</label>
+            <input type="text" class="form-control" id="code" name="code" placeholder="000000" >
+          </div>
+        </div>   
+        <div class="col-md-9">
+          <div class="form-group">
             <label for="firstname" class="control-label">Firstname</label>
             <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" >
           </div>
@@ -96,12 +102,7 @@
             <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname" >
           </div>
         </div>  
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="suffix" class="control-label">Suffix</label>
-            <input type="text" class="form-control" id="suffix" name="suffix" placeholder="Jr, Sr, I, II, III" >
-          </div>
-        </div> 
+        
       </div>
     </div>
 

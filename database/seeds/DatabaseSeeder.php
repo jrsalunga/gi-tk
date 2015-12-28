@@ -59,6 +59,15 @@ class DatabaseSeeder extends Seeder
 
         $this->call(HolidaydtlTableSeeder::class);
 
+        $this->call(SpouseTableSeeder::class);
+        
+        $this->call(ChildrenTableSeeder::class);
+
+        $this->call(EcpersonTableSeeder::class);
+
+        $this->call(EducationTableSeeder::class);
+
+        $this->call(WorkexpTableSeeder::class);
 
         Model::reguard();
     }

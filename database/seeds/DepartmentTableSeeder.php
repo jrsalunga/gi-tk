@@ -8,8 +8,10 @@ class DepartmentTableSeeder extends Seeder
     {
 
         DB::table('department')->delete();
+        //DB::connection('hr')->table('department')->delete();
 
         DB::table('department')->insert(array(
+        //DB::connection('hr')->table('department')->insert(array(
             array(
                 'code' => 'KIT',
                 'descriptor' => 'Kitchen',
@@ -24,6 +26,11 @@ class DepartmentTableSeeder extends Seeder
                 'code' => 'OPS',
                 'descriptor' => 'OPS',
                 'id' => '201E68D4674111E596ECDA40B3C0AA12'
+            ),
+            array(
+                'code' => 'ADM',
+                'descriptor' => 'Admin',
+                'id' => 'D2E8E339A47B11E592E000FF59FBB323'
             ))
         );
 
