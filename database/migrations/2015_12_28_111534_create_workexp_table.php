@@ -16,8 +16,8 @@ class CreateWorkexpTable extends Migration
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
             $table->char('employeeid', '32')->nullable();
-            $table->char('periodfrom', '7')->nullable();
-            $table->char('periodto', '7')->nullable();
+            $table->char('periodfrom', '7')->default('0000-00');
+            $table->char('periodto', '7')->default('0000-00');
             $table->char('company', '50')->nullable();
             $table->char('position', '50')->nullable();
             $table->text('remarks')->nullable();

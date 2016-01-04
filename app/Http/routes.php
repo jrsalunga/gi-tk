@@ -342,6 +342,48 @@ if ($db) {
 
 
 
+
+Route::get('dbf/browse', function() {
+
+
+
+$db = dbase_open('D:\GI\TRI\GC113015\CSH_AUDT.DBF', 0);
+
+if ($db) {
+
+	$header = dbase_get_header_info($db);
+	
+	echo '<table cellpadding="2" cellspacing="0" border="1"><thead>';
+
+	// render table header
+	echo '<tr>';
+	foreach ($header as $key => $value) {
+		echo '<th>'.$value['name'].'</th>';
+	}
+	echo '</tr>';
+	
+ 	// render table body
+ 	$record_numbers = dbase_numrecords($db);
+  for($i = 1; $i <= $record_numbers; $i++) {
+
+    $row = dbase_get_record_with_names($db, $i);
+
+    echo '<tr>';
+		foreach ($header as $key => $value) {
+			echo '<td>'.$row[$value['name']].'</td>';
+		}
+		echo '</tr>';
+ }
+
+
+
+	dbase_close($db);
+}
+
+});
+
+
+
 Route::get('zip/{year}/{loc}/{filename}', function($year, $loc, $filename){ 
 
 	//$files = glob('files/*');
@@ -554,7 +596,7 @@ get('dbfb/browse/{param1?}/{param2?}/{param3?}', function($param1=null, $param2=
 		
 		foreach ($dirs as $dir) {
 			$l = is_null($param2) ? $dir:$dir.'/'.$param2;
-			echo '<a href="/dbfb/browse/'.$l.'" target="_blank">'.$l.'</a></br>';
+			echo '<a href="/dbfb/browse/'.$l.'" target="_blank">'.$dir.'</a></br>';
 
 			
 		}
