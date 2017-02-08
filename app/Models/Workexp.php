@@ -11,5 +11,11 @@ class Workexp extends BaseModel {
 	public function employee() {
     return $this->hasMany('App\Models\Employee', 'employeeid');
   }
+
+  public function __construct(array $attributes = [])
+  {
+  	parent::__construct($attributes);
+    $this->setConnection('mysql-hr');
+  }
   
 }

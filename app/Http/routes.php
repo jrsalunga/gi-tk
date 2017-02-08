@@ -7,23 +7,14 @@ Route::get('/404', function (){
 	
 	//Log::info('Showing user profile for user');
 
-	return redirect('branch/manage/user');
+	//return redirect('branch/manage/user');
+	return redirect('/');
 
 });
 
 
 // Route::get() or get()
-Route::get('/', function (){
-		return redirect('branch/manage/user');
-		//return app()->environment();
-		//exit;
-		$timelogs = App\Models\Timelog::with('employee.branch')
-											->orderBy('datetime', 'DESC')
-											//->take(2)
-											->get();
-    return view('tk.index')->with('timelogs', $timelogs);
-});
-
+Route::get('/', ['as'=>'tk.index', 'middleware' => 'auth', 'uses'=>'TimelogController@getIndex']);
 Route::get('dashboard', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
 Route::get('home', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
 Route::get('settings', ['middleware' => 'auth', 'uses'=>'DashboardController@getIndex']);
@@ -83,7 +74,16 @@ Route::post('timelog', ['as'=>'timelog.post', 'uses'=>'TimelogController@post'])
 
 
 Route::get('upload', ['as'=>'upload.index', 'uses'=>'UploadController@index']);
-Route::get('import-dbf', ['uses'=>'EmployeeController@importDBF']);
+Route::get('import-dbf', ['uses'=>'EmployeeController@importDBFs']);
+Route::get('merge/view', ['uses'=>'EmployeeController@payMergeView']);
+Route::get('copy-extract', ['uses'=>'UploadController@copyExtract']);
+Route::get('list-extract', ['uses'=>'UploadController@listExtract']);
+Route::get('list-summary', ['uses'=>'UploadController@summarize']);
+Route::get('import-extract/{branchid}/{filename}', ['uses'=>'UploadController@importExtract']);
+Route::get('import-all/{branchid}', ['uses'=>'UploadController@importAll']);
+Route::get('browse-salesmtd', ['uses'=>'UploadController@browseSalesmtd']);
+Route::get('e/{branchid}', ['uses'=>'UploadController@e']);
+Route::get('sysifno-all', ['uses'=>'UploadController@sysinfoAll']);
 
 
 Route::post('postfile', ['as'=>'upload.postfile', 'uses'=>'UploadController@postfile']);
@@ -214,7 +214,9 @@ get('t/manday-dtl', function(){
 
 
 
-
+get('sessions', function(){
+	return session()->all();
+});
 
 
 

@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "chumper/zipper": "0.6.x",
-        "laravelcollective/html": "5.1.*"
+        "laravelcollective/html": "5.1.*",
+        "socialiteproviders/instagram": "^2.0"
        
     },
     "require-dev": {

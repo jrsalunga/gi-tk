@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
             ]);
             
 
-            $this->command->info($branch->descriptor);
+            $this->command->info(strtolower($branch->code).'-manager created!');
         }
 
         DB::table('users')->insert($users);

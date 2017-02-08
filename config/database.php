@@ -64,7 +64,19 @@ return [
             'strict'    => false,
         ],
 
-        'hr' => [
+        'local-hr' => [
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => 'hr',
+            'username'  => 'root',
+            'password'  => 'p@55w0rd',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
+        'mysql-hr' => [
             'driver'    => 'mysql',
             'host'      => '192.168.1.5:1686',
             'database'  => 'hr',

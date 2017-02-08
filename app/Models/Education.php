@@ -12,6 +12,9 @@ class Education extends BaseModel {
     return $this->belongsTo('App\Models\Employee', 'employeeid');
   }
 
-
-    //
+  public function __construct(array $attributes = [])
+  {
+  	parent::__construct($attributes);
+    $this->setConnection('mysql-hr');
+  }
 }

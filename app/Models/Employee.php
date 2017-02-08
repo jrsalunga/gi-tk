@@ -10,6 +10,14 @@ class Employee extends BaseModel {
  	public static $header = ['code', 'lastname'];
   public $timestamps = false;
 
+  public function __construct(array $attributes = [])
+  {
+    parent::__construct($attributes);
+    if (app()->environment()==='production')
+      $this->setConnection('mysql-hr');
+      
+    $this->setConnection('mysql-hr');
+  }
 
  	public function timelogs() {
     return $this->hasMany('App\Models\Timelog', 'employeeid');

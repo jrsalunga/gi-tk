@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use DB;
+use Exception;
+use Carbon\Carbon;
+use App\Models\Branch;
+use App\Models\Spouse;
+use App\Models\Workexp;
 use App\Models\Employee;
 use App\Models\Children;
-use App\Models\Branch;
-use App\Models\Position;
 use App\Models\Ecperson;
+use App\Models\Position;
 use App\Models\Education;
-use App\Models\Workexp;
-use App\Models\Spouse;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller {
 
@@ -147,24 +149,59 @@ class EmployeeController extends Controller {
 		}
 	}
 
-	public function importDBFs($br) { //(Request $request){
+	//public function importDBFs($br) { //(Request $request){
+	public function importDBFs(Request $request){
+
+		//$p = new Employee;
+		/*
+  	$attr = [
+  		'firstname' => 'Jefferson',
+  		'lastname' 	=> 'Salunga',
+  	];
+  	$p = Employee::firstOrCreate($attr);
+  	$p->branchid = '0cb2c03d78a711e587fa00ff59fbb323';
+
+		$e = new Ecperson;
+  	$e->firstname = 'Test';
+  	$e->lastname = 'Test';
+  	//$e->id = $e->get_uid();
+
+  	try {
+  		$re = $p->save();
+  		
+  	} catch(Exception $e) {
+  		//return $e->getCode();
+  		return $e->getMessage();
+  	}
+
+
+  	$rp = $p->ecperson()->save($e);	
+
+  	
+		return dd($re);
+		*/
 
 		$logfile = base_path().DIRECTORY_SEPARATOR.'logs'.DIRECTORY_SEPARATOR.'db-import.txt';
 
-		//return Employee::with('childrens')->get();
-		$import = true;
+		//$n = new Employee;
+
+		//return dd($n->getConnection());
+
+		//return Employee::where('code', '002257')->get();
+		$import = false;
 
 		if($import) {
-			$db = dbase_open('D:\GI\\'.$br.'\GC113015\PAY_MAST.DBF', 0);
+			//$db = dbase_open('D:\GI\\'.$br.'\GC113015\PAY_MAST.DBF', 0);
+			$db = dbase_open('D:\GI\GAL\GC112516\PAY_MAST.DBF', 0);
 		} else {
-			$db = dbase_open('D:\GI\MAR\GC113015\PAY_MAST.DBF', 0);
+			$db = dbase_open('D:\GI\GAL\GC112516\PAY_MAST.DBF', 0);
+			//$db = dbase_open('D:\GI\PAY_MAST.DBF', 0);
 		}
 
 
 		if ($db) {
 
 			$header = dbase_get_header_info($db);
-
 			
 			if(!$import)
 			echo '<table cellpadding="2" cellspacing="0" border="1"><thead>';
@@ -172,6 +209,7 @@ class EmployeeController extends Controller {
 			// render table header
 			if(!$import) {
 				echo '<tr>';
+				echo '<th>Exist?</th>';
 				foreach ($header as $key => $value) {
 				echo '<th>'.$value['name'].'</th>';
 				}
@@ -180,6 +218,7 @@ class EmployeeController extends Controller {
 			
 			
 		 	// render table body
+		 	$exist_emp = false;
 		 	$children_ctr = 0;
 		 	$ecperson_ctr = 0;
 		 	$education_ctr = 0;
@@ -192,21 +231,36 @@ class EmployeeController extends Controller {
 		  	if($i==1)
 		  		$brcode = trim($row['BRANCH']);
 
+		  	/*
 		  	if($import) {
 		    	$e = Employee::where('code', trim($row['MAN_NO']))->first();
 		    	if(!is_null($e))
 		    		continue;
 		  	}
+		  	*/
+
+		  	$e = Employee::where('code', trim($row['MAN_NO']))->first();
+
+		  	if((!$e)) {
+		  		$employee = new Employee;
+		  		$employee->id = $employee->get_uid();
+
+		  		$employee->code 				= trim($row['MAN_NO']);
+			    $employee->lastname 		= trim($row['LAST_NAM']);
+			    $employee->firstname		= trim($row['FIRS_NAM']);
+			    $employee->middlename		= trim($row['MIDL_NAM']);
+		  		
+		  		$exist_emp = false;
+		  		//$exist_emp = true;
+		  	} else {
+		  		$employee = Employee::find($e->id);
+		  		$exist_emp = true;
+		  	}
+
 
 		    
-
-		    $employee 							= new Employee;
-		    $employee->code 				= trim($row['MAN_NO']);
-		    $employee->lastname 		= trim($row['LAST_NAM']);
-		    $employee->firstname		= trim($row['FIRS_NAM']);
-		    $employee->middlename		= trim($row['MIDL_NAM']);
 		    $employee->companyid		= trim($this->getCompanyId($row['CO_NAME']));
-		    $employee->id 					= $employee->get_uid();
+		    
 		   	$branch 								= Branch::where('code', trim($row['BRANCH']))->first();
 		    $employee->branchid			= is_null($branch) ? '': $branch->id;
 		    $employee->deptid				= $this->getDeptId($row['DEPT']);
@@ -223,8 +277,10 @@ class EmployeeController extends Controller {
 		    $employee->sssno 				= trim($row['SSS_NO']);
 		    $employee->empstatus		= $this->getEmpstatus(trim($row['EMP_STUS']));
 		    $employee->datestart		= Carbon::parse(trim($row['STARTED']));
-		    //$employee->datehired		= trim($row['ALW2_RATE']);
-		    //$employee->datestop			= trim($row['ALW2_RATE']);
+		    $hired = empty(trim($row['HIRED'])) ? '0000-00-00' : Carbon::parse(trim($row['HIRED']));
+		    $employee->datehired		= $hired;
+		    $stop = empty(trim($row['RESIGNED'])) ? '0000-00-00' : Carbon::parse(trim($row['RESIGNED']));
+		    $employee->datestop			= $stop;
 		    $employee->punching			= 1;
 		    $employee->processing		= 1;
 		    $employee->address			= trim($row['ADDRESS1']).', '.trim($row['ADDRESS2']).', '.trim($row['ADDRESS3']);
@@ -243,113 +299,118 @@ class EmployeeController extends Controller {
 		    $employee->notes				= 'UNIFORM:'.trim($row['UNIFORM']).'; '.
 		    													'SP_NOTES1:'.trim($row['SP_NOTES1']).'; '.
 		    													'SP_NOTES2:'.trim($row['SP_NOTES2']).'; ';
-		    
-		    
-		    $childrens = [];
-		    if(!empty(trim($row['CHILDREN1'])) && trim($row['CHILDREN1'])!='N/A') {
-		    	$c1 = new Children;
-		    	$c1->firstname = trim($row['CHILDREN1']);
-		    	$c1->lastname = $employee->lastname;
-		    	$c1->id = $c1->get_uid();
-		    	array_push($childrens, $c1);
-		    	$children_ctr++;
-		    }
-
-		    if(!empty(trim($row['CHILDREN2'])) && trim($row['CHILDREN2'])!='N/A') {
-		    	$c2 = new Children;
-		    	$c2->firstname = trim($row['CHILDREN2']);
-		    	$c2->lastname = $employee->lastname;
-		    	$c2->id = $c2->get_uid();
-		    	array_push($childrens, $c2);
-		    	$children_ctr++;
-		    }
-
-		    if($import)
-		    	$employee->childrens()->saveMany($childrens);
-
-
-
-		    if(!empty(trim($row['EMER_NAM'])) && trim($row['EMER_NAM'])!='N/A') {
-		    	$emer = explode(' ', trim($row['EMER_NAM']));
-		    	$e = new Ecperson;
-		    	$e->firstname = empty($emer[0])?'':$emer[0];
-		    	$e->lastname = empty($emer[1])?'':$emer[1];
-		    	$e->mobile = trim($row['EMER_NO']);
-		    	$e->id = $e->get_uid();
-		    	$ecperson_ctr++;
-		    	if($import)
-		    		$employee->ecperson()->save($e);	
-		    }
-
-
-		    if(!empty(trim($row['EDUCATION'])) && trim($row['EDUCATION'])!='N/A') {
-		    	$edu = new Education;
-		    	$edu->school = trim($row['EDUCATION']);
-		    	$edu->id = $edu->get_uid();
-		    	
-
-		    	if($import)
-		    		$employee->educations()->saveMany([$edu]);	
-		    	$education_ctr++;
-		    }
-		    
-
-		    $works = [];
-		    if(!empty(trim($row['WORKHIST1'])) && trim($row['WORKHIST1'])!='N/A') {
-		    	$w1 = new Workexp;
-		    	$w1->company = trim($row['WORKHIST1']);
-		    	$w1->id = $w1->get_uid();
-		    	array_push($works, $w1);
-		    	$work_ctr++;
-		    }
-
-		    if(!empty(trim($row['WORKHIST2'])) && trim($row['WORKHIST2'])!='N/A') {
-		    	$w2 = new Workexp;
-		    	$w2->company = trim($row['WORKHIST2']);
-		    	$w2->id = $w2->get_uid();
-		    	array_push($works, $w2);
-		    	$work_ctr++;
-		    }
-
-		    if(!empty(trim($row['WORKHIST3'])) && trim($row['WORKHIST3'])!='N/A') {
-		    	$w3 = new Workexp;
-		    	$w3->company = trim($row['WORKHIST3']);
-		    	$w3->id = $w3->get_uid();
-		    	array_push($works, $w3);
-		    	$work_ctr++;
-		    }
-
-		    if(!empty(trim($row['WORKHIST4'])) && trim($row['WORKHIST4'])!='N/A') {
-		    	$w4= new Workexp;
-		    	$w4->company = trim($row['WORKHIST2']);
-		    	$w4->id = $w4->get_uid();
-		    	array_push($works, $w4);
-		    	$work_ctr++;
-		    }
-
-		    if($import)
-		    	$employee->workexps()->saveMany($works);
-
-
-		    if(!empty(trim($row['SPOUS_NAM'])) && trim($row['SPOUS_NAM'])!='N/A' && trim($row['SPOUS_NAM'])!='NA/A' ) {
-		    	$sp = preg_split("/\s+(?=\S*+$)/", trim($row['SPOUS_NAM']));
-		    	$spou = new Spouse;
-		    	$spou->firstname = empty($sp[0])?'':$sp[0];
-		    	$spou->lastname = empty($sp[1])?'':$sp[1];
-		    	$spou->id = $spou->get_uid();
-		    	$spouse_ctr++;
-		    	if($import)
-		    		$employee->spouse()->save($spou);	
-		    }
-
-		    
-				
 
 		    if($import)
 		     	$employee->save();
+		    
+		    if(!$exist_emp) {
+
+			    $childrens = [];
+			    if(!empty(trim($row['CHILDREN1'])) && trim($row['CHILDREN1'])!='N/A') {
+			    	$c1 = new Children;
+			    	$c1->firstname = trim($row['CHILDREN1']);
+			    	$c1->lastname = $employee->lastname;
+			    	$c1->id = $c1->get_uid();
+			    	array_push($childrens, $c1);
+			    	$children_ctr++;
+			    }
+
+			    if(!empty(trim($row['CHILDREN2'])) && trim($row['CHILDREN2'])!='N/A') {
+			    	$c2 = new Children;
+			    	$c2->firstname = trim($row['CHILDREN2']);
+			    	$c2->lastname = $employee->lastname;
+			    	$c2->id = $c2->get_uid();
+			    	array_push($childrens, $c2);
+			    	$children_ctr++;
+			    }
+
+			    if($import)
+			    	$employee->childrens()->saveMany($childrens);
+
+
+
+			    if(!empty(trim($row['EMER_NAM'])) && trim($row['EMER_NAM'])!='N/A') {
+			    	$emer = explode(' ', trim($row['EMER_NAM']));
+			    	$e = new Ecperson;
+			    	$e->firstname = empty($emer[0])?'':$emer[0];
+			    	$e->lastname = empty($emer[1])?'':$emer[1];
+			    	$e->mobile = trim($row['EMER_NO']);
+			    	$e->id = $e->get_uid();
+			    	$ecperson_ctr++;
+			    	if($import)
+			    		$employee->ecperson()->save($e);	
+			    }
+
+
+			    if(!empty(trim($row['EDUCATION'])) && trim($row['EDUCATION'])!='N/A') {
+			    	$edu = new Education;
+			    	$edu->school = trim($row['EDUCATION']);
+			    	$edu->id = $edu->get_uid();
+			    	
+
+			    	if($import)
+			    		$employee->educations()->saveMany([$edu]);	
+			    	$education_ctr++;
+			    }
+			    
+
+			    $works = [];
+			    if(!empty(trim($row['WORKHIST1'])) && trim($row['WORKHIST1'])!='N/A') {
+			    	$w1 = new Workexp;
+			    	$w1->company = trim($row['WORKHIST1']);
+			    	$w1->id = $w1->get_uid();
+			    	array_push($works, $w1);
+			    	$work_ctr++;
+			    }
+
+			    if(!empty(trim($row['WORKHIST2'])) && trim($row['WORKHIST2'])!='N/A') {
+			    	$w2 = new Workexp;
+			    	$w2->company = trim($row['WORKHIST2']);
+			    	$w2->id = $w2->get_uid();
+			    	array_push($works, $w2);
+			    	$work_ctr++;
+			    }
+
+			    if(!empty(trim($row['WORKHIST3'])) && trim($row['WORKHIST3'])!='N/A') {
+			    	$w3 = new Workexp;
+			    	$w3->company = trim($row['WORKHIST3']);
+			    	$w3->id = $w3->get_uid();
+			    	array_push($works, $w3);
+			    	$work_ctr++;
+			    }
+
+			    if(!empty(trim($row['WORKHIST4'])) && trim($row['WORKHIST4'])!='N/A') {
+			    	$w4= new Workexp;
+			    	$w4->company = trim($row['WORKHIST2']);
+			    	$w4->id = $w4->get_uid();
+			    	array_push($works, $w4);
+			    	$work_ctr++;
+			    }
+
+			    if($import)
+			    	$employee->workexps()->saveMany($works);
+
+
+			    if(!empty(trim($row['SPOUS_NAM'])) && trim($row['SPOUS_NAM'])!='N/A' && trim($row['SPOUS_NAM'])!='NA/A' ) {
+			    	$sp = preg_split("/\s+(?=\S*+$)/", trim($row['SPOUS_NAM']));
+			    	$spou = new Spouse;
+			    	$spou->firstname = empty($sp[0])?'':$sp[0];
+			    	$spou->lastname = empty($sp[1])?'':$sp[1];
+			    	$spou->id = $spou->get_uid();
+			    	$spouse_ctr++;
+			    	if($import)
+			    		$employee->spouse()->save($spou);	
+			    }
+
+		    }
+		    
+				
+
+		    
 
 		   	if(!$import) {
 			    echo '<tr>';
+			    echo '<td>'.$exist_emp.'</td>';
 					foreach ($header as $key => $value) {
 						//if($value['name']=='CO_NAME')
 							//echo '<td>'.$this->getCompanyId($row[$value['name']]).'</td>';
@@ -389,7 +450,13 @@ class EmployeeController extends Controller {
 			case "TRAINEE":
 				return 0;
 				break;
+			case "TRAINEE 1":
+				return 0;
+				break;
 			case "TEMPORARY":
+				return 1;
+				break;
+			case "TEMPO":
 				return 1;
 				break;
 			case "REGULAR":
@@ -438,6 +505,9 @@ class EmployeeController extends Controller {
 				break;
 			case "NIKDER SIX FOODS":
 				return '74B1CBDC673611E596ECDA40B3C0AA12';
+				break;
+			case "FJN6 FOOD CORP.":
+				return '5C010584673611E596ECDA40B3C0AA12';
 				break;
 			default:
 				return '';
@@ -612,6 +682,235 @@ class EmployeeController extends Controller {
 			default:
 				return '';
 				break;
+		}
+
+	}
+
+
+
+
+	public function payMergeView(Request $request) {
+
+
+
+	$db = dbase_open('D:\GI\_MERGE\11152016.DBF', 0);
+	$arr = [];
+
+	if ($db) {
+
+		$header = dbase_get_header_info($db);
+		
+		
+		//echo '<table cellpadding="2" cellspacing="0" border="1"><thead>';
+		/*
+		echo '<tr>';
+		foreach ($header as $key => $value)
+			echo '<th>'.$value['name'].'</th>';
+		echo '</tr>';
+		*/
+		
+		
+		
+	 
+	 	$record_numbers = dbase_numrecords($db);
+	  
+
+	  for($i = 1; $i <= $record_numbers; $i++) {
+	  	//echo '<tr>';
+	    $row = dbase_get_record_with_names($db, $i);
+	    $new = false;
+
+	    if (!array_key_exists($row['BRANCH'], $arr)) {
+
+	    	$arr[$row['BRANCH']] = null;
+	    	$arr[$row['BRANCH']]['total_emp'] = 1;
+	    	$arr[$row['BRANCH']]['total_salary'] = $row['GRS_PAY'];
+	  		$new = true;
+
+	    	$arr[$row['BRANCH']]['emp']['kit'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['din'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['csh'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['ops'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['adm'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['other'] = 0;
+
+	  		$arr[$row['BRANCH']]['salary']['kit'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['din'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['csh'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['ops'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['adm'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['other'] = 0;
+	    } 
+
+
+	    if (!$new) {
+	    	$arr[$row['BRANCH']]['total_emp'] += 1;
+	    	$arr[$row['BRANCH']]['total_salary'] += $row['GRS_PAY'];
+	    	$new = false;
+	    }
+
+			$pos = strtolower(substr($row['DEPT'], 0, 3));
+			switch ($pos) {
+				case 'kit':
+					$arr[$row['BRANCH']]['emp']['kit'] += 1;
+					$arr[$row['BRANCH']]['salary']['kit'] += $row['GRS_PAY'];
+					break;
+				case 'din':
+					$arr[$row['BRANCH']]['emp']['din'] += 1;
+					$arr[$row['BRANCH']]['salary']['din'] += $row['GRS_PAY'];
+					break;
+				case 'csh':
+					$arr[$row['BRANCH']]['emp']['csh'] += 1;
+					$arr[$row['BRANCH']]['salary']['csh'] += $row['GRS_PAY'];
+					break;
+				case 'ops':
+					$arr[$row['BRANCH']]['emp']['ops'] += 1;
+					$arr[$row['BRANCH']]['salary']['ops'] += $row['GRS_PAY'];
+					break;
+				case 'adm':
+					$arr[$row['BRANCH']]['emp']['adm'] += 1;
+					$arr[$row['BRANCH']]['salary']['adm'] += $row['GRS_PAY'];
+					break;
+				default:
+					$arr[$row['BRANCH']]['emp']['other'] += 1;
+					$arr[$row['BRANCH']]['salary']['other'] += $row['GRS_PAY'];
+					break;
+			}
+
+
+
+	    	/*
+
+	  	if (array_key_exists($row['BRANCH'], $arr)) {
+	  		$arr[$row['BRANCH']]['total_emp'] += 1;
+	  		$arr[$row['BRANCH']]['total_salary'] += $row['GRS_PAY'];
+
+	  		$pos = strtolower(substr($row['DEPT'], 0, 3));
+
+	  		switch ($pos) {
+	  			case 'kit':
+	  				$arr[$row['BRANCH']]['emp']['kit'] += 1;
+	  				$arr[$row['BRANCH']]['salary']['kit'] += $row['GRS_PAY'];
+	  				break;
+	  			case 'din':
+	  				$arr[$row['BRANCH']]['emp']['din'] += 1;
+	  				$arr[$row['BRANCH']]['salary']['din'] += $row['GRS_PAY'];
+	  				break;
+	  			case 'csh':
+	  				$arr[$row['BRANCH']]['emp']['csh'] += 1;
+	  				$arr[$row['BRANCH']]['salary']['csh'] += $row['GRS_PAY'];
+	  				break;
+	  			case 'ops':
+	  				$arr[$row['BRANCH']]['emp']['ops'] += 1;
+	  				$arr[$row['BRANCH']]['salary']['ops'] += $row['GRS_PAY'];
+	  				break;
+	  			case 'adm':
+	  				$arr[$row['BRANCH']]['emp']['adm'] += 1;
+	  				$arr[$row['BRANCH']]['salary']['adm'] += $row['GRS_PAY'];
+	  				break;
+	  			default:
+	  				$arr[$row['BRANCH']]['emp']['other'] += 1;
+	  				$arr[$row['BRANCH']]['salary']['other'] += $row['GRS_PAY'];
+	  				break;
+	  		}
+	  		
+	  		
+	  	
+	  	} else {
+	  		$arr[$row['BRANCH']]['total_emp'] = 0;
+	  		$arr[$row['BRANCH']]['total_salary'] = 0;
+
+	  		$arr[$row['BRANCH']]['emp']['kit'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['din'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['csh'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['ops'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['adm'] = 0;
+	  		$arr[$row['BRANCH']]['emp']['other'] = 0;
+
+	  		$arr[$row['BRANCH']]['salary']['kit'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['din'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['csh'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['ops'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['adm'] = 0;
+	  		$arr[$row['BRANCH']]['salary']['other'] = 0;
+
+	  		$pos = strtolower(substr($row['DEPT'], 0, 3));
+	  		$arr[$row['BRANCH']]['emp'][$pos] += 1;
+	  		$arr[$row['BRANCH']]['salary'][$pos] += $row['GRS_PAY'];
+	  		$arr[$row['BRANCH']]['total_salary'] += $row['GRS_PAY'];
+	  	}
+
+	  	*/
+
+
+
+  	
+
+
+	    
+
+	    foreach ($row as $key => $val)  {
+
+	    	//echo '<td>'.$val.'</td>';
+	    }
+
+	  	//echo '</tr>';
+	  }
+
+
+		dbase_close($db);
+
+		ksort($arr);
+
+		//return $arr;
+
+
+
+		echo '<table cellpadding="2" cellspacing="0" border="1"><thead>';
+		
+		echo '<tr>';
+		echo '<th></th>';
+		echo '<th>BRANCH</th>';
+		echo '<th>KIT</th>';
+		echo '<th>DIN</th>';
+		echo '<th>CSH</th>';
+		echo '<th>OPS</th>';
+		echo '<th>ADM</th>';
+		//echo '<th>OTHER</th>';
+		echo '<th>TOTAL</th>';
+		echo '<th>TOTAL SALARY</th>';
+		echo '<th>AVE SALARY</th>';
+		echo '<th>AVE PER DAY</th>';
+		echo '</tr>';
+		echo '</thead><tbody>';
+
+		$tot = 0;
+		foreach ($arr as $key => $value) {
+			echo '<tr>';
+			echo '<td>'.(array_search($key, array_keys($arr))+1).'</td>';
+			echo '<td>'.$key.'</td>';
+			echo '<td>'.$value['emp']['kit'].'</td>';
+			echo '<td>'.$value['emp']['din'].'</td>';
+			echo '<td>'.$value['emp']['csh'].'</td>';
+			echo '<td>'.$value['emp']['ops'].'</td>';
+			echo '<td>'.$value['emp']['adm'].'</td>';
+			//echo '<td>'.$value['emp']['other'].'</td>';
+			echo '<td>'.$value['total_emp'].'</td>';
+			echo '<td style="text-align: right;">'.number_format($value['total_salary'],2).'</td>';
+			$sal = $value['total_emp']==0
+			?	0
+			: $value['total_salary']/$value['total_emp'];
+			echo '<td style="text-align: right;">'.number_format($sal,2).'</td>';
+			echo '<td style="text-align: right;">'.number_format($sal/14,2).'</td>';
+			echo '</tr>';
+			$tot += $value['total_salary'];
+		}
+		echo '</tbody></table>';
+
+		echo '<strong>'.number_format($tot,2).'</strong>';
+
+		} else {
+			return 'merge not found';
 		}
 
 
