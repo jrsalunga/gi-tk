@@ -49,7 +49,7 @@ class RaffleTableSeeder extends Seeder
     	
     	$this->command->info('----------------------------------------------------------');
     	$this->command->info('Item: '.$prize->item.'    Class: '.$prize->class);
-        //sleep(2);
+        sleep(1);
     	$this->command->info(' ');
     	$this->command->info('Winner -> ***** '. $person->name.' - '.$person->branch. ' - '.$person->class.' *****');
     	$this->command->info('----------------------------------------------------------');
@@ -57,7 +57,7 @@ class RaffleTableSeeder extends Seeder
     	
         
 
-        //sleep(1);
+        sleep(1);
     }
 
 

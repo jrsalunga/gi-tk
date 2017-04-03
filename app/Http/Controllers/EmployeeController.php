@@ -188,13 +188,13 @@ class EmployeeController extends Controller {
 		//return dd($n->getConnection());
 
 		//return Employee::where('code', '002257')->get();
-		$import = false;
+		$import = true;
 
 		if($import) {
 			//$db = dbase_open('D:\GI\\'.$br.'\GC113015\PAY_MAST.DBF', 0);
-			$db = dbase_open('D:\GI\GAL\GC112516\PAY_MAST.DBF', 0);
+			$db = dbase_open('D:\GI\DCC\GC032917\PAY_MAST.DBF', 0);
 		} else {
-			$db = dbase_open('D:\GI\GAL\GC112516\PAY_MAST.DBF', 0);
+			$db = dbase_open('D:\GI\DCC\GC032917\PAY_MAST.DBF', 0);
 			//$db = dbase_open('D:\GI\PAY_MAST.DBF', 0);
 		}
 
@@ -300,6 +300,7 @@ class EmployeeController extends Controller {
 		    													'SP_NOTES1:'.trim($row['SP_NOTES1']).'; '.
 		    													'SP_NOTES2:'.trim($row['SP_NOTES2']).'; ';
 
+		    //if($import && !$exist_emp)
 		    if($import)
 		     	$employee->save();
 		    
@@ -509,6 +510,9 @@ class EmployeeController extends Controller {
 			case "FJN6 FOOD CORP.":
 				return '5C010584673611E596ECDA40B3C0AA12';
 				break;
+			case "NEILZACH RESTAURANT":
+				return 'DB02D166D56A466D9804BEFD3589E432';
+				break;
 			default:
 				return '';
 				break;
@@ -524,7 +528,7 @@ class EmployeeController extends Controller {
 		if(starts_with($dept, 'OPS'))
 			return '201E68D4674111E596ECDA40B3C0AA12';
 		if(starts_with($dept, 'CSH'))
-			return '20767330A25B11E583CA00FF59FBB323';
+			return 'DC60EC42B0B143AFA7D42312DA5D80BF';
 		if(starts_with($dept, 'ADM'))
 			return 'D2E8E339A47B11E592E000FF59FBB323';
 		return '';	
@@ -572,6 +576,9 @@ class EmployeeController extends Controller {
 				return '2975665F674811E596ECDA40B3C0AA12';
 				break;
 			case "JEHOVA":
+				return '465B9151A30E11E592E000FF59FBB323';
+				break;
+			case "JEHOVA'S":
 				return '465B9151A30E11E592E000FF59FBB323';
 				break;
 			case "INC":
